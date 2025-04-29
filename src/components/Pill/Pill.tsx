@@ -1,0 +1,1 @@
+// This is the *component* file. It contains the code for the Pill component.

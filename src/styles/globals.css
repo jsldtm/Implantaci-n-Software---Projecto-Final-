@@ -1,0 +1,103 @@
+/* Hide scrollbar but allow scrolling */
+/* Hide horizontal scrollbar but allow horizontal scrolling */
+/* Ensure horizontal scrolling is constrained */
+.scrollable-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    white-space: nowrap; /* Prevent items from wrapping */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    display: flex; /* Use flexbox for better alignment */
+    gap: 1rem; /* Add spacing between items */
+  }
+  
+  .scrollable-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers */
+  }
+
+  /* Ensure items are displayed inline */
+  .scrollable-container > * {
+    display: inline-block; /* Ensure items are inline for horizontal scrolling */
+    vertical-align: top; /* Align items properly */
+  }
+
+.no-scrollbar {
+    -ms-overflow-style: none; /* Internet Explorer 10+ */
+    scrollbar-width: none; /* Firefox */
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  /* Fading effect for scrollable areas */
+  .bg-gradient-to-r {
+    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  }
+  
+  .bg-gradient-to-l {
+    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+    display: none; /* Safari and Chrome */
+  }
+  
+  /* Additional spacing and alignment */
+  .flex {
+    display: flex;
+  }
+  
+  .space-x-6 > * + * {
+    margin-left: 1.5rem; /* Adjust spacing between items */
+  }
+
+  /* Ensure items are laid out horizontally */
+ .horizontal-list {
+    display: flex; /* Lay out items in a row */
+    gap: 1rem; /* Add spacing between items */
+ }
+
+ .scrollable-container {
+    overflow-x: auto; /* Enable horizontal scrolling */
+    overflow-y: hidden; /* Prevent vertical scrolling */
+    white-space: nowrap; /* Prevent items from wrapping */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE and Edge */
+    display: flex; /* Use flexbox for horizontal alignment */
+    gap: 1rem; /* Add spacing between items */
+    padding-bottom: 0.5rem; /* Optional: Add padding to avoid clipping */
+  }
+  
+  .scrollable-container::-webkit-scrollbar {
+    display: none; /* Hide scrollbar for WebKit browsers */
+  }
+  
+  .saved-for-later-item {
+    width: 150px; /* Fixed width */
+    height: 200px; /* Increased height to accommodate text */
+    display: flex; /* Center content */
+    flex-direction: column; /* Stack image and text vertically */
+    justify-content: flex-start; /* Align content to the top */
+    align-items: center; /* Center horizontally */
+    overflow: hidden; /* Ensure content doesn't overflow */
+    border: 1px solid #ddd; /* Optional: Add a border for clarity */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    background-color: #f9f9f9; /* Optional: Add a background color */
+    flex-shrink: 0; /* Prevent shrinking in horizontal scroll */
+    text-align: center; /* Ensure text is centered */
+  }
+  
+  .saved-for-later-item img {
+    width: 100%; /* Ensure the image fits within the container */
+    height: 150px; /* Fixed height for the image */
+    object-fit: contain; /* Use "contain" to fit the image without cropping */
+  }
+  
+  .saved-for-later-item span {
+    margin-top: 0.5rem; /* Add spacing between the image and text */
+    font-size: 0.875rem; /* Adjust font size */
+    color: #4a4a4a; /* Optional: Adjust text color */
+    text-align: center; /* Ensure the text is centered */
+    white-space: normal; /* Allow text to wrap if it's too long */
+  }

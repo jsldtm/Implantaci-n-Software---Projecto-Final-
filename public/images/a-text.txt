@@ -1,0 +1,1 @@
+Place *every* image used in the E-commerce Portal in THIS folder :)

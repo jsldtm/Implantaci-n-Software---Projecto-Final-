@@ -1,0 +1,17 @@
+/* This file has the CSS styles for the BackToCategoriesBar component */
+
+.bar {
+    margin-bottom: 16px;
+    font-size: 14px;
+    color: #555;
+  }
+  
+  .link {
+    text-decoration: none;
+    color: #0070f3;
+    font-weight: bold;
+  }
+  
+  .link:hover {
+    text-decoration: underline;
+  }
