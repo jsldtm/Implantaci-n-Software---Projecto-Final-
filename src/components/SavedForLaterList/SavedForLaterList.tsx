@@ -17,19 +17,19 @@ const savedItems = [
 
 const SavedForLaterList = () => {
     return (
-      <div className="py-4">
+      <div className = "py-4">
         {/* Static heading */}
-        <h2 className="text-lg font-semibold text-gray-800 mb-4">Saved for later...</h2>
+        <h2 className = "text-lg font-semibold text-gray-800 mb-4">Saved for later...</h2>
         
         {/* Scrollable container for items */}
-        <div className="scrollable-container">
+        <div className = "scrollable-container">
           {savedItems.map((item) => (
-            <div key={item.name} className="saved-for-later-item">
+            <div key = {item.name} className = "saved-for-later-item">
               <img
-                src={item.image}
-                alt={item.name || "Product image"} // Fallback alt text
+                src = {item.image}
+                alt = {item.name || "Product image"} // Fallback alt text
               />
-              <span className="text-sm text-center text-gray-700">
+              <span className = "text-sm text-center text-gray-700">
                 {item.name || "Unnamed Product"} {/* Fallback name */}
               </span>
             </div>

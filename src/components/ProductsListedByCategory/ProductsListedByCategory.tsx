@@ -19,7 +19,7 @@ const ProductsListedByCategory: React.FC<Props> = ({ category, products }) => {
       {products.map((product) => (
         <div
         key={product.id}
-        className="bg-white rounded-lg shadow-md p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
+        className = "bg-white rounded-lg shadow-md p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg"
        >
           <img
             src = {product.image}

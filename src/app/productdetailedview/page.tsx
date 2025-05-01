@@ -14,15 +14,15 @@ export default function ProductDetailedView() {
   const category = "Technology"; // Replace with dynamic category if needed
 
   return (
-    <div className="flex">
+    <div className = "flex">
       {/* Sidebar with default "Search" selected */}
       <Sidebar
-        defaultSelected="Search"
+        defaultSelected = "Search"
         onHomeClick={() => router.push("/finditallmain")} // Navigate to "finditallmain"
       />
 
       {/* Main Content */}
-      <div className="flex-1 p-6 sm:p-10">
+      <div className = "flex-1 p-6 sm:p-10">
         {/* Back to Categories Bar */}
         <BackToCategoriesBar category={category} />
 

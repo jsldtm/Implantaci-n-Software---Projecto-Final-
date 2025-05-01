@@ -85,14 +85,14 @@ const CategoriesPage: React.FC = () => {
             {/* Dynamically set the title and meta tags */}
             <Head>
                 <title>Findit All - Our Categories</title>
-                <meta name="description" content="Explore our categories and find the best products for you." />
+                <meta name = "description" content = "Explore our categories and find the best products for you." />
             </Head>
 
-            <div className="flex h-screen bg-gray-100">
+            <div className = "flex h-screen bg-gray-100">
                 {/* Sidebar */}
-                <aside className="w-20 bg-gray-900 text-white flex flex-col items-center py-4 space-y-6">
+                <aside className = "w-20 bg-gray-900 text-white flex flex-col items-center py-4 space-y-6">
                 <button
-                        className="hover:text-blue-500"
+                        className = "hover:text-blue-500"
                         onClick={() => router.push("/finditallmain")} // Navigate to 'finditallmain'
                     >
                         <HomeIcon fontSize = "large" />
@@ -109,22 +109,22 @@ const CategoriesPage: React.FC = () => {
                 </aside>
 
                 {/* Main Content */}
-                <div className="flex-1 flex flex-col">
+                <div className = "flex-1 flex flex-col">
                     {/* Header */}
-                    <header className="bg-blue-500 text-white p-4 flex items-center justify-between">
-                        <h1 className="text-xl font-bold">Our Categories</h1>
-                        <div className="flex items-center space-x-4">
+                    <header className = "bg-blue-500 text-white p-4 flex items-center justify-between">
+                        <h1 className = "text-xl font-bold">Our Categories</h1>
+                        <div className = "flex items-center space-x-4">
                             <button>
-                                <NotificationsIcon fontSize="large" />
+                                <NotificationsIcon fontSize = "large" />
                             </button>
                             <button>
-                                <AccountCircleIcon fontSize="large" />
+                                <AccountCircleIcon fontSize = "large" />
                             </button>
                         </div>
                     </header>
 
                     {/* Category Tabs */}
-                    <nav className="bg-blue-100 p-2 flex space-x-4">
+                    <nav className = "bg-blue-100 p-2 flex space-x-4">
                         {categories.map((category) => (
                             <button
                                 key={category.id}
@@ -141,7 +141,7 @@ const CategoriesPage: React.FC = () => {
                     </nav>
 
                     {/* Product Grid */}
-                    <main className="flex-1 p-4 overflow-y-auto">
+                    <main className = "flex-1 p-4 overflow-y-auto">
                         <ProductsListedByCategory
                             category={chosenCategory}
                             products={productsByCategory[chosenCategory] || []}

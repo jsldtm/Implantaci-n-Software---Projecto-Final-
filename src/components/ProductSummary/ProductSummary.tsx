@@ -33,32 +33,32 @@ export default function ProductSummary({ productId }: { productId: string }) {
   };
 
   return (
-    <div className={styles.summary}>
-      <div className={styles.content}>
+    <div className = {styles.summary}>
+      <div className = {styles.content}>
         {/* Image Section */}
-        <div className={styles.imageContainer}>
-          <img src={product.image} alt={product.name} className={styles.image} />
+        <div className = {styles.imageContainer}>
+          <img src = {product.image} alt = {product.name} className = {styles.image} />
         </div>
 
         {/* Text Section */}
-        <div className={styles.details}>
-          <h1 className={styles.name}>{product.name}</h1>
-          <p className={styles.startingPrice}>Starting at {product.startingPrice}</p>
-          <p className={styles.description}>{product.description}</p>
+        <div className = {styles.details}>
+          <h1 className = {styles.name}>{product.name}</h1>
+          <p className = {styles.startingPrice}>Starting at {product.startingPrice}</p>
+          <p className = {styles.description}>{product.description}</p>
 
           {/* Amount Dropdown */}
-          <div className={styles.amountContainer}>
-            <div className={styles.amountLabel} onClick={toggleDropdown}>
-              Amount <span className={styles.arrow}>{dropdownOpen ? "▲" : "▼"}</span>
+          <div className = {styles.amountContainer}>
+            <div className = {styles.amountLabel} onClick = {toggleDropdown}>
+              Amount <span className = {styles.arrow}>{dropdownOpen ? "▲" : "▼"}</span>
             </div>
-            <div className={styles.amountInput}>{selectedPrice}</div>
+            <div className = {styles.amountInput}>{selectedPrice}</div>
             {dropdownOpen && (
-              <div className={styles.dropdown}>
+              <div className = {styles.dropdown}>
                 {product.prices.map((price) => (
                   <div
-                    key={price}
-                    className={styles.dropdownItem}
-                    onClick={() => selectPrice(price)}
+                    key = {price}
+                    className = {styles.dropdownItem}
+                    onClick = {() => selectPrice(price)}
                   >
                     {price}
                   </div>
@@ -67,7 +67,7 @@ export default function ProductSummary({ productId }: { productId: string }) {
             )}
           </div>
 
-          <button className={styles.addToCart}>Add to Cart</button>
+          <button className = {styles.addToCart}>Add to Cart</button>
         </div>
       </div>
     </div>

@@ -35,21 +35,21 @@ export default function SimilarProducts() {
   ];
 
   return (
-    <div className={styles.similarProducts}>
-      <h2 className={styles.title}>Similar products</h2>
-      <div className={styles.list}>
+    <div className = {styles.similarProducts}>
+      <h2 className = {styles.title}>Similar products</h2>
+      <div className = {styles.list}>
         {products.map((product) => (
-          <div key={product.id} className={styles.product}>
-            <img src={product.image} alt={product.name} className={styles.image} />
-            <div className={styles.details}>
-              <h3 className={styles.name}>{product.name}</h3>
-              <p className={styles.description}>{product.description}</p>
-              <div className={styles.actions}>
-                <button className={styles.addToCart}>Add to Cart</button>
-                <span className={styles.price}>{product.price}</span>
+          <div key = {product.id} className = {styles.product}>
+            <img src = {product.image} alt = {product.name} className = {styles.image} />
+            <div className = {styles.details}>
+              <h3 className = {styles.name}>{product.name}</h3>
+              <p className = {styles.description}>{product.description}</p>
+              <div className = {styles.actions}>
+                <button className = {styles.addToCart}>Add to Cart</button>
+                <span className = {styles.price}>{product.price}</span>
               </div>
             </div>
-            <PlayIcon className={styles.arrow} /> {/* Use Heroicons PlayIcon */}
+            <PlayIcon className = {styles.arrow} /> {/* Use Heroicons PlayIcon */}
           </div>
         ))}
       </div>

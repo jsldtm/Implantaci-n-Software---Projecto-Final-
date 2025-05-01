@@ -51,17 +51,17 @@ const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <div className={styles.sidebar}>
+    <div className = {styles.sidebar}>
       {options.map((option) => (
         <button
-          key={option.name}
-          className={`${styles.option} ${
+          key = {option.name}
+          className = {`${styles.option} ${
             selectedOption === option.name ? styles.selected : ""
           }`}
-          onClick={option.onClick}
+          onClick = {option.onClick}
         >
           {option.icon}
-          <span className={styles.label}>{option.name}</span>
+          <span className = {styles.label}>{option.name}</span>
         </button>
       ))}
     </div>
