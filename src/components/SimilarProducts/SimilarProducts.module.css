@@ -1,41 +1,93 @@
 /* CSS for the SimilarProducts component */
 
+/* CSS for the SimilarProducts component */
+
+/* CSS for the SimilarProducts component */
+
 .similarProducts {
-    margin-top: 32px;
-  }
-  
-  .title {
-    font-size: 20px;
-    font-weight: bold;
-    margin-bottom: 16px;
-  }
-  
-  .list {
-    display: flex;
-    gap: 24px;
-    justify-content: center;
-    flex-wrap: wrap;
-  }
-  
-  .product {
-    text-align: center;
-    max-width: 150px;
-  }
-  
-  .image {
-    width: 100px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-bottom: 8px;
-  }
-  
-  .name {
-    font-size: 14px;
-    margin-bottom: 4px;
-  }
-  
-  .price {
-    font-size: 14px;
-    color: #0070f3;
-  }
+  margin-top: 32px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 16px;
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.product {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: 16px;
+}
+
+.image {
+  width: 120px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+.details {
+  flex-grow: 1;
+}
+
+.name {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #1f2937;
+}
+
+.description {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 16px;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* Limit to 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.addToCart {
+  background-color: #65558f;
+  color: #ffffff;
+  padding: 8px 12px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.addToCart:hover {
+  background-color: #4b0082;
+}
+
+.price {
+  font-size: 14px;
+  color: #1f2937;
+}
+
+.arrow {
+  width: 24px;
+  height: 24px;
+  color: #00040f; /* Blue color for the arrow */
+  fill : #3f3b45; /* Blue color for the arrow */
+  flex-shrink: 0;
+  align-self: center; /* Center the arrow vertically */
+}

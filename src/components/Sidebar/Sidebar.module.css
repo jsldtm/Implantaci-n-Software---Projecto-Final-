@@ -1,0 +1,29 @@
+/* This CSS includes the styles for the 'Sidebar' component */
+.sidebar {
+    width: 80px;
+    background-color: #1a1a1a;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    gap: 1.5rem;
+  }
+  
+  .option {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #a1a1a1;
+    transition: color 0.3s;
+  }
+  
+  .option:hover,
+  .option.selected {
+    color: #4f46e5; /* Highlight color */
+  }
+  
+  .label {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+  }

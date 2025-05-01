@@ -1,17 +1,18 @@
-import React from 'react';
+"use client"; // This is a client component
+
+import React from "react";
 import Head from "next/head";
-import Sidebar from '@/components/Sidebar/Sidebar';
-import MainHeader from '@/components/MainHeader/MainHeader';
-import ProductCategoryList from '@/components/ProductCategoryList/ProductCategoryList';
-import NewAndTrendyList from '@/components/NewAndTrendyList/NewAndTrendyList';
-import SavedForLaterList from '@/components/SavedForLaterList/SavedForLaterList';
+import Sidebar from "@/components/Sidebar/Sidebar";
+import MainHeader from "@/components/MainHeader/MainHeader";
+import ProductCategoryList from "@/components/ProductCategoryList/ProductCategoryList";
+import NewAndTrendyList from "@/components/NewAndTrendyList/NewAndTrendyList";
+import SavedForLaterList from "@/components/SavedForLaterList/SavedForLaterList";
+import { useRouter } from "next/navigation";
 
 const EcommerceHomePage = () => {
-  
-    // This is the main page for the e-commerce application.
-  console.log("EcommerceHomePage rendered");
+  const router = useRouter();
 
-  return (  
+  return (
     <>
       {/* Dynamically set the title and meta tags */}
       <Head>
@@ -21,7 +22,11 @@ const EcommerceHomePage = () => {
 
       <div className="flex h-screen bg-gray-100">
         {/* Sidebar navigation */}
-        <Sidebar />
+        <Sidebar
+          defaultSelected="Inception" // Default to "Inception" icon
+          onHomeClick={() => router.push("/finditallmain")} // Navigate to "finditallmain"
+          onSearchClick={() => router.push("/productdetailedview")} // Navigate to "productdetailedview"
+        />
 
         {/* Main content */}
         <div className="flex-1 overflow-y-auto p-4">
@@ -33,7 +38,7 @@ const EcommerceHomePage = () => {
             <ProductCategoryList />
           </div>
 
-          {/* New and trendy */}          
+          {/* New and trendy */}
           <div className="mt-1 scrollable-container">
             <NewAndTrendyList />
           </div>

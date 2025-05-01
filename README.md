@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +35,11 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+=======
+# Implantación-Software---Projecto-Final
+
+En este repositorio se muestran los archivos de trabajo realizados para el curso "Desarrollo e Implantación de Software'
+
+* Archivo de interfaces Figma -> https://www.figma.com/design/cqIqOJbXadQM5rFtrXEmTl/Reto-Implantaci%C3%B3n-software---Joaqu%C3%ADn?node-id=0-1&t=bUY647aoYYnLAP18-1
+* 
+>>>>>>> 9000863ed1c6f611aac1433f52be999ae0373476

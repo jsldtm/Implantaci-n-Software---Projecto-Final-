@@ -1,9 +1,9 @@
 /* This file has the CSS styles for the BackToCategoriesBar component */
 
 .bar {
-    margin-bottom: 16px;
-    font-size: 14px;
-    color: #555;
+    margin-bottom: 1rem;
+    font-size: 1rem;
+    color: #4f46e5;
   }
   
   .link {

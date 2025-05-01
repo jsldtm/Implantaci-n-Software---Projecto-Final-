@@ -3,7 +3,7 @@ import React from 'react';
 const NewAndTrendyList: React.FC = () => {
   const trendyItems = [
     { id: 1, title: "Finals & midterms", description: "Get ready for exams!", image: "/images/exams.png" },
-    { id: 2, title: "Spring & summer", description: "Latest from Shirts!", image: "/images/spring-summer.png" },
+    { id: 2, title: "Spring & summer", description: "Latest from Shirts!", image: "/images/thisisnospring.png" },
     { id: 3, title: "Camping time!", description: "Gear up for adventures!", image: "/images/camping.png" },
   ];
 
