@@ -22,11 +22,7 @@ const EcommerceHomePage = () => {
 
       <div className = "flex h-screen bg-gray-100">
         {/* Sidebar navigation */}
-        <Sidebar
-          defaultSelected = "Inception" // Default to "Inception" icon
-          onHomeClick={() => router.push("/finditallmain")} // Navigate to "finditallmain"
-          onSearchClick={() => router.push("/productdetailedview")} // Navigate to "productdetailedview"
-        />
+        <Sidebar portalName="finditallmain" />
 
         {/* Main content */}
         <div className = "flex-1 overflow-y-auto p-4">

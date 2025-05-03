@@ -1,21 +1,17 @@
-// This file is a client component because it uses the `useRouter` hook from Next.js.
-
+// This file is a *client* component because it uses the `useRouter` hook from Next.js.
 "use client";
 
-import React from "react";
-import { useRouter } from "next/navigation"; // Import useRouter for navigation
+import React, { useEffect } from "react";
+import { useRouter, useSearchParams } from "next/navigation"; // Import useRouter for navigation
 import Head from "next/head";
 import ProductsListedByCategory from "@/components/ProductsListedByCategory/ProductsListedByCategory";
-import CategoryBar from "@/components/CategoryBar/CategoryBar";
-import HomeIcon from "@mui/icons-material/Home";
-import SearchIcon from "@mui/icons-material/Search";
-import BookmarkIcon from "@mui/icons-material/Bookmark";
-import SettingsIcon from "@mui/icons-material/Settings";
+import Sidebar from "@/components/Sidebar/Sidebar"; // Import Sidebar component
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const CategoriesPage: React.FC = () => {
     const router = useRouter(); // Initialize the router
+    const searchParams = useSearchParams(); // Access query parameters
     
     // Data simulation
     const categories = [
@@ -31,8 +27,10 @@ const CategoriesPage: React.FC = () => {
 
     ];
 
-    const productsByCategory: Record<string, { id: number; name: string; price: number; image: string; preOrder?: boolean }[]> = {
-        
+    const productsByCategory: Record<
+    string,
+    { id: number; name: string; price: number; image: string; preOrder?: boolean }[]
+    > = {
         Technology: [
             { id: 1, name: "Cable USB-B", price: 109.99, image: "/images/usb-cable.png" },
             { id: 2, name: "Wireless Desk Charging", price: 149.99, image: "/images/wireless-charger.png" },
@@ -78,79 +76,143 @@ const CategoriesPage: React.FC = () => {
     
     };
 
-    const [chosenCategory, setChosenCategory] = React.useState("Technology");
+    const selectedCategory = searchParams.get("selectedCategory") || "Technology";
 
-    return (
+    const [chosenCategory, setChosenCategory] = React.useState(selectedCategory);
+
+    // Update the chosen category when the query parameter changes
+    useEffect(() => {
+      setChosenCategory(selectedCategory);
+    }, [selectedCategory]);
+  
+    return  (
         <>
-            {/* Dynamically set the title and meta tags */}
-            <Head>
-                <title>Findit All - Our Categories</title>
-                <meta name = "description" content = "Explore our categories and find the best products for you." />
-            </Head>
-
-            <div className = "flex h-screen bg-gray-100">
-                {/* Sidebar */}
-                <aside className = "w-20 bg-gray-900 text-white flex flex-col items-center py-4 space-y-6">
-                <button
-                        className = "hover:text-blue-500"
-                        onClick={() => router.push("/finditallmain")} // Navigate to 'finditallmain'
-                    >
-                        <HomeIcon fontSize = "large" />
-                    </button>
-                    <button className = "hover:text-blue-500">
-                        <SearchIcon fontSize = "large" />
-                    </button>
-                    <button className = "hover:text-blue-500">
-                        <BookmarkIcon fontSize = "large" />
-                    </button>
-                    <button className = "hover:text-blue-500">
-                        <SettingsIcon fontSize = "large" />
-                    </button>
-                </aside>
-
-                {/* Main Content */}
-                <div className = "flex-1 flex flex-col">
-                    {/* Header */}
-                    <header className = "bg-blue-500 text-white p-4 flex items-center justify-between">
-                        <h1 className = "text-xl font-bold">Our Categories</h1>
-                        <div className = "flex items-center space-x-4">
-                            <button>
-                                <NotificationsIcon fontSize = "large" />
-                            </button>
-                            <button>
-                                <AccountCircleIcon fontSize = "large" />
-                            </button>
-                        </div>
-                    </header>
-
-                    {/* Category Tabs */}
-                    <nav className = "bg-blue-100 p-2 flex space-x-4">
-                        {categories.map((category) => (
-                            <button
-                                key={category.id}
-                                className={`px-4 py-2 rounded ${
-                                    chosenCategory === category.name
-                                        ? "bg-blue-500 text-white"
-                                        : "bg-white text-blue-500"
-                                }`}
-                                onClick={() => setChosenCategory(category.name)}
-                            >
-                                {category.name}
-                            </button>
-                        ))}
-                    </nav>
-
-                    {/* Product Grid */}
-                    <main className = "flex-1 p-4 overflow-y-auto">
-                        <ProductsListedByCategory
-                            category={chosenCategory}
-                            products={productsByCategory[chosenCategory] || []}
-                        />
-                    </main>
+          {/* Dynamically set the title and meta tags */}
+          <Head>
+            <title>Findit All - Our Categories</title>
+            <meta name="description" content="Explore our categories and find the best products for you." />
+          </Head>
+    
+          <div className="flex h-screen bg-gray-100">
+            {/* Sidebar */}
+            <Sidebar portalName="categories" />
+    
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col">
+              {/* Header */}
+              <header className="bg-blue-500 text-white p-4 flex items-center justify-between">
+                <h1 className="text-xl font-bold">Our Categories</h1>
+                <div className="flex items-center space-x-4">
+                  <button>
+                    <NotificationsIcon fontSize="large" />
+                  </button>
+                  <button>
+                    <AccountCircleIcon fontSize="large" />
+                  </button>
                 </div>
+              </header>
+    
+              {/* Category Tabs */}
+              <nav className="bg-blue-100 p-2 flex space-x-4">
+                {categories.map((category) => (
+                  <button
+                    key={category.id}
+                    className={`px-4 py-2 rounded ${
+                      chosenCategory === category.name ? "bg-blue-500 text-white" : "bg-white text-blue-500"
+                    }`}
+                    onClick={() => setChosenCategory(category.name)}
+                  >
+                    {category.name}
+                  </button>
+                ))}
+              </nav>
+    
+              {/* Product Grid */}
+              <main className="flex-1 p-4 overflow-y-auto">
+                <ProductsListedByCategory
+                  category={chosenCategory}
+                  products={productsByCategory[chosenCategory] || []}
+                />
+              </main>
             </div>
+          </div>
         </>
-    );
-};
-
+      );
+    };
+    
 export default CategoriesPage;
+
+//     return (
+//         <>
+//             {/* Dynamically set the title and meta tags */}
+//             <Head>
+//                 <title>Findit All - Our Categories</title>
+//                 <meta name = "description" content = "Explore our categories and find the best products for you." />
+//             </Head>
+
+//             <div className = "flex h-screen bg-gray-100">
+//                 {/* Sidebar */}
+//                 <aside className = "w-20 bg-gray-900 text-white flex flex-col items-center py-4 space-y-6">
+//                 <button
+//                         className = "hover:text-blue-500"
+//                         onClick={() => router.push("/finditallmain")} // Navigate to 'finditallmain'
+//                     >
+//                         <HomeIcon fontSize = "large" />
+//                     </button>
+//                     <button className = "hover:text-blue-500">
+//                         <SearchIcon fontSize = "large" />
+//                     </button>
+//                     <button className = "hover:text-blue-500">
+//                         <BookmarkIcon fontSize = "large" />
+//                     </button>
+//                     <button className = "hover:text-blue-500">
+//                         <SettingsIcon fontSize = "large" />
+//                     </button>
+//                 </aside>
+
+//                 {/* Main Content */}
+//                 <div className = "flex-1 flex flex-col">
+//                     {/* Header */}
+//                     <header className = "bg-blue-500 text-white p-4 flex items-center justify-between">
+//                         <h1 className = "text-xl font-bold">Our Categories</h1>
+//                         <div className = "flex items-center space-x-4">
+//                             <button>
+//                                 <NotificationsIcon fontSize = "large" />
+//                             </button>
+//                             <button>
+//                                 <AccountCircleIcon fontSize = "large" />
+//                             </button>
+//                         </div>
+//                     </header>
+
+//                     {/* Category Tabs */}
+//                     <nav className = "bg-blue-100 p-2 flex space-x-4">
+//                         {categories.map((category) => (
+//                             <button
+//                                 key={category.id}
+//                                 className={`px-4 py-2 rounded ${
+//                                     chosenCategory === category.name
+//                                         ? "bg-blue-500 text-white"
+//                                         : "bg-white text-blue-500"
+//                                 }`}
+//                                 onClick={() => setChosenCategory(category.name)}
+//                             >
+//                                 {category.name}
+//                             </button>
+//                         ))}
+//                     </nav>
+
+//                     {/* Product Grid */}
+//                     <main className = "flex-1 p-4 overflow-y-auto">
+//                         <ProductsListedByCategory
+//                             category={chosenCategory}
+//                             products={productsByCategory[chosenCategory] || []}
+//                         />
+//                     </main>
+//                 </div>
+//             </div>
+//         </>
+//     );
+// };
+
+// export default CategoriesPage;

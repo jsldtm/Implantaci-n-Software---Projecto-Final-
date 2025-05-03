@@ -8,22 +8,36 @@
     align-items: center;
     padding: 1rem 0;
     gap: 1.5rem;
-  }
+    border-right: 1px solid #ddd;
+    height: 100vh;
+}
   
-  .option {
+.option {
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
+    padding: 10px 15px;
+    width: 100%;
+    text-align: left;
+    border-radius: 8px;
+    font-size: 16px;
     color: #a1a1a1;
-    transition: color 0.3s;
-  }
+    cursor: pointer;
+    transition: background-color 0.3s, color 0.3s;
+}
   
-  .option:hover,
-  .option.selected {
-    color: #4f46e5; /* Highlight color */
-  }
+.option:hover {
+    background-color: #f0f4f8;
+    color: #0078d4;
+}
   
-  .label {
-    font-size: 0.75rem;
-    margin-top: 0.5rem;
-  }
+.selected {
+    background-color: #0078d4;
+    color: #ffffff;
+}
+  
+.label {
+    flex: 1;
+    text-align: center;
+}
