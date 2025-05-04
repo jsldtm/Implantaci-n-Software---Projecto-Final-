@@ -28,26 +28,37 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCart((prev) => {
       const existingItem = prev.find((cartItem) => cartItem.id === item.id);
       if (existingItem) {
+        // If the item already exists, update its quantity
         return prev.map((cartItem) =>
           cartItem.id === item.id
             ? { ...cartItem, quantity: cartItem.quantity + item.quantity }
             : cartItem
         );
       }
-      return [...prev, item];
+
+      // If the item doesn't exist, add it to the cart
+      return [...prev, { ...item, quantity: item.quantity }];
     });
+
+    // Trigger a global cart update event
+    const event = new CustomEvent("cart-updated");
+    window.dispatchEvent(event);
+    
   };
 
+  // Update the quantity of an item in the cart
   const updateQuantity = (id: string, quantity: number) => {
     setCart((prev) =>
       prev.map((item) => (item.id === id ? { ...item, quantity } : item))
     );
   };
 
+  // Remove an item from the cart
   const removeFromCart = (id: string) => {
     setCart((prev) => prev.filter((item) => item.id !== id));
   };
 
+  // Clear the entire cart
   const clearCart = () => {
     setCart([]);
   };

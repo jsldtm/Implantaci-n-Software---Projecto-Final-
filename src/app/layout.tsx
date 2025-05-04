@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import React from 'react';
-import Head from 'next/head';
-
+import React from "react";
+import Head from "next/head";
+import { CartProvider } from "../context/CartContext"; // Import CartProvider
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -22,23 +22,19 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly < {
+}: Readonly<{
   children: React.ReactNode;
 }>) {
   return (
-    <html lang = "en">
+    <html lang="en">
       <Head>
         <title>Findit All</title> {/* Default title */}
       </Head>
-      <body
-        className = {'antialiased '}>
-        {children}
+      <body className={"antialiased"}>
+        <CartProvider> {/* Wrap the application in CartProvider */}
+          {children}
+        </CartProvider>
       </body>
     </html>
   );
 }
-
-// Children -> are rendered inside the layout
-
-// For the created Pages "TopRated, My Favorites, Now Playing, Popular":
-

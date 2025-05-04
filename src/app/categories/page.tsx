@@ -92,8 +92,9 @@ const CategoriesPage: React.FC = () => {
             <title>Findit All - Our Categories</title>
             <meta name="description" content="Explore our categories and find the best products for you." />
           </Head>
-    
-          <div className="flex h-screen bg-gray-100">
+
+          {/* Make the entire container scrollable */}
+          <div className="flex h-screen overflow-y-auto bg-gray-100">
             {/* Sidebar */}
             <Sidebar portalName="categories" />
     

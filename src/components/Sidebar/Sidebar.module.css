@@ -9,7 +9,9 @@
     padding: 1rem 0;
     gap: 1.5rem;
     border-right: 1px solid #ddd;
-    height: 100vh;
+    min-height: 100%; /* Stretch to match parent container */
+    box-sizing: border-box; /* Include padding and borders in height calculation */
+    overflow-y: auto; /* Allow scrolling if content overflows */
 }
   
 .option {

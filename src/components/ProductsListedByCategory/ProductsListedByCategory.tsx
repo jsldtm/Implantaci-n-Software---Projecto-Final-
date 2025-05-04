@@ -28,11 +28,9 @@ const ProductsListedByCategory: React.FC<Props> = ({ category, products }) => {
           />
           {/* Updated clickable product name */}
           <h3
-            className="text-md font-semibold mt-2 text-blue-600 cursor-pointer hover:underline"
-            onClick={() =>
-              router.push(
-                `/productdetailedview?productId=${productDetailsMap[product.id]}&category=${category}`
-              )
+            className = "text-md font-semibold mt-2 text-blue-600 cursor-pointer hover:underline"
+            onClick = {() =>
+              router.push(`/productdetailedview?productId=${product.id}&category=${category}`)
             }
           >
             {product.name}
