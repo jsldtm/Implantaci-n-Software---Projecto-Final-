@@ -116,15 +116,15 @@ const CategoriesPage: React.FC = () => {
               {/* Category Tabs */}
               <nav className="bg-blue-100 p-2 flex space-x-4">
                 {categories.map((category) => (
-                  <button
+                    <button
                     key={category.id}
-                    className={`px-4 py-2 rounded ${
+                    className={`px-4 py-2 rounded text-sm ${
                       chosenCategory === category.name ? "bg-blue-500 text-white" : "bg-white text-blue-500"
                     }`}
                     onClick={() => setChosenCategory(category.name)}
-                  >
+                    >
                     {category.name}
-                  </button>
+                    </button>
                 ))}
               </nav>
     

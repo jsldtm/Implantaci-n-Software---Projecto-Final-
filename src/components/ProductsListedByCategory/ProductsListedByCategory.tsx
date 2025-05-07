@@ -15,7 +15,7 @@ const ProductsListedByCategory: React.FC<Props> = ({ category, products }) => {
   };
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-5">
+    <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
       {products.map((product) => (
         <div
           key={product.id}

@@ -14,7 +14,9 @@ const ShoppingCartSummary: React.FC = () => {
       <h2>Summary</h2>
       <p>Items Subtotal: MX${subtotal.toFixed(2)}</p>
       <p>Estimated Tax (IVA): MX${tax.toFixed(2)}</p>
-      <p><strong>Total: MX${total.toFixed(2)}</strong></p>
+      <p>
+        <strong>Total: MX${total.toFixed(2)}</strong>
+      </p>
     </div>
   );
 };

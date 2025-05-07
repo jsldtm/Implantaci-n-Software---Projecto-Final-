@@ -36,6 +36,7 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
     // Trigger the cart-updated event
     const event = new CustomEvent("cart-updated");
     window.dispatchEvent(event);
+    
   };
 
   const [selectedPrice, setSelectedPrice] = useState(product.prices ? product.prices[0] : product.price);

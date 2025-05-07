@@ -4,23 +4,20 @@
 
 import React from "react";
 import ShoppingCart from "../../components/ShoppingCart/ShoppingCart";
-import { CartProvider } from "../../context/CartContext";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import styles from "../../components/ShoppingCartPortal/ShoppingCartPortal.module.css";
 
 const ShoppingCartPage: React.FC = () => {
   return (
-    <div className={styles.layout}>
+    <div className = {styles.layout}>
       {/* Sidebar */}
-      <div className={styles.sidebar}>
-        <Sidebar portalName="shopping-cart" /> {/* Pass the portal name */}
+      <div className = {styles.sidebar}>
+        <Sidebar portalName = "shopping-cart" />
       </div>
 
       {/* Main Content */}
-      <div className={styles.mainContent}>
-        <CartProvider>
-          <ShoppingCart />
-        </CartProvider>
+      <div className = {styles.mainContent}>
+        <ShoppingCart />
       </div>
     </div>
   );
