@@ -2,34 +2,63 @@
 
 "use client";
 
-import React from 'react';
-import { useCart } from '../../context/CartContext';
-import ShoppingCartItem from '../ShoppingCartItem/ShoppingCartItem';
-import ShoppingCartSummary from '../ShoppingCartSummary/ShoppingCartSummary';
-import ShoppingCartForm from '../ShoppingCartForm/ShoppingCartForm';
-import styles from './ShoppingCart.module.css';
+import React, { useState } from "react";
+import { useCart } from "../../context/CartContext";
+import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
+import ShoppingCartSummary from "../ShoppingCartSummary/ShoppingCartSummary";
+import ShoppingCartForm from "../ShoppingCartForm/ShoppingCartForm";
+import styles from "./ShoppingCart.module.css";
 
 const ShoppingCart: React.FC = () => {
   const { cart, removeFromCart, updateQuantity } = useCart();
-
+  const [orderPlaced, setOrderPlaced] = useState(false); // State to track order confirmation
+  
   if (cart.length === 0) {
-    return <p>Your cart is empty. Add some items to get started!</p>;
+    return <p className = {styles.emptyCart}>Your cart is empty. Add some items to get started!</p>;
   
   }
 
+  // Calculate total price
+  const totalPrice = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
+
+  const handlePlaceOrder = () => {
+    setOrderPlaced(true); // Show thank-you message
+    clearCart(); // Clear the cart after placing the order
+  };
 
   return (
-    <div>
-      <h1>Your Shopping List</h1>
-      {cart.map((item) => (
-        <div key = {item.id}>
-          <img src = {item.image} alt = {item.name} />
-          <p>{item.name}</p>
-          <p>Price: ${item.price.toFixed(2)} MXN</p>
-          <p>Quantity: {item.quantity}</p>
-          <button onClick = {() => removeFromCart(item.id)}>Remove</button>
+    <div className={styles.container}>
+      {orderPlaced ? (
+        // Thank-You Message
+        <div className={styles.thankYouMessage}>
+          <h1>Thank you very much!</h1>
+          <p>Your order has been received.</p>
         </div>
-      ))}
+      ) : (
+        <>
+          {/* Left Column: Cart Items or Empty Message */}
+          <div className={styles.leftColumn}>
+            {cart.length === 0 ? (
+              <p className={styles.emptyCart}>Your cart is empty. Add some items to get started!</p>
+            ) : (
+              <>
+                <h1 className={styles.title}>Your Shopping List</h1>
+                <div className={styles.cartItems}>
+                  {cart.map((item) => (
+                    <ShoppingCartItem key={item.id} item={item} />
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          {/* Right Column: Always Visible */}
+          <div className={styles.rightColumn}>
+            <ShoppingCartForm onPlaceOrder={handlePlaceOrder} />
+            <ShoppingCartSummary />
+          </div>
+        </>
+      )}
     </div>
   );
 };

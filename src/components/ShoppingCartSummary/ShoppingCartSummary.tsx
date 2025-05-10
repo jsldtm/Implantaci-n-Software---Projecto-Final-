@@ -1,6 +1,7 @@
 import React from 'react';
 import { useCart } from '../../context/CartContext';
 import formatCurrency from '../../utils/formatCurrency';
+import styles from "./ShoppingCartSummary.module.css";
 
 const ShoppingCartSummary: React.FC = () => {
   const { cart } = useCart();
@@ -10,11 +11,11 @@ const ShoppingCartSummary: React.FC = () => {
   const total = subtotal + tax;
 
   return (
-    <div>
-      <h2>Summary</h2>
+    <div className={styles.summary}>
+      <h2 className={styles.sectionTitle}>Summary</h2>
       <p>Items Subtotal: MX${subtotal.toFixed(2)}</p>
       <p>Estimated Tax (IVA): MX${tax.toFixed(2)}</p>
-      <p>
+      <p className={styles.total}>
         <strong>Total: MX${total.toFixed(2)}</strong>
       </p>
     </div>
