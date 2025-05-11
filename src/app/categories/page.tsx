@@ -188,7 +188,7 @@ const CategoriesPage: React.FC = () => {
             { id: 135, name: "Pet Toothbrush and Toothpaste Kit", price: 12, image: "/images/pet-toothbrush.png" },
             { id: 136, name: "Travel Pet Carrier (soft-sided)", price: 40, image: "/images/pet-carrier.png" },
             { id: 137, name: "Car Seat Cover for Pets", price: 30, image: "/images/pet-car-seat-cover.png" },
-            { id: 138, name: "Interactive Puzzle Toys for Dogs/Cats", price: 15, image: "/images/pet-puzzle-toy.png" },
+            { id: 138, name: "Interactive Puzzle Toys for Dogs/Cats", price: 299.99, image: "/images/pet-puzzle-toy.png" },
         ],
 
         "Sports": [
