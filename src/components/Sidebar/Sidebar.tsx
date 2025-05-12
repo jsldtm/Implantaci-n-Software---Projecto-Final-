@@ -11,6 +11,7 @@ import {
   HomeIcon,
 } from '@heroicons/react/24/outline';
 import React, { useState } from 'react';
+import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 // Import the CSS styles
 import styles from "./Sidebar.module.css";
@@ -37,24 +38,24 @@ const Sidebar: React.FC<SidebarProps> = ({
   onSearchClick,
 }) => {
   const [selectedOption, setSelectedOption] = useState<string>(defaultSelected);
+  const router = useRouter(); // Initialize the router here
 
-  // Define the options for the Sidebar
   const options = [
     {
       name: "Inception",
       icon: <HomeIcon className="h-6 w-6" />,
       onClick: () => {
         setSelectedOption("Inception");
-        if (onHomeClick) onHomeClick();
+        router.push("/finditallmain"); // Navigate to the 'finditallmain' portal
       },
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview"], // Portals where this icon should appear
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview"],
     },
     {
       name: "Search",
       icon: <SearchIcon className="h-6 w-6" />,
       onClick: () => {
         setSelectedOption("Search");
-        if (onSearchClick) onSearchClick();
+        router.push("/categories"); // Navigate to the 'categories' portal
       },
       showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview"],
     },
@@ -68,7 +69,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       name: "Cart",
       icon: <ShoppingCartIcon className="h-6 w-6" />,
       onClick: () => setSelectedOption("Cart"),
-      showIn: ["shopping-cart"], // Only show in the "shopping-cart" portal
+      showIn: ["shopping-cart"],
     },
     {
       name: "Settings",
@@ -79,9 +80,9 @@ const Sidebar: React.FC<SidebarProps> = ({
   ];
 
   return (
-    <div className = {styles.sidebar}>
+    <div className={styles.sidebar}>
       {options
-        .filter((option) => option.showIn.includes(portalName)) // Filter icons based on the portal
+        .filter((option) => option.showIn.includes(portalName))
         .map((option) => (
           <button
             key = {option.name}
