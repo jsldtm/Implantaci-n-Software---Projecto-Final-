@@ -4,6 +4,8 @@
 import React, { useEffect, useState } from 'react';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import { useRouter } from 'next/navigation'; // Import useRouter for navigation
+import styles from './MainHeader.module.css'; // Import the CSS module
 
 interface MainHeaderProps {
   username: string;
@@ -11,22 +13,48 @@ interface MainHeaderProps {
 
 const MainHeader: React.FC<MainHeaderProps> = ({ username }) => {
   const [isClient, setIsClient] = useState(false);
+  const router = useRouter(); // Initialize the router
 
   useEffect(() => {
     setIsClient(true); // Ensure icons are rendered only on the client
   }, []);
 
+  const handleAccountClick = () => {
+    router.push('/loginportal'); // Navigate to the login portal
+  };
+
+  const handleLogout = async () => {
+    const response = await fetch('/api/auth/logout', { method: 'POST' });
+    if (response.ok) {
+      router.push('/loginportal'); // Redirect to login portal
+    }
+  };
+
   return (
-    <header className = "bg-blue-500 text-white p-4 flex items-center justify-between">
-      <h1 className = "text-xl font-bold">Welcome, {username}!</h1>
-      <div className = "flex items-center space-x-4">
+    <header className={styles.header}>
+      <h1 className={styles.title}>Welcome, {username}!</h1>
+      <div className="flex items-center space-x-4">
         {isClient && (
           <>
-            <button aria-label = "Notifications">
-              <NotificationsIcon fontSize = "large" />
+            <button
+              aria-label="Notifications"
+              className={styles.iconButton} // Apply the CSS module class
+            >
+              <NotificationsIcon fontSize="large" />
             </button>
-            <button aria-label = "Account">
-              <AccountCircleIcon fontSize = "large" />
+            <button
+              aria-label="Account"
+              onClick={handleAccountClick}
+              className={styles.iconButton} // Apply the CSS module class
+            >
+              <AccountCircleIcon fontSize="large" />
+            </button>
+            <button
+              aria-label="Logout"
+              onClick={handleLogout} // Call the logout function
+              className={styles.iconButton} // Apply the CSS module class
+            >
+              Logout
             </button>
           </>
         )}

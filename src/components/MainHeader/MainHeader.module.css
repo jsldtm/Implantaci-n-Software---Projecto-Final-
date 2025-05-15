@@ -1,0 +1,26 @@
+.header {
+  background-color: #3b82f6; /* Blue background */
+  color: white;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  
+}
+
+.title {
+  font-size: 1.25rem;
+  font-weight: bold;
+
+}
+
+.iconButton {
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out; /* Smooth hover effect */
+
+}
+
+.iconButton:hover {
+  transform: scale(1.1); /* Enlarge slightly on hover */
+
+}

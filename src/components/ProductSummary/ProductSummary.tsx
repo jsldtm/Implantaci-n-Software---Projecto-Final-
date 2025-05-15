@@ -5,7 +5,6 @@ import { useCart } from "../../context/CartContext";
 import React, { useState } from "react";
 import styles from "./ProductSummary.module.css";
 
-// Trying to make the component dynamically display product details
 interface Product {
   id: string;
   name: string;
@@ -28,7 +27,9 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
     addToCart({
       id: product.id,
       name: product.name,
-      price: parseFloat(product.startingPrice.replace("$", "").replace(" MXN", "")),
+      price: parseFloat(
+        product.startingPrice?.replace("$", "").replace(" MXN", "") || "0"
+      ),
       quantity: 1,
       image: product.image,
     });
@@ -36,10 +37,11 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
     // Trigger the cart-updated event
     const event = new CustomEvent("cart-updated");
     window.dispatchEvent(event);
-    
   };
 
-  const [selectedPrice, setSelectedPrice] = useState(product.prices ? product.prices[0] : product.price);
+  const [selectedPrice, setSelectedPrice] = useState(
+    product.prices ? product.prices[0] : product.price
+  );
 
   const handlePriceChange = (price: string) => {
     setSelectedPrice(price);
@@ -59,7 +61,9 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
       <div className={styles.details}>
         <h1 className={styles.name}>{product.name}</h1>
         <p className={styles.startingPrice}>
-          {product.startingPrice ? product.startingPrice : `$${selectedPrice} MXN`}
+          {product.startingPrice
+            ? product.startingPrice
+            : `$${selectedPrice} MXN`}
         </p>
 
         {/* Render each paragraph */}

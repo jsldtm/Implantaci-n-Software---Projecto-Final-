@@ -12,17 +12,34 @@ import { useRouter } from "next/navigation";
 const EcommerceHomePage = () => {
   const router = useRouter();
 
+    const categories = [
+    "Office & writing",
+    "Technology",
+    "Accessories",
+    "Shirts",
+    "Household",
+    "Movies & TV",
+    "Pet supplies",
+    "Sports",
+    "Books",
+  ];
+
+  const handleCategoryClick = (category: string) => {
+    router.push(`/categories?selectedCategory=${encodeURIComponent(category)}`);
+  
+  };
+
   return (
     <>
       {/* Dynamically set the title and meta tags */}
       <Head>
-        <title>Findit All - Where you can Find. It. All!</title>
+        <title> Findit All - Where you can Find. It. All! </title>
         <meta name = "description" content = "Explore our Portal!" />
       </Head>
 
       <div className = "flex h-screen bg-gray-100">
         {/* Sidebar navigation */}
-        <Sidebar portalName="finditallmain" />
+        <Sidebar portalName = "finditallmain" />
 
         {/* Main content */}
         <div className = "flex-1 overflow-y-auto p-4">

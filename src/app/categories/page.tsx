@@ -1,7 +1,7 @@
 // This file is a *client* component because it uses the `useRouter` hook from Next.js.
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation"; // Import useRouter for navigation
 import Head from "next/head";
 import ProductsListedByCategory from "@/components/ProductsListedByCategory/ProductsListedByCategory";
@@ -10,390 +10,86 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 const CategoriesPage: React.FC = () => {
-    const router = useRouter(); // Initialize the router
-    const searchParams = useSearchParams(); // Access query parameters
-    
-    // Data simulation
-    const categories = [
-        { id: 1, name: "Office & writing" },
-        { id: 2, name: "Technology" },
-        { id: 3, name: "Accessories" },
-        { id: 4, name: "Shirts" },
-        { id: 5, name: "Household" },
-        { id: 6, name: "Movies & TV" },
-        { id: 7, name: "Pet supplies" },
-        { id: 8, name: "Sports" },
-        { id: 9, name: "Books" },
+  const router = useRouter(); // Initialize the router
+  const searchParams = useSearchParams(); // Access query parameters
 
-    ];
+  const [categories, setCategories] = useState<
+    { id: number; name: string }[]
+  >([]); // State to hold categories
+  const [chosenCategory, setChosenCategory] = useState<string>("");
 
-    const productsByCategory: Record<
-    string,
-    { id: number; name: string; price: number; image: string; preOrder?: boolean }[]
-    > = {
-        Technology: [
-            { id: 1, name: "Cable USB-B", price: 109.99, image: "/images/usb-cable.png" },
-            { id: 2, name: "Wireless Desk Charging", price: 149.99, image: "/images/wireless-charger.png" },
-            { id: 3, name: "Smartwatch Samsung Galaxy Fit 3", price: 229.99, image: "/images/smartwatch.png" },
-            { id: 4, name: "Vintage Bluetooth Retro Vinyl Turntable", price: 2999.49, image: "/images/turntable.png" },
-            { id: 5, name: "Nokia 2660 Flip Phone Zero Distractions", price: 639.19, image: "/images/nokia-phone.png" },
-            { id: 6, name: "Galaxy *Ring of Power*", price: 4209.99, image: "/images/galaxy-ring.png", preOrder: true },
-            { id: 7, name: "Waymo ride Gift Card!", price: 399.99, image: "/images/waymo.png" },
-            { id: 8, name: "Rechargeable Clip-On Desk Fan", price: 239.99, image: "/images/desk-fan.png" },
-            { id: 9, name: "Monitor PC Lanix LX215 21.5 Pulg", price: 189.99, image: "/images/monitor.png" },
-            { id: 10, name: "Samsung Galaxy Book3 Pro Intel Core i7", price: 2499.99, image: "/images/galaxy-book.png" },
-            { id: 11, name: "Google Home Mini 2nd Generation-Chalk", price: 1449.99, image: "/images/google-home.png" },
-            { id: 12, name: "Sony WH-1000XM4 Wired Over-Ear Noise-Cancelling", price: 109.99, image: "/images/sony-headphones.png" },
-            { id: 13, name: "Custom Bluetooth Mouse", price: 329.99, image: "/images/mouse.png" },
-            { id: 14, name: "Digital Pen - Bluetooth Technology", price: 1249.99, image: "/images/magic-pen.png" },
-            { id: 15, name: "Portable and Compact Wireless Keyboard", price: 749.99, image: "/images/wireless-keyboard-pink.png" },
-                                    
-        ],
-
-        Accessories: [
-            { id: 8, name: "Rechargeable Clip-On Desk Fan", price: 239.99, image: "/images/desk-fan.png" },
-            { id: 13, name: "Custom Bluetooth Mouse", price: 329.99, image: "/images/mouse.png" },
-            { id: 19, name: "Portable and Compact Wireless Keyboard", price: 749.99, image: "/images/wireless-keyboard-pink.png" },
-            { id: 15, name: "Portable and Compact Wireless Keyboard", price: 749.99, image: "/images/wireless-keyboard-pink.png" },
-            { id: 16, name: "To be continued...", price: 3.1415, image: "/images/lamp.png" },
-            
-                    
-        ],
-
-        "Office & writing": [
-            { id: 25, name: "Ergonomic Office Chair", price: 1399.99, image: "/images/ergonomicchair.png" },
-            { id: 26, name: "Standing Desk Converter", price: 1499.99, image: "/images/thestandingdesk.png" },
-            { id: 27, name: "Wireless Keyboard & Mouse Combo", price: 699.99, image: "/images/keyboardmousecombo.png" },
-            { id: 28, name: "Noise-Cancelling Headphones", price: 799.99, image: "/images/ancheadphones.png" },
-            { id: 29, name: "Bose Noise-Cancelling Earbuds 'quietcomfort'", price: 699.99, image: "/images/ancearphones.png" },
-            { id: 30, name: "Desk Lamp with Adjustable Brightness", price: 499.99, image: "/images/desk-lamp.png" },
-            { id: 31, name: "Monitor Stand with Storage", price: 399.99, image: "/images/monitor-stand.png" },
-            { id: 32, name: "High-Quality Ballpoint Pen Set", price: 299.99, image: "/images/ballpoint-pen-set.png" },
-            { id: 33, name: "Fountain Pen with Ink Cartridges", price: 399.99, image: "/images/fountain-pen.png" },
-            { id: 34, name: "Gel Pen Assortment", price: 199.99, image: "/images/gel-pen-assortment.png" },
-            { id: 35, name: "Mechanical Pencil Set with Lead Refills", price: 139.99, image: "/images/mechanical-pencil.png" },
-            { id: 36, name: "Notebooks", price: 99.99, image: "/images/notebooks.png" },
-            { id: 37, name: "Planner/Organizer", price: 159.99, image: "/images/planner.png" },
-            { id: 38, name: "Sticky Note Pads", price: 59.99, image: "/images/sticky-notes.png" },
-            { id: 39, name: "Paper Clips and Binder Clips Assortment", price: 79.99, image: "/images/paper-clips.png" },
-            { id: 40, name: "Stapler and Staples", price: 199.99, image: "/images/stapler.png" },
-            { id: 41, name: "Hole Puncher", price: 199.99, image: "/images/hole-puncher.png" },
-            { id: 42, name: "File Folders", price: 119.99, image: "/images/file-folders.png" },
-            { id: 43, name: "Whiteboard or Corkboard", price: 459.99, image: "/images/whiteboard.png" },
-            { id: 44, name: "Dry Erase Markers and Eraser", price: 159.99, image: "/images/dry-erase-markers.png" },
-            { id: 45, name: "Highlighters", price: 99.99, image: "/images/highlighters.png" },
-            { id: 46, name: "Correction Tape/Fluid", price: 79.99, image: "/images/correction-tape.png" },
-            { id: 47, name: "Letter Opener", price: 139.99, image: "/images/letter-opener.png" },
-            { id: 48, name: "DYMO Label Maker", price: 599.99, image: "/images/label-maker.png" },
-            { id: 49, name: "Laptop Stand", price: 399.99, image: "/images/laptop-stand.png" },
-            { id: 50, name: "Another Laptop Stand", price: 399.99, image: "/images/laptop-stand.png" },
-        ],
-
-        "Shirts": [
-            { id: 51, name: "Classic Cotton T-Shirt", price: 299.99, image: "/images/classic-tshirt.png" },
-            { id: 52, name: "V-Neck T-Shirt", price: 319.99, image: "/images/vneck-tshirt.png" },
-            { id: 53, name: "Polo Shirt", price: 349.99, image: "/images/polo-shirt.png" },
-            { id: 54, name: "Button-Down Shirt", price: 399.99, image: "/images/button-down-shirt.png" },
-            { id: 55, name: "Flannel Shirt", price: 399.99, image: "/images/flannel-shirt.png" },
-            { id: 56, name: "Dress Shirt", price: 399.99, image: "/images/dress-shirt.png" },
-            { id: 57, name: "Linen Shirt", price: 379.99, image: "/images/linen-shirt.png" },
-            { id: 58, name: "Graphic Tees", price: 159.99, image: "/images/graphic-tee.png" },
-            { id: 59, name: "Long-Sleeve Henley Shirt", price: 219.99, image: "/images/henley-shirt.png" },
-            { id: 60, name: "Sweatshirt", price: 399.99, image: "/images/sweatshirt.png" },
-            { id: 61, name: "Performance Athletic Shirt", price: 399.99, image: "/images/athletic-shirt.png" },
-            { id: 62, name: "Tank Tops/Sleeveless Shirt", price: 239.99, image: "/images/tank-top.png" },
-            { id: 63, name: "Personalized Shirt", price: 299.99, image: "/images/cropped-top.png" },
-            { id: 64, name: "Personalized Sweatshirt", price: 399.99, image: "/images/oversized-shirt.png" },
-            { id: 65, name: "Tie-Dye Shirt", price: 329.99, image: "/images/tie-dye-shirt.png" },
-            { id: 66, name: "Denim Shirt", price: 589.99, image: "/images/denim-shirt.png" },
-            { id: 67, name: "Very-very-casual Shirt", price: 439.99, image: "/images/maternity-shirt.png" },
-            { id: 68, name: "Uniform Shirt", price: 429.99, image: "/images/uniform-shirt.png" },
-            { id: 69, name: "Vintage/Retro Style Shirt", price: 299.99, image: "/images/vintage-shirt.png" },
-            { id: 70, name: "Thermal Shirt", price: 349.99, image: "/images/thermal-shirt.png" },
-            { id: 71, name: "Pocket Tees", price: 339.99, image: "/images/pocket-tee.png" },
-            { id: 72, name: "Raglan Sleeve Shirt", price: 344.99, image: "/images/raglan-shirt.png" },
-            { id: 73, name: "Band/Music T-Shirt", price: 249.99, image: "/images/band-tshirt.png" },
-            { id: 74, name: "Holiday-Themed Shirt", price: 329.99, image: "/images/holiday-shirt.png" },
-            { id: 75, name: "Long-Sleeve T-Shirt", price: 299.99, image: "/images/custom-tshirt.png" },
-        ],
-
-        "Household": [
-            { id: 76, name: "Bedding Set (Full/Queen)", price: 119.99, image: "/images/bedding-set.png" },
-            { id: 77, name: "Pillows", price: 399.99, image: "/images/pillows.png" },
-            { id: 78, name: "Blankets and Throws", price: 529.99, image: "/images/blankets.png" },
-            { id: 79, name: "Towels (Bath)", price: 199.99, image: "/images/towels.png" },
-            { id: 80, name: "Kitchen Utensil Set", price: 449.99, image: "/images/kitchen-utensils.png" },
-            { id: 81, name: "Cookware Set (5-piece basic)", price: 999.99, image: "/images/cookware-set.png" },
-            { id: 82, name: "Dinnerware Set (4 place settings)", price: 799.99, image: "/images/dinnerware-set.png" },
-            { id: 83, name: "Glassware Set (6 drinking glasses)", price: 399.99, image: "/images/glassware-set.png" },
-            { id: 84, name: "Cutlery Set (4 place settings)", price: 399.99, image: "/images/cutlery-set.png" },
-            { id: 85, name: "Food Storage Containers (set of several)", price: 299.99, image: "/images/food-storage.png" },
-            { id: 86, name: "Cleaning Supplies (bundle of essentials)", price: 789.99, image: "/images/cleaning-supplies.png" },
-            { id: 87, name: "Laundry Detergent", price: 239.99, image: "/images/laundry-detergent.png" },
-            { id: 88, name: "Trash Cans", price: 299.99, image: "/images/trash-can.png" },
-            { id: 89, name: "Light Bulbs (4-pack LED)", price: 699.99, image: "/images/light-bulbs.png" },
-            { id: 90, name: "Extension Cords and Power Strips", price: 199.99, image: "/images/extension-cords.png" },
-            { id: 91, name: "Picture Frames", price: 199.99, image: "/images/picture-frames.png" },
-            { id: 92, name: "Candles", price: 239.99, image: "/images/candles.png" },
-            { id: 93, name: "Bathroom Accessories Set (3-piece basic)", price: 349.99, image: "/images/bathroom-accessories.png" },
-            { id: 94, name: "Storage Bins", price: 199.99, image: "/images/storage-bins.png" },
-            { id: 95, name: "Plants (small potted)", price: 299.99, image: "/images/plants.png" },
-            { id: 96, name: "Doormats", price: 349.99, image: "/images/doormats.png" },
-            { id: 97, name: "Iron and Ironing Board", price: 649.99, image: "/images/iron-board.png" },
-            { id: 98, name: "Vacuum Cleaner (basic model)", price: 1249.99, image: "/images/vacuum-cleaner.png" },
-            { id: 99, name: "Febreze Air Aromatizante Linen & Sky - 6 Pack", price: 1429.99, image: "/images/air-freshener.png" },
-            { id: 100, name: "First Aid Kit (basic)", price: 349.99, image: "/images/first-aid-kit.png" },
-          
-        ],
-        
-        "Movies & TV": [
-            { id: 101, name: "TV Samsung 32'' HD Smart TV LED", price: 3499.99, image: "/images/led-tv.png" },
-            { id: 102, name: "Portable Mini Projector", price: 159.99, image: "/images/mini-projector.png" },
-            { id: 103, name: "TV Wall Mount (fixed)", price: 439.99, image: "/images/tv-wall-mount.png" },
-            { id: 104, name: "Indoor HD TV Antenna", price: 399.99, image: "/images/hd-tv-antenna.png" },
-            { id: 105, name: "Universal Remote Control", price: 299.99, image: "/images/universal-remote.png" },
-            { id: 106, name: "HDMI Cable", price: 199.99, image: "/images/hdmi-cable.png" },
-            { id: 107, name: "TV Stand (simple design)", price: 799.99, image: "/images/tv-stand.png" },
-            { id: 108, name: "Portable DVD Player 17.5''", price: 899.99, image: "/images/dvd-player.png" },
-            { id: 109, name: "The Godfather (DVD)", price: 399.99, image: "/images/THE-godfather.png" },
-            { id: 110, name: "Star Wars: A New Hope (Blu-ray)", price: 399.99, image: "/images/thatsnomoon.png" },
-            { id: 111, name: "Once Upon a Time...in Hollywood (DVD)", price: 330.99, image: "/images/ouatih.png" },
-            { id: 112, name: "The Shawshank Redemption (Blu-ray)", price: 399.99, image: "/images/shawshank-redemption.png" },
-            { id: 113, name: "Forrest Gump (DVD)", price: 399.99, image: "/images/forrest-gump.png" },
-            { id: 114, name: "The Lord of the Rings: The Fellowship of the Ring (Blu-ray)", price: 22, image: "/images/lotr-fellowship.png" },
-            { id: 115, name: "The Dark Knight Trilogy (Blu-ray)", price: 329.99, image: "/images/the-dark-knight.png" },
-            { id: 116, name: "Citizen Kane (DVD)", price: 389.99, image: "/images/rosebud.png" },
-            { id: 117, name: "Frasier - The Complete Series (DVD)", price: 1599.99, image: "/images/DontStareAtMeEddie.png" },
-            { id: 118, name: "Seinfeld - The Complete Series (DVD)", price: 1599.99, image: "/images/TomsRestaurant.png" },
-            { id: 119, name: "The Studio - Season 1 (DVD)", price: 499.99, image: "/images/templeOfCinema.png" },
-            { id: 120, name: "Game of Thrones - Season 1 (Blu-ray)", price: 499.99, image: "/images/game-of-thrones.png" },
-            { id: 121, name: "I Love Lucy - Season 1 (DVD)", price: 599.99, image: "/images/i-love-lucy.png" },
-            { id: 122, name: "Cheers - Classic Episodes (DVD)", price: 599.99, image: "/images/whereEverybodyKnowsYourName.png" },
-            { id: 123, name: "E.T. the Extra-Terrestrial (DVD)", price: 339.99, image: "/images/phonehomewithskype.png" },
-            { id: 124, name: "Back to the Future (Blu-ray)", price: 339.99, image: "/images/greatscott.png" },
-            { id: 125, name: "Jurassic Park (Blu-ray)", price: 349.99, image: "/images/lifeFindsAWay.png" },
-            { id: 126, name: "As Good as It Gets (DVD)", price: 399.99, image: "/images/verdell.png" },
-            { id: 127, name: "Chinatown (DVD)", price: 399.99, image: "/images/chinatown.png" },
-            { id: 128, name: "Casablanca (DVD)", price: 379.99, image: "/images/casablanca.png" },
-
-        ],
-
-        "Pet supplies": [
-            { id: 129, name: "Automatic Pet Feeder (basic timer)", price: 40, image: "/images/pet-feeder.png" },
-            { id: 130, name: "Pet Water Fountain", price: 30, image: "/images/pet-water-fountain.png" },
-            { id: 131, name: "Retractable Dog Leash", price: 20, image: "/images/dog-leash.png" },
-            { id: 132, name: "Harness for Dogs (various sizes)", price: 25, image: "/images/dog-harness.png" },
-            { id: 133, name: "Pet Grooming Clippers (basic kit)", price: 45, image: "/images/pet-clippers.png" },
-            { id: 134, name: "Pet Nail Clippers", price: 10, image: "/images/pet-nail-clippers.png" },
-            { id: 135, name: "Pet Toothbrush and Toothpaste Kit", price: 12, image: "/images/pet-toothbrush.png" },
-            { id: 136, name: "Travel Pet Carrier (soft-sided)", price: 40, image: "/images/pet-carrier.png" },
-            { id: 137, name: "Car Seat Cover for Pets", price: 30, image: "/images/pet-car-seat-cover.png" },
-            { id: 138, name: "Interactive Puzzle Toys for Dogs/Cats", price: 299.99, image: "/images/pet-puzzle-toy.png" },
-        ],
-
-        "Sports": [
-            { id: 139, name: "Agility Ladder", price: 329.99, image: "/images/agility-ladder.png" },
-            { id: 140, name: "Cones (set of several)", price: 299.99, image: "/images/sports-cones.png" },
-            { id: 141, name: "Pull-Up Bar (doorway mount)", price: 899.99, image: "/images/pull-up-bar.png" },
-            { id: 142, name: "Push-Up Handles", price: 239.99, image: "/images/push-up-handles.png" },
-            { id: 143, name: "Ankle Weights (pair)", price: 349.99, image: "/images/ankle-weights.png" },
-            { id: 144, name: "Wrist Weights (pair)", price: 299.99, image: "/images/wrist-weights.png" },
-            { id: 145, name: "Stopwatch", price: 369.99, image: "/images/stopwatch.png" },
-            { id: 146, name: "Pocket Stopwatch", price: 349.99, image: "/images/pocketstopwatch.png" },
-            { id: 147, name: "Heart Rate Monitor (basic)", price: 739.99, image: "/images/heart-rate-monitor.png" },
-            { id: 148, name: "Cycling Water Bottle Cage", price: 199.99, image: "/images/water-bottle-cage.png" },
-            { id: 149, name: "Bike Lock (basic)", price: 339.99, image: "/images/bike-lock.png" },
-            { id: 150, name: "Bike Lock (modular?)", price: 329.99, image: "/images/bike-lock.png" },
-        ],
-
-        "Books": [
-
-            /* Books in English */
-            { id: 151, name: "To Kill a Mockingbird - Harper Lee", price: 10, image: "/images/to-kill-a-mockingbird.png" },
-            { id: 152, name: "1984 - George Orwell", price: 9, image: "/images/1984.png" },
-            { id: 153, name: "Pride and Prejudice - Jane Austen", price: 8, image: "/images/pride-and-prejudice.png" },
-            { id: 154, name: "The Great Gatsby - F. Scott Fitzgerald", price: 10, image: "/images/the-great-gatsby.png" },
-            { id: 155, name: "Moby Dick- Herman Melville", price: 12, image: "/images/moby-dick.png" },
-            { id: 156, name: "Hamlet - William Shakespeare", price: 7, image: "/images/hamlet.png" },
-            { id: 157, name: "The Catcher in the Rye - J.D. Salinger", price: 11, image: "/images/the-catcher-in-the-rye.png" },
-            { id: 158, name: "One Hundred Years of Solitude - Gabriel García Márquez", price: 14, image: "/images/one-hundred-years.png" },
-            { id: 159, name: "Brave New World - Aldous Huxley", price: 10, image: "/images/brave-new-world.png" },
-            { id: 160, name: "The Adventures of Huckleberry Finn - Mark Twain", price: 9, image: "/images/huckleberry-finn.png" },
-            { id: 161, name: "Jane Eyre - Charlotte Brontë", price: 8, image: "/images/jane-eyre.png" },
-            { id: 162, name: "Wuthering Heights - Emily Brontë", price: 9, image: "/images/wuthering-heights.png" },
-            { id: 163, name: "Little Women - Louisa May Alcott", price: 10, image: "/images/little-women.png" },
-            { id: 164, name: "The Old Man and the Sea - Ernest Hemingway", price: 8, image: "/images/old-man-and-the-sea.png" },
-            { id: 165, name: "Animal Farm - George Orwell", price: 7, image: "/images/animal-farm.png" },
-            { id: 166, name: "Fahrenheit 451 - Ray Bradbury", price: 11, image: "/images/fahrenheit-451.png" },
-            { id: 167, name: "Man's Search for Meaning - Viktor Frankl", price: 15, image: "/images/lord-of-the-flies.png" },
-            { id: 168, name: "Beloved by Toni Morrison", price: 12, image: "/images/beloved.png" },
-            { id: 169, name: "Things Fall Apart by Chinua Achebe", price: 10, image: "/images/things-fall-apart.png" },
-            { id: 170, name: "A Passage to India by E.M. Forster", price: 11, image: "/images/passage-to-india.png" },
-
-            /* Books in Spanish */
-            { id: 171, name: "Cien años de soledad - Gabriel García Márquez", price: 13, image: "/images/cien-anos-de-soledad.png" },
-            { id: 172, name: "El laberinto de la soledad - Octavio Paz", price: 15, image: "/images/laberinto-de-la-soledad.png" },
-            { id: 173, name: "Rayuela - Julio Cortázar", price: 14, image: "/images/rayuela.png" },
-            { id: 174, name: "La ciudad y los perros - Mario Vargas Llosa", price: 12, image: "/images/ciudad-y-los-perros.png" },
-            { id: 175, name: "Como agua para chocolate - Laura Esquivel", price: 11, image: "/images/como-agua-para-chocolate.png" },
-            { id: 176, name: "Ficciones - Jorge Luis Borges", price: 16, image: "/images/ficciones.png" },
-            { id: 177, name: "El amor en los tiempos del cólera - Gabriel García Márquez", price: 13, image: "/images/amor-en-tiempos-del-colera.png" },
-            { id: 178, name: "La casa de los espíritus - Isabel Allende", price: 12, image: "/images/casa-de-los-espiritus.png" },
-            { id: 179, name: "Pedro Páramo - Juan Rulfo", price: 10, image: "/images/pedro-paramo.png" },
-            { id: 180, name: "Santa - Federico Gamboa", price: 9, image: "/images/santa.png" },
-            { id: 181, name: "Doña Bárbara - Rómulo Gallegos", price: 11, image: "/images/dona-barbara.png" },
-            { id: 182, name: "El túnel - Ernesto Sabato", price: 10, image: "/images/el-tunel.png" },
-            { id: 183, name: "Los detectives salvajes - Roberto Bolaño", price: 18, image: "/images/detectives-salvajes.png" },
-            { id: 184, name: "La muerte de Artemio Cruz - Carlos Fuentes", price: 15, image: "/images/muerte-de-artemio-cruz.png" },
-            { id: 185, name: "Residencia en la tierra - Pablo Neruda", price: 10, image: "/images/residencia-en-la-tierra.png" },
-            { id: 186, name: "Veinte poemas de amor y una canción desesperada - Pablo Neruda", price: 9, image: "/images/veinte-poemas.png" },
-            { id: 187, name: "Altazor o el viaje en paracaídas - Vicente Huidobro", price: 12, image: "/images/altazor.png" },
-            { id: 188, name: "El Aleph - Jorge Luis Borges", price: 15, image: "/images/el-aleph.png" },
-            { id: 189, name: "Terra Nostra - Carlos Fuentes", price: 17, image: "/images/terra-nostra.png" },
-            { id: 190, name: "Yo el Supremo - Augusto Roa Bastos", price: 16, image: "/images/yo-el-supremo.png" },
-        
-          ],
-    
+  // Fetch categories from the API when the component mounts
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await fetch("/api/categories");
+      const data = await response.json();
+      setCategories(data);
+      setChosenCategory(data[0]?.name || ""); // Set the first category as default
     };
 
-    const selectedCategory = searchParams.get("selectedCategory") || "Technology";
+    fetchCategories();
+  }, []);
 
-    const [chosenCategory, setChosenCategory] = React.useState(selectedCategory);
+  return (
+    <>
+      {/* Dynamically set the title and meta tags */}
+      <Head>
+        <title>Findit All - Our Categories</title>
+        <meta
+          name="description"
+          content="Explore our categories and find the best products for you."
+        />
+      </Head>
 
-    // Update the chosen category when the query parameter changes
-    useEffect(() => {
-      setChosenCategory(selectedCategory);
-    }, [selectedCategory]);
-  
-    return  (
-        <>
-          {/* Dynamically set the title and meta tags */}
-          <Head>
-            <title>Findit All - Our Categories</title>
-            <meta name="description" content="Explore our categories and find the best products for you." />
-          </Head>
+      {/* Make the entire container scrollable */}
+      <div className="flex h-screen overflow-y-auto bg-gray-100">
+        {/* Sidebar */}
+        <Sidebar portalName="categories" />
 
-          {/* Make the entire container scrollable */}
-          <div className="flex h-screen overflow-y-auto bg-gray-100">
-            {/* Sidebar */}
-            <Sidebar portalName="categories" />
-    
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col">
-              {/* Header */}
-              <header className="bg-blue-500 text-white p-4 flex items-center justify-between">
-                <h1 className="text-xl font-bold">Our Categories</h1>
-                <div className="flex items-center space-x-4">
-                  <button>
-                    <NotificationsIcon fontSize="large" />
-                  </button>
-                  <button>
-                    <AccountCircleIcon fontSize="large" />
-                  </button>
-                </div>
-              </header>
-    
-              {/* Category Tabs */}
-              <nav className="bg-blue-100 p-2 flex space-x-4">
-                {categories.map((category) => (
-                    <button
-                    key = {category.id}
-                    className = {`px-4 py-2 rounded text-sm ${
-                      chosenCategory === category.name ? "bg-blue-500 text-white" : "bg-white text-blue-500"
-                    }`}
-                    onClick={() => setChosenCategory(category.name)}
-                    >
-                    {category.name}
-                    </button>
-                ))}
-              </nav>
-    
-              {/* Product Grid */}
-              <main className="flex-1 p-3 overflow-y-auto">
-                <ProductsListedByCategory
-                  category = {chosenCategory}
-                  products = {productsByCategory[chosenCategory] || []}
-                />
-              </main>
+        {/* Main Content */}
+        <div className="flex-1 flex flex-col">
+          {/* Header */}
+          <header className="bg-blue-500 text-white p-4 flex items-center justify-between">
+            <h1 className="text-xl font-bold">Our Categories</h1>
+            <div className="flex items-center space-x-4">
+              <button>
+                <NotificationsIcon fontSize="large" />
+              </button>
+              <button>
+                <AccountCircleIcon fontSize="large" />
+              </button>
             </div>
-          </div>
-        </>
-      );
-    };
-    
+          </header>
+
+          {/* Category Tabs */}
+          <nav className="bg-blue-100 p-2 flex space-x-4">
+            {categories.map((category) => (
+              <button
+                key={category.id}
+                className={`px-4 py-2 rounded text-sm ${
+                  chosenCategory === category.name
+                    ? "bg-blue-500 text-white"
+                    : "bg-white text-blue-500"
+                }`}
+                onClick={() => setChosenCategory(category.name)}
+              >
+                {category.name}
+              </button>
+            ))}
+          </nav>
+
+          {/* Product Grid */}
+          <main className="flex-1 p-3 overflow-y-auto">
+            <ProductsListedByCategory
+              category={chosenCategory}
+              products={[]} // Replace with actual products fetched by category
+            />
+          </main>
+        </div>
+      </div>
+    </>
+  );
+};
+
 export default CategoriesPage;
 
-//     return (
-//         <>
-//             {/* Dynamically set the title and meta tags */}
-//             <Head>
-//                 <title>Findit All - Our Categories</title>
-//                 <meta name = "description" content = "Explore our categories and find the best products for you." />
-//             </Head>
-
-//             <div className = "flex h-screen bg-gray-100">
-//                 {/* Sidebar */}
-//                 <aside className = "w-20 bg-gray-900 text-white flex flex-col items-center py-4 space-y-6">
-//                 <button
-//                         className = "hover:text-blue-500"
-//                         onClick={() => router.push("/finditallmain")} // Navigate to 'finditallmain'
-//                     >
-//                         <HomeIcon fontSize = "large" />
-//                     </button>
-//                     <button className = "hover:text-blue-500">
-//                         <SearchIcon fontSize = "large" />
-//                     </button>
-//                     <button className = "hover:text-blue-500">
-//                         <BookmarkIcon fontSize = "large" />
-//                     </button>
-//                     <button className = "hover:text-blue-500">
-//                         <SettingsIcon fontSize = "large" />
-//                     </button>
-//                 </aside>
-
-//                 {/* Main Content */}
-//                 <div className = "flex-1 flex flex-col">
-//                     {/* Header */}
-//                     <header className = "bg-blue-500 text-white p-4 flex items-center justify-between">
-//                         <h1 className = "text-xl font-bold">Our Categories</h1>
-//                         <div className = "flex items-center space-x-4">
-//                             <button>
-//                                 <NotificationsIcon fontSize = "large" />
-//                             </button>
-//                             <button>
-//                                 <AccountCircleIcon fontSize = "large" />
-//                             </button>
-//                         </div>
-//                     </header>
-
-//                     {/* Category Tabs */}
-//                     <nav className = "bg-blue-100 p-2 flex space-x-4">
-//                         {categories.map((category) => (
-//                             <button
-//                                 key={category.id}
-//                                 className={`px-4 py-2 rounded ${
-//                                     chosenCategory === category.name
-//                                         ? "bg-blue-500 text-white"
-//                                         : "bg-white text-blue-500"
-//                                 }`}
-//                                 onClick={() => setChosenCategory(category.name)}
-//                             >
-//                                 {category.name}
-//                             </button>
-//                         ))}
-//                     </nav>
-
-//                     {/* Product Grid */}
-//                     <main className = "flex-1 p-4 overflow-y-auto">
-//                         <ProductsListedByCategory
-//                             category={chosenCategory}
-//                             products={productsByCategory[chosenCategory] || []}
-//                         />
-//                     </main>
-//                 </div>
-//             </div>
-//         </>
-//     );
-// };
-
-// export default CategoriesPage;
