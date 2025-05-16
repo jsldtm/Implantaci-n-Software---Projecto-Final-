@@ -20,7 +20,9 @@ const ShoppingCartItem: React.FC<ShoppingCartItemProps> = ({ item }) => {
 
   return (
     <div className={styles.item}>
-      <img src={item.image} alt={item.name} className={styles.image} />
+      <div className={styles.imageCircle}>
+        <img src={item.image} alt={item.name} className={styles.image} />
+      </div>
       <div className={styles.details}>
         <h3>{item.name}</h3>
         <p>Price: MX${item.price.toFixed(2)}</p>

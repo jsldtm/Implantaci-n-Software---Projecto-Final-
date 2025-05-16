@@ -1,4 +1,5 @@
 // This file is part of the Product Detailed View page in a Next.js application.
+// This file is part of the Product Detailed View page in a Next.js application.
 "use client";
 
 import { useCart } from "../../context/CartContext";
@@ -23,13 +24,17 @@ interface Props {
 const ProductSummary: React.FC<Props> = ({ product }) => {
   const { addToCart } = useCart();
 
+  const [selectedPrice, setSelectedPrice] = useState<string>(
+    product.prices ? product.prices[0] : product.price ? product.price.toString() : "0"
+  );
+
   const handleAddToCart = () => {
+    // Remove all non-numeric characters except dot for decimals
+    const numericPrice = parseFloat(selectedPrice.replace(/[^\d.]/g, ""));
     addToCart({
-      id: product.id,
+      id: `${product.id}-${numericPrice}`, // Unique per product+price
       name: product.name,
-      price: parseFloat(
-        product.startingPrice?.replace("$", "").replace(" MXN", "") || "0"
-      ),
+      price: numericPrice,
       quantity: 1,
       image: product.image,
     });
@@ -38,10 +43,6 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
     const event = new CustomEvent("cart-updated");
     window.dispatchEvent(event);
   };
-
-  const [selectedPrice, setSelectedPrice] = useState(
-    product.prices ? product.prices[0] : product.price
-  );
 
   const handlePriceChange = (price: string) => {
     setSelectedPrice(price);

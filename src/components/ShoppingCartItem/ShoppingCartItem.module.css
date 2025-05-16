@@ -1,3 +1,14 @@
+.imageCircle {
+  width: 100px;
+  height: 105px;
+  border-radius: 50%;
+  border: 4.5px solid #2196f3; /* Blue border */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 .item {
   display: flex;
   align-items: center;
