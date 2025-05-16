@@ -18,7 +18,7 @@ export default function ProductDetailedView() {
   const productDetails = {
     7: {
       id: 7,
-      name: "Waymo Ride Gift Card",
+      name: "Waymo Ride Gift Card!",
       description:
         "Unlock the future of transportation with a Waymo Rides gift card!" +
         "\nImagine gifting the freedom of safe, convenient, and autonomous rides to your loved ones." +
