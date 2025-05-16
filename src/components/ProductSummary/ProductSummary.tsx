@@ -75,23 +75,25 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
         ))}
 
         {/* Amount and Add to Cart */}
-        {product.prices && (
+        {(product.prices || product.price) && (
           <div className={styles.amountAndCartContainer}>
-            {/* Amount Section */}
-            <div className={styles.amountContainer}>
-              <label className={styles.amountLabel}>Amount</label>
-              <select
-                className={styles.amountInput}
-                value={selectedPrice}
-                onChange={(e) => handlePriceChange(e.target.value)}
-              >
-                {product.prices.map((price) => (
-                  <option key={price} value={price}>
-                    {price}
-                  </option>
-                ))}
-              </select>
-            </div>
+            {/* Amount Section for multi-price */}
+            {product.prices ? (
+              <div className={styles.amountContainer}>
+                <label className={styles.amountLabel}>Amount</label>
+                <select
+                  className={styles.amountInput}
+                  value={selectedPrice}
+                  onChange={(e) => handlePriceChange(e.target.value)}
+                >
+                  {product.prices.map((price) => (
+                    <option key={price} value={price}>
+                      {price}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            ) : null}
 
             {/* Add to Cart Button */}
             <button className={styles.addToCart} onClick={handleAddToCart}>
