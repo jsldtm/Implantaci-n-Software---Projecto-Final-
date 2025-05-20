@@ -94,7 +94,10 @@ const Sidebar: React.FC<SidebarProps> = ({
     {
       name: "Settings",
       icon: <Cog6ToothIcon className="h-6 w-6" />,
-      onClick: () => setSelectedOption("Settings"),
+      onClick: () => {
+        setSelectedOption("Settings");
+        router.push("/settingsportal"); // Navigate to the 'settings' portal
+      },
       showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
     },
   ];

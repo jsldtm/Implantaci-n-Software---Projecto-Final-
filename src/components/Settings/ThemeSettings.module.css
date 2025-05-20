@@ -1,0 +1,30 @@
+/* This CSS file defines the styles for the SettingsPanel component
+It includes styles for the panel, header, and various elements within the panel
+The styles are designed to create a clean and modern look, with a focus on usability & readability. */
+
+.themeOptions {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+.themeButton {
+  padding: 8px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #e5e7eb;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.themeButton.selected {
+  background: #2563eb;
+  color: #fff;
+}
+.colorPicker {
+  margin-left: 16px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

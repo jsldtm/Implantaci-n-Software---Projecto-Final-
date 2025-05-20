@@ -1,0 +1,15 @@
+/* THis CSS file defines the styles for the SettingsPanel component
+It includes styles for the panel, header, & various elements within the panel
+The styles are designed to create a clean and modern look, with a focus on usability and readability */
+
+.layoutOptions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.checkboxLabel {
+  font-size: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
