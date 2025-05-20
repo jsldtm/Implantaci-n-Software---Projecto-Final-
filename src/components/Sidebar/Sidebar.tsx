@@ -10,7 +10,8 @@ import {
   MagnifyingGlassIcon as SearchIcon,
   HomeIcon,
 } from '@heroicons/react/24/outline';
-import React, { useState } from 'react';
+
+import React, { useState, useEffect } from 'react';
 import { useRouter } from "next/navigation"; // Import useRouter for navigation
 
 // Import the CSS styles
@@ -31,14 +32,30 @@ interface SidebarProps {
   onSearchClick?: () => void; // Callback for "Search" icon click
 }
 
+// Map portalName to sidebar option name
+const portalToOption: Record<string, string> = {
+  "finditallmain": "Inception",
+  "categories": "Search",
+  "saveditems": "Saved",
+  "shopping-cart": "Cart",
+  "settings": "Settings",
+  "productdetailedview": "Inception", // or whatever makes sense for your app
+};
+
 const Sidebar: React.FC<SidebarProps> = ({
   defaultSelected = "Inception",
   portalName,
   onHomeClick,
   onSearchClick,
 }) => {
-  const [selectedOption, setSelectedOption] = useState<string>(defaultSelected);
-  const router = useRouter(); // Initialize the router here
+  const [selectedOption, setSelectedOption] = useState<string>(
+    portalToOption[portalName] || defaultSelected
+  );
+  const router = useRouter();
+
+  useEffect(() => {
+    setSelectedOption(portalToOption[portalName] || defaultSelected);
+  }, [portalName, defaultSelected]);
 
   const options = [
     {
@@ -48,7 +65,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         setSelectedOption("Inception");
         router.push("/finditallmain"); // Navigate to the 'finditallmain' portal
       },
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
     },
     {
       name: "Search",
@@ -57,13 +74,16 @@ const Sidebar: React.FC<SidebarProps> = ({
         setSelectedOption("Search");
         router.push("/categories"); // Navigate to the 'categories' portal
       },
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
     },
     {
       name: "Saved",
       icon: <BookmarkIcon className="h-6 w-6" />,
-      onClick: () => setSelectedOption("Saved"),
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview"],
+      onClick: () => {
+        setSelectedOption("Saved");
+        router.push("/saveditems"); // <-- Add this line!
+      },
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
     },
     {
       name: "Cart",
@@ -75,7 +95,7 @@ const Sidebar: React.FC<SidebarProps> = ({
       name: "Settings",
       icon: <Cog6ToothIcon className="h-6 w-6" />,
       onClick: () => setSelectedOption("Settings"),
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
     },
   ];
 
@@ -85,14 +105,14 @@ const Sidebar: React.FC<SidebarProps> = ({
         .filter((option) => option.showIn.includes(portalName))
         .map((option) => (
           <button
-            key = {option.name}
-            className = {`${styles.option} ${
+            key={option.name}
+            className={`${styles.option} ${
               selectedOption === option.name ? styles.selected : ""
             }`}
-            onClick = {option.onClick}
+            onClick={option.onClick}
           >
             {option.icon}
-            <span className = {styles.label}>{option.name}</span>
+            <span className={styles.label}>{option.name}</span>
           </button>
         ))}
     </div>
