@@ -101,3 +101,24 @@
     text-align: center; /* Ensure the text is centered */
     white-space: normal; /* Allow text to wrap if it's too long */
   }
+
+  :root {
+  --bg-color: #ffffff;
+  --text-color: #111827;
+  --accent-color: #2563eb;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+/* Apply accent color to elements */
+a, .accent-color {
+  color: var(--accent-color);
+}
+
+button.primary {
+  background-color: var(--accent-color);
+}
+

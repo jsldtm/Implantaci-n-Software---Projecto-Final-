@@ -5,28 +5,31 @@ import React, { useEffect, useState } from 'react';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useRouter } from 'next/navigation'; // Import useRouter for navigation
+import { useUsername } from '@/context/UsernameContext'; // Import the context to get the username
 import styles from './MainHeader.module.css'; // Import the CSS module
+import { useSettings } from "@/context/SettingsContext";
 
 interface MainHeaderProps {
   username: string;
 }
 
-const MainHeader: React.FC<MainHeaderProps> = ({ username }) => {
+const MainHeader: React.FC = () => {
+  const { username } = useUsername(); // <-- Use context
   const [isClient, setIsClient] = useState(false);
-  const router = useRouter(); // Initialize the router
+  const router = useRouter();
 
   useEffect(() => {
-    setIsClient(true); // Ensure icons are rendered only on the client
+    setIsClient(true);
   }, []);
 
   const handleAccountClick = () => {
-    router.push('/loginportal'); // Navigate to the login portal
+    router.push('/loginportal');
   };
 
   const handleLogout = async () => {
     const response = await fetch('/api/auth/logout', { method: 'POST' });
     if (response.ok) {
-      router.push('/loginportal'); // Redirect to login portal
+      router.push('/loginportal');
     }
   };
 
@@ -36,24 +39,13 @@ const MainHeader: React.FC<MainHeaderProps> = ({ username }) => {
       <div className="flex items-center space-x-4">
         {isClient && (
           <>
-            <button
-              aria-label="Notifications"
-              className={styles.iconButton} // Apply the CSS module class
-            >
+            <button aria-label="Notifications" className={styles.iconButton}>
               <NotificationsIcon fontSize="large" />
             </button>
-            <button
-              aria-label="Account"
-              onClick={handleAccountClick}
-              className={styles.iconButton} // Apply the CSS module class
-            >
+            <button aria-label="Account" onClick={handleAccountClick} className={styles.iconButton}>
               <AccountCircleIcon fontSize="large" />
             </button>
-            <button
-              aria-label="Logout"
-              onClick={handleLogout} // Call the logout function
-              className={styles.iconButton} // Apply the CSS module class
-            >
+            <button aria-label="Logout" onClick={handleLogout} className={styles.iconButton}>
               Logout
             </button>
           </>

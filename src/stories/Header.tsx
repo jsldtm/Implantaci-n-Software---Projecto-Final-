@@ -2,6 +2,7 @@ import React from 'react';
 
 import { Button } from '@/components/Button/Button';
 import './header.css';
+import { useUsername } from '@/context/UsernameContext';
 
 type User = {
   name: string;

@@ -3,7 +3,9 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import React from "react";
 import Head from "next/head";
-import { CartProvider } from "../context/CartContext"; // Import CartProvider
+import { CartProvider } from "../context/CartContext";
+import { UsernameProvider } from "@/context/UsernameContext";
+import { SettingsProvider } from "@/context/SettingsContext";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -16,7 +18,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Findit All - Our Categories", // Update the title here
+  title: "Findit All - Our Categories",
   description: "Findit All - Browse and explore our categories",
 };
 
@@ -28,12 +30,16 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Head>
-        <title>Findit All</title> {/* Default title */}
+        <title>Findit All</title>
       </Head>
       <body className={"antialiased"}>
-        <CartProvider> {/* Wrap the application in CartProvider */}
-          {children}
-        </CartProvider>
+        <SettingsProvider>
+          <CartProvider>
+            <UsernameProvider>
+              {children}
+            </UsernameProvider>
+          </CartProvider>
+        </SettingsProvider>
       </body>
     </html>
   );

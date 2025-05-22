@@ -17,6 +17,8 @@ import { useRouter } from "next/navigation"; // Import useRouter for navigation
 // Import the CSS styles
 import styles from "./Sidebar.module.css";
 
+import { useSettings } from "@/context/SettingsContext";
+
 // Trying to make the icons shown according to the selected portal
 interface SidebarProps {
   defaultSelected?: string; // Default selected icon
@@ -52,10 +54,12 @@ const Sidebar: React.FC<SidebarProps> = ({
     portalToOption[portalName] || defaultSelected
   );
   const router = useRouter();
+  const { settings } = useSettings(); // <-- Add this line
 
   useEffect(() => {
     setSelectedOption(portalToOption[portalName] || defaultSelected);
   }, [portalName, defaultSelected]);
+
 
   const options = [
     {
@@ -65,7 +69,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         setSelectedOption("Inception");
         router.push("/finditallmain"); // Navigate to the 'finditallmain' portal
       },
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems", "settings", "shopping-cart"],
     },
     {
       name: "Search",
@@ -74,7 +78,7 @@ const Sidebar: React.FC<SidebarProps> = ({
         setSelectedOption("Search");
         router.push("/categories"); // Navigate to the 'categories' portal
       },
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems", "settings", "shopping-cart"],
     },
     {
       name: "Saved",
@@ -83,13 +87,13 @@ const Sidebar: React.FC<SidebarProps> = ({
         setSelectedOption("Saved");
         router.push("/saveditems"); // <-- Add this line!
       },
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems", "settings", "shopping-cart"],
     },
     {
       name: "Cart",
       icon: <ShoppingCartIcon className="h-6 w-6" />,
       onClick: () => setSelectedOption("Cart"),
-      showIn: ["shopping-cart"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems", "settings", "shopping-cart"],
     },
     {
       name: "Settings",
@@ -98,12 +102,12 @@ const Sidebar: React.FC<SidebarProps> = ({
         setSelectedOption("Settings");
         router.push("/settingsportal"); // Navigate to the 'settings' portal
       },
-      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems"],
+      showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems", "settings", "shopping-cart"],
     },
   ];
 
   return (
-    <div className={styles.sidebar}>
+    <div className={`${styles.sidebar} ${settings.compactSidebar ? styles.compact : ""}`}>
       {options
         .filter((option) => option.showIn.includes(portalName))
         .map((option) => (
