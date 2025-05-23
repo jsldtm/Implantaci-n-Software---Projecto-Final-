@@ -33,23 +33,25 @@ const defaultSettings: Settings = {
 const SettingsContext = createContext<{
   settings: Settings;
   setSettings: React.Dispatch<React.SetStateAction<Settings>>;
+
 }>({
   settings: defaultSettings,
   setSettings: () => {},
+
 });
 
-interface SettingsProviderProps {
-  children: ReactNode;
-}
+interface SettingsProviderProps {children: ReactNode;}
 
 export const SettingsProvider = ({ children }: SettingsProviderProps) => {
-  const [settings, setSettings] = useState<Settings>(() => {
+  const [settings, setSettings] = useState<Settings>(defaultSettings);
+
+  // On mount, update settings from localStorage if available (client-only)
+  useEffect(() => {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("settings");
-      return saved ? JSON.parse(saved) : defaultSettings;
+      if (saved) {setSettings(JSON.parse(saved));}
     }
-    return defaultSettings;
-  });
+  }, []);
 
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));

@@ -1,7 +1,6 @@
 "use client"; // This is a client component
 
 import React from "react";
-import Head from "next/head";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import MainHeader from "@/components/MainHeader/MainHeader";
 import ProductCategoryList from "@/components/ProductCategoryList/ProductCategoryList";
@@ -25,18 +24,11 @@ const EcommerceHomePage = () => {
   ];
 
   const handleCategoryClick = (category: string) => {
-    router.push(`/categories?selectedCategory=${encodeURIComponent(category)}`);
-  
+    router.push(`categories?selectedCategory=${encodeURIComponent(category)}`);
   };
 
   return (
     <>
-      {/* Dynamically set the title and meta tags */}
-      <Head>
-        <title> Findit All - Where you can Find. It. All! </title>
-        <meta name = "description" content = "Explore our Portal!" />
-      </Head>
-
       <div className = "flex h-screen bg-gray-100">
         {/* Sidebar navigation */}
         <Sidebar portalName = "finditallmain" />
