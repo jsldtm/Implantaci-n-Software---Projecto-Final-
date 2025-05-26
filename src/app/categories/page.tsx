@@ -79,8 +79,8 @@ const CategoriesPage: React.FC = () => {
               placeholder="Search products by name..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="px-3 py-2 rounded border border-gray-300 text-sm mr-4"
-              style={{ minWidth: 220 }}
+              className="px-2 py-1 rounded border border-gray-300 text-sm mr-2"
+              style={{ minWidth: 100, maxWidth: 130, height: 60, maxHeight: 70 }}
             />
             {categories.map((category) => (
               <button
