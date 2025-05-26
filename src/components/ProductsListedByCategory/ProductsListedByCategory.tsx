@@ -15,9 +15,10 @@ interface Product {
 
 interface Props {
   category: string;
+  searchTerm?: string;
 }
 
-const ProductsListedByCategory: React.FC<Props> = ({ category }) => {
+const ProductsListedByCategory: React.FC<Props> = ({ category, searchTerm = "" }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -27,13 +28,11 @@ const ProductsListedByCategory: React.FC<Props> = ({ category }) => {
     const fetchProductsByCategory = async () => {
       setIsLoading(true);
       setError(null);
-
       try {
         const response = await fetch(`/api/categories/${category}`);
         if (!response.ok) {
           throw new Error(`Failed to fetch products for category: ${category}`);
         }
-
         const data = await response.json();
         setProducts(data);
       } catch (error) {
@@ -44,9 +43,13 @@ const ProductsListedByCategory: React.FC<Props> = ({ category }) => {
         setIsLoading(false);
       }
     };
-
     fetchProductsByCategory();
   }, [category]);
+
+  // Filter products by search term (case-insensitive)
+  const filteredProducts = products.filter(product =>
+    product.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   if (isLoading) {
     return <p>Loading products...</p>;
@@ -56,13 +59,13 @@ const ProductsListedByCategory: React.FC<Props> = ({ category }) => {
     return <p className="text-red-500">{error}</p>;
   }
 
-  if (products.length === 0) {
-    return <p>No products available in this category.</p>;
+  if (filteredProducts.length === 0) {
+    return <p>No products found for this search.</p>;
   }
 
   return (
     <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
-      {products.map((product) => (
+      {filteredProducts.map((product) => (
         <div
           key={product.id}
           className="bg-white rounded-lg shadow-md p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"

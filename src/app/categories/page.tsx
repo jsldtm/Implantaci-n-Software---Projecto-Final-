@@ -17,6 +17,7 @@ const CategoriesPage: React.FC = () => {
     { id: number; name: string }[]
   >([]); // State to hold categories
   const [chosenCategory, setChosenCategory] = useState<string>("");
+  const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch categories from the API when the component mounts
   useEffect(() => {
@@ -72,6 +73,15 @@ const CategoriesPage: React.FC = () => {
             className="p-2 flex space-x-4"
             style={{ backgroundColor: "#f3f4f6" }} // Neutral grey
           >
+            {/* Search input */}
+            <input
+              type="text"
+              placeholder="Search products by name..."
+              value={searchTerm}
+              onChange={e => setSearchTerm(e.target.value)}
+              className="px-3 py-2 rounded border border-gray-300 text-sm mr-4"
+              style={{ minWidth: 220 }}
+            />
             {categories.map((category) => (
               <button
                 key={category.id}
@@ -99,6 +109,7 @@ const CategoriesPage: React.FC = () => {
           <main className="flex-1 p-3 overflow-y-auto">
             <ProductsListedByCategory
               category={chosenCategory}
+              searchTerm={searchTerm}
             />
           </main>
         </div>
