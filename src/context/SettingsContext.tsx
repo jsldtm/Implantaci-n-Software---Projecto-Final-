@@ -21,7 +21,7 @@ const defaultSettings: Settings = {
   // Theme defaults
   theme: 'light',
   accentColor: "",
-  username: "User-Name Jake",
+  username: "Jake", // Only the user's name
 
   // Layout defaults
   compactSidebar: false,
@@ -55,6 +55,15 @@ export const SettingsProvider = ({ children }: SettingsProviderProps) => {
 
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));
+    // Apply theme class to <body>
+    if (typeof window !== "undefined") {
+      document.body.classList.remove("theme-light", "theme-dark", "theme-warm", "theme-custom");
+      document.body.classList.add(`theme-${settings.theme}`);
+      // Optionally, set accent color as a CSS variable
+      if (settings.accentColor) {
+        document.body.style.setProperty('--accent-color', settings.accentColor);
+      }
+    }
   }, [settings]);
 
   return (

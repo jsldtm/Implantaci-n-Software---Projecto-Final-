@@ -26,7 +26,7 @@ const SavedForLaterList = () => {
     <div className="py-4">
       {/* Static heading */}
       <h2 className="text-lg font-semibold text-gray-800 mb-4">
-        Saved for later...
+        Saved for later... →
       </h2>
 
       {/* Scrollable container for items */}

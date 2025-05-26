@@ -5,16 +5,11 @@ import React, { useEffect, useState } from 'react';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import { useRouter } from 'next/navigation'; // Import useRouter for navigation
-import { useUsername } from '@/context/UsernameContext'; // Import the context to get the username
-import styles from './MainHeader.module.css'; // Import the CSS module
 import { useSettings } from "@/context/SettingsContext";
-
-interface MainHeaderProps {
-  username: string;
-}
+import styles from './MainHeader.module.css'; // Import the CSS module
 
 const MainHeader: React.FC = () => {
-  const { username } = useUsername(); // <-- Use context
+  const { settings } = useSettings();
   const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
@@ -35,7 +30,7 @@ const MainHeader: React.FC = () => {
 
   return (
     <header className={styles.header}>
-      <h1 className={styles.title}>Welcome, {username}!</h1>
+      <h1 className={styles.title}>Welcome, {settings.username}!</h1>
       <div className="flex items-center space-x-4">
         {isClient && (
           <>

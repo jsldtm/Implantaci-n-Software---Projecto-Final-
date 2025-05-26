@@ -46,11 +46,27 @@
   white-space: normal; /* Allow text to wrap if it's too long */
 }
 
-/* Add to your global CSS file */
-:root {
+/* Theme classes for global theming */
+:root,
+.theme-light {
   --bg-color: #ffffff;
   --text-color: #111827;
   --accent-color: #2563eb;
+}
+.theme-dark {
+  --bg-color: #18181b;
+  --text-color: #f3f4f6;
+  --accent-color: #6366f1;
+}
+.theme-warm {
+  --bg-color: #fff7e6;
+  --text-color: #7c4700;
+  --accent-color: #ff9800;
+}
+.theme-custom {
+  --bg-color: #aaffdd;
+  --text-color: #222222;
+  --accent-color: #0077ff;
 }
 
 body {

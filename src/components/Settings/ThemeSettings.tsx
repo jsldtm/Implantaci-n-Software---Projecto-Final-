@@ -10,6 +10,7 @@ const themes = {
   light: { bg: "#ffffff", text: "#111827", accent: "#2563eb" },
   dark: { bg: "#23211c", text: "#e7e3d7", accent: "#2563eb" },
   warm: { bg: "#e8e4da", text: "#3c3a36", accent: "#eab308" },
+  custom: { bg: "#e8e4da", text: "#3c3a36", accent: "#6b5b2a" }, // Added custom theme
 };
 
 const ThemeSettings = () => {
@@ -17,13 +18,20 @@ const ThemeSettings = () => {
 
   // Sync CSS variables with settings on mount and when settings change
   useEffect(() => {
-    const themeVars = themes[settings.theme];
+    let themeVars = themes[settings.theme];
+    // If custom theme, override bg and accent with accentColor
+    if (settings.theme === "custom") {
+      themeVars = {
+        ...themes.custom,
+        bg: settings.accentColor || themes.custom.bg,
+        accent: settings.accentColor || themes.custom.accent,
+      };
+    }
     document.documentElement.style.setProperty('--bg-color', themeVars.bg);
     document.documentElement.style.setProperty('--text-color', themeVars.text);
-    // Use custom accent color if set, otherwise use theme default
     document.documentElement.style.setProperty(
       '--accent-color',
-      settings.accentColor || themeVars.accent
+      themeVars.accent
     );
   }, [settings.theme, settings.accentColor]);
 
@@ -61,12 +69,29 @@ const ThemeSettings = () => {
             {key.charAt(0).toUpperCase() + key.slice(1)}
           </button>
         ))}
+        {/* Custom color box as a theme option, styled as a square color input */}
         <input
           type="color"
           className={styles.colorPicker}
           title="Accent Color"
-          value={settings.accentColor || themes[settings.theme].accent}
-          onChange={handleAccentColorChange}
+          value={settings.accentColor || themes[settings.theme]?.accent || "#6b5b2a"}
+          onChange={e => {
+            setSettings(prev => ({
+              ...prev,
+              accentColor: e.target.value,
+              theme: "custom" as any // allow custom theme for accent color
+            }));
+          }}
+          style={{
+            width: 40,
+            height: 40,
+            borderRadius: 4,
+            border: settings.theme === ("custom" as any) ? "2px solid #2563eb" : "none",
+            boxSizing: "border-box",
+            padding: 0,
+            background: "none",
+            cursor: "pointer",
+          }}
         />
       </div>
     </section>

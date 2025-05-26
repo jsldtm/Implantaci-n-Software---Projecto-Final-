@@ -2268,7 +2268,7 @@ export default function ProductDetailedView() {
       description:
         "Descubre el impactante retrato de la vida militar y la adolescencia en el Peruuuu con 'La ciudad y los perros'.\n" +
         "Mario Vargas Llosa - Premio Nobel de Literatura en 2010 - narra con crudeza y realismo las experiencias de un grupo de cadetes en un colegio militar, explorando temas de poder, violencia y rebeldía.\n" +
-        "Considerada la novela que inició el 'Boom latinoamericano', es una obra esencial para entender la literatura contemporánea.\n" +
+        "Considerada el la novela que inició el 'Boom latinoamericano', es una obra esencial para entender la literatura contemporánea.\n" +
         "Una lectura que deja huella.",
       price: "239.99",
       image: "/images/ciudad-y-los-perros.png",
@@ -2486,10 +2486,6 @@ export default function ProductDetailedView() {
       image: "/images/yo-el-supremo.png",
       category: "Books",
     },
-    // ...existing code...
-
-
-    
   };
 
   // Convert productId to a number and handle invalid cases
@@ -2510,7 +2506,7 @@ export default function ProductDetailedView() {
   console.log(product); // Debugging: Check the product object
 
   return (
-    <div className = "flex min-h-screen">
+    <div style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)", minHeight: "100vh" }} className = "flex min-h-screen">
       <Sidebar portalName = "productdetailedview" />
       <div className = "flex-1 p-4 sm:p-10">
         <FloatingCartElement />

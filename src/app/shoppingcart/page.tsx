@@ -9,7 +9,7 @@ import styles from "../../components/ShoppingCartPortal/ShoppingCartPortal.modul
 
 const ShoppingCartPage: React.FC = () => {
   return (
-    <div className = {styles.layout}>
+    <div className = {styles.layout} style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
       {/* Sidebar */}
       <div className = {styles.sidebar}>
         <Sidebar portalName = "shopping-cart" />

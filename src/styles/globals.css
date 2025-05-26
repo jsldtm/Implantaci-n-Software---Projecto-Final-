@@ -30,19 +30,6 @@
     display: none; /* Safari and Chrome */
   }
   
-  /* Fading effect for scrollable areas */
-  .bg-gradient-to-r {
-    background: linear-gradient(to right, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  }
-  
-  .bg-gradient-to-l {
-    background: linear-gradient(to left, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
-  }
-  
-  .no-scrollbar::-webkit-scrollbar {
-    display: none; /* Safari and Chrome */
-  }
-  
   /* Additional spacing and alignment */
   .flex {
     display: flex;
@@ -83,7 +70,8 @@
     overflow: hidden; /* Ensure content doesn't overflow */
     border: 1px solid #ddd; /* Optional: Add a border for clarity */
     border-radius: 8px; /* Optional: Add rounded corners */
-    background-color: #f9f9f9; /* Optional: Add a background color */
+    background-color: var(--bg-color); /* Use theme color */
+    color: var(--text-color); /* Use theme color */
     flex-shrink: 0; /* Prevent shrinking in horizontal scroll */
     text-align: center; /* Ensure text is centered */
   }
@@ -97,7 +85,7 @@
   .saved-for-later-item span {
     margin-top: 0.5rem; /* Add spacing between the image and text */
     font-size: 0.875rem; /* Adjust font size */
-    color: #4a4a4a; /* Optional: Adjust text color */
+    color: var(--text-color); /* Use theme color */
     text-align: center; /* Ensure the text is centered */
     white-space: normal; /* Allow text to wrap if it's too long */
   }

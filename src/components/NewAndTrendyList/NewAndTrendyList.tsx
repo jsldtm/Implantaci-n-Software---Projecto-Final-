@@ -27,6 +27,10 @@ const NewAndTrendyList: React.FC = () => {
 
   return (
     <div className="relative">
+      {/* Heading with arrow */}
+      <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
+        New & Trendy <span className="text-xl">→</span>
+      </h2>
       <div className="overflow-x-auto no-scrollbar">
         <div className="flex space-x-6 px-4">
           {recommendations.map((item) => (
@@ -42,9 +46,6 @@ const NewAndTrendyList: React.FC = () => {
           ))}
         </div>
       </div>
-      {/* Fading effect to indicate scrollability */}
-      <div className="absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
-      <div className="absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
     </div>
   );
 };

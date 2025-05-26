@@ -73,8 +73,9 @@ const ProductCategoryList: React.FC = () => {
           ))}
         </div>
       </div>
-      <div className="absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
-      <div className="absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
+      {/* Fading effect to indicate scrollability - REMOVED */}
+      {/* <div className="absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+      <div className="absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"></div> */}
     </div>
   );
 };

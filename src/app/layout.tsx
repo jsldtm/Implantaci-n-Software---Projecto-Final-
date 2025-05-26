@@ -6,6 +6,7 @@ import Head from "next/head";
 import { CartProvider } from "../context/CartContext";
 import { UsernameProvider } from "@/context/UsernameContext";
 import { SettingsProvider } from "@/context/SettingsContext";
+import ThemeProvider from "./ThemeProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,13 +33,15 @@ export default function RootLayout({
       <Head>
         <title>Findit All</title>
       </Head>
-      <body className={"antialiased"}>
+      <body className={"antialiased"} style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
         <SettingsProvider>
-          <CartProvider>
-            <UsernameProvider>
-              {children}
-            </UsernameProvider>
-          </CartProvider>
+          <ThemeProvider>
+            <CartProvider>
+              <UsernameProvider>
+                {children}
+              </UsernameProvider>
+            </CartProvider>
+          </ThemeProvider>
         </SettingsProvider>
       </body>
     </html>

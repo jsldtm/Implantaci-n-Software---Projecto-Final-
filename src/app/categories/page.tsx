@@ -42,14 +42,20 @@ const CategoriesPage: React.FC = () => {
       </Head>
 
       {/* Make the entire container scrollable */}
-      <div className="flex h-screen overflow-y-auto bg-gray-100">
+      <div className="flex h-screen overflow-y-auto" style={{ backgroundColor: "var(--accent-color)" }}>
         {/* Sidebar */}
         <Sidebar portalName="categories" />
 
         {/* Main Content */}
         <div className="flex-1 flex flex-col">
           {/* Header */}
-          <header className="bg-blue-500 text-white p-4 flex items-center justify-between">
+          <header
+            className="p-4 flex items-center justify-between"
+            style={{
+              backgroundColor: "#3887f6", // Set to normal blue
+              color: "#fff", // Set to white for text and icons
+            }}
+          >
             <h1 className="text-xl font-bold">Our Categories</h1>
             <div className="flex items-center space-x-4">
               <button>
@@ -62,15 +68,26 @@ const CategoriesPage: React.FC = () => {
           </header>
 
           {/* Category Tabs */}
-          <nav className="bg-blue-100 p-2 flex space-x-4">
+          <nav
+            className="p-2 flex space-x-4"
+            style={{ backgroundColor: "#f3f4f6" }} // Neutral grey
+          >
             {categories.map((category) => (
               <button
                 key={category.id}
                 className={`px-4 py-2 rounded text-sm ${
                   chosenCategory === category.name
-                    ? "bg-blue-500 text-white"
-                    : "bg-white text-blue-500"
+                    ? "text-gray-900 font-semibold"
+                    : "text-gray-700"
                 }`}
+                style={{
+                  backgroundColor:
+                    chosenCategory === category.name
+                      ? "#e5e7eb" // Slightly darker grey for selected
+                      : "#f3f4f6",
+                  color:
+                    chosenCategory === category.name ? "#111827" : "#374151", // gray-900 or gray-700
+                }}
                 onClick={() => setChosenCategory(category.name)}
               >
                 {category.name}
@@ -82,7 +99,6 @@ const CategoriesPage: React.FC = () => {
           <main className="flex-1 p-3 overflow-y-auto">
             <ProductsListedByCategory
               category={chosenCategory}
-              products={[]} // Replace with actual products fetched by category
             />
           </main>
         </div>
