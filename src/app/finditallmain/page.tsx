@@ -1,3 +1,6 @@
+// This page file defines the main page of the FindItAll application
+
+
 "use client"; // This is a client component
 
 import React from "react";
@@ -10,7 +13,7 @@ import { useRouter } from "next/navigation";
 import { useSettings } from "@/context/SettingsContext";
 
 // This Page file defines the main page of the application
-const EcommerceHomePage = () => {
+const FindItAll = () => {
   const router = useRouter();
   const { settings } = useSettings();
 
@@ -32,7 +35,7 @@ const EcommerceHomePage = () => {
 
   return (
     <>
-      <div className="flex h-screen">
+      <div className="flex h-screen" style={{ backgroundColor: "#cfcfcf" }}>
         {/* Sidebar navigation */}
         <Sidebar portalName="finditallmain" />
 
@@ -43,17 +46,17 @@ const EcommerceHomePage = () => {
 
           {/* Product categories */}
           <div className="mt-1 scrollable-container">
-            <ProductCategoryList />
+        <ProductCategoryList />
           </div>
 
           {/* New and trendy */}
           <div className="mt-1 scrollable-container">
-            <NewAndTrendyList />
+        <NewAndTrendyList />
           </div>
 
           {/* Saved for later */}
           <div className="mt-1 scrollable-container">
-            <SavedForLaterList />
+        <SavedForLaterList />
           </div>
         </div>
       </div>
@@ -61,4 +64,4 @@ const EcommerceHomePage = () => {
   );
 };
 
-export default EcommerceHomePage;
+export default FindItAll;

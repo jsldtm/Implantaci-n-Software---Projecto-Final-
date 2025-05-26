@@ -14,6 +14,20 @@ export default function ProductDetailedView() {
     const productId = searchParams.get("productId");
     const category = searchParams.get("category");
 
+    // Utility: check if product is already saved
+    function isProductSaved(id: string) {
+      if (typeof window === "undefined") return false;
+      const key = "savedProducts";
+      const existing = localStorage.getItem(key);
+      if (!existing) return false;
+      try {
+        const savedArr = JSON.parse(existing);
+        return savedArr.some((p: any) => p.id === id);
+      } catch {
+        return false;
+      }
+    }
+
   // Simulate fetching product data based on productId
   const productDetails = {
 
@@ -2511,7 +2525,7 @@ export default function ProductDetailedView() {
       <div className = "flex-1 p-4 sm:p-10">
         <FloatingCartElement />
         <BackToCategoriesBar category = {category || "Unknown"} />
-        <ProductSummary product = {product} />
+        <ProductSummary product = {product} isSaved={isProductSaved(productId || "")} />
         <SimilarProducts category = {category || "Unknown"} />
       </div>
     </div>

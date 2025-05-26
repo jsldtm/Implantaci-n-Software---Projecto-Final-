@@ -11,7 +11,7 @@ import { useSettings } from "@/context/SettingsContext";
 const SettingsPage = () => {
   const { settings } = useSettings();
   return (
-    <div className = "flex h-screen" style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
+    <div className = "flex h-screen" style = {settings.theme === "custom" ? { backgroundColor: settings.customColor } : {}}>
       <Sidebar portalName = "settings" />
       <div className = "flex-1 overflow-y-auto p-4">
         <MainHeader />

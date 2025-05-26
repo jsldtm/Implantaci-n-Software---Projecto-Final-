@@ -1,7 +1,7 @@
 // This file defines a context for managing the shopping cart state in a React application
 "use client";
 
-import React, { createContext, useContext, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 export interface CartItem {
   id: string;
@@ -17,12 +17,29 @@ interface CartContextType {
   updateQuantity: (id: string, quantity: number) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
+  saveOrderToHistory: (order: CartItem[]) => void;
+  getPurchaseHistory: () => Array<{ id: number; date: string; items: CartItem[] }> ;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+
+  // Hydrate cart from localStorage on mount
+  useEffect(() => {
+    const storedCart = localStorage.getItem('cart');
+    if (storedCart) {
+      try {
+        setCart(JSON.parse(storedCart));
+      } catch {}
+    }
+  }, []);
+
+  // Persist cart to localStorage on change
+  useEffect(() => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+  }, [cart]);
 
   const addToCart = (item: CartItem) => {
     setCart((prev) => {
@@ -63,9 +80,28 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({ children
     setCart([]);
   };
 
+  // --- Purchase History Utilities ---
+  const saveOrderToHistory = (order: CartItem[]) => {
+    const history = getPurchaseHistory();
+    const newHistory = [
+      {
+        id: Date.now(),
+        date: new Date().toISOString(),
+        items: order,
+      },
+      ...history,
+    ];
+    localStorage.setItem('purchaseHistory', JSON.stringify(newHistory));
+  };
+
+  const getPurchaseHistory = (): Array<{ id: number; date: string; items: CartItem[] }> => {
+    const history = localStorage.getItem('purchaseHistory');
+    return history ? JSON.parse(history) : [];
+  };
+
   return (
     <CartContext.Provider
-      value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart }}
+      value={{ cart, addToCart, updateQuantity, removeFromCart, clearCart, saveOrderToHistory, getPurchaseHistory }}
     >
       {children}
     </CartContext.Provider>

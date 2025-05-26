@@ -61,7 +61,7 @@ const ThemeSettings = () => {
               key === "warm"
                 ? {
                     background: settings.theme === "warm" ? value.accent : value.bg,
-                    color: settings.theme === "warm" ? "#fff" : value.text,
+                    color: settings.theme === "warm" ? "#FFF7E6" : value.text,
                   }
                 : undefined
             }

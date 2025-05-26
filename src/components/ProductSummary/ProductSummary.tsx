@@ -3,8 +3,9 @@
 "use client";
 
 import { useCart } from "../../context/CartContext";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./ProductSummary.module.css";
+import { BookmarkIcon } from "@heroicons/react/24/outline";
 
 interface Product {
   id: string;
@@ -21,12 +22,30 @@ interface Props {
   product: Product;
 }
 
+const SAVE_ANIMATION_SCALE = 1.1; // You can change this value to control the pop-up scale
+
 const ProductSummary: React.FC<Props> = ({ product }) => {
   const { addToCart } = useCart();
-
   const [selectedPrice, setSelectedPrice] = useState<string>(
     product.prices ? product.prices[0] : product.price ? product.price.toString() : "0"
   );
+  const [saved, setSaved] = useState(false);
+  const [animating, setAnimating] = useState(false);
+
+  // Check if product is already saved on mount
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    const key = "savedProducts";
+    const existing = localStorage.getItem(key);
+    if (existing) {
+      try {
+        const savedArr = JSON.parse(existing);
+        if (savedArr.some((p: any) => p.id === product.id)) {
+          setSaved(true);
+        }
+      } catch {}
+    }
+  }, [product.id]);
 
   const handleAddToCart = () => {
     // Remove all non-numeric characters except dot for decimals
@@ -44,12 +63,37 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
     window.dispatchEvent(event);
   };
 
+  const handleSaveForLater = () => {
+    saveProductForLater(product);
+    setSaved(true);
+    setAnimating(true);
+    setTimeout(() => setAnimating(false), 350); // Animation duration
+  };
+
   const handlePriceChange = (price: string) => {
     setSelectedPrice(price);
   };
 
   // Split the description into paragraphs using "\n" as the delimiter
   const descriptionParagraphs = product.description.split("\n");
+
+  // Utility to save product to localStorage
+  function saveProductForLater(product: Product) {
+    if (typeof window === "undefined") return;
+    const key = "savedProducts";
+    const existing = localStorage.getItem(key);
+    let saved: Product[] = [];
+    if (existing) {
+      try {
+        saved = JSON.parse(existing);
+      } catch {}
+    }
+    // Avoid duplicates by id
+    if (!saved.some((p) => p.id === product.id)) {
+      saved.push(product);
+      localStorage.setItem(key, JSON.stringify(saved));
+    }
+  }
 
   return (
     <div className={styles.summary}>
@@ -98,6 +142,19 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
             {/* Add to Cart Button */}
             <button className={styles.addToCart} onClick={handleAddToCart}>
               Add to Cart
+            </button>
+            {/* Save for Later Circular Button */}
+            <button
+              className={
+                styles.saveForLater +
+                (animating ? " " + styles.saveForLaterAnimating : "") +
+                (saved ? " " + styles.saveForLaterFilled : "")
+              }
+              title="Save for later"
+              onClick={handleSaveForLater}
+              style={animating ? { transform: `scale(${SAVE_ANIMATION_SCALE})` } : {}}
+            >
+              <BookmarkIcon className={styles.bookmarkIcon + (saved ? " " + styles.bookmarkIconFilled : "")}/>
             </button>
           </div>
         )}
