@@ -50,7 +50,7 @@ const ThemeSettings = () => {
 
   return (
     <section>
-      <h2 className="text-xl font-semibold mb-2">Theme & Color</h2>
+      <h2 className = "text-xl font-semibold mb-2">Theme & Color</h2>
       <div className={styles.themeOptions}>
         {Object.entries(themes).map(([key, value]) => (
           <button
@@ -71,9 +71,9 @@ const ThemeSettings = () => {
         ))}
         {/* Custom color box as a theme option, styled as a square color input */}
         <input
-          type="color"
+          type = "color"
           className={styles.colorPicker}
-          title="Accent Color"
+          title = "Accent Color"
           value={settings.accentColor || themes[settings.theme]?.accent || "#6b5b2a"}
           onChange={e => {
             setSettings(prev => ({

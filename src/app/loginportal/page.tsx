@@ -8,8 +8,8 @@ import UserLoginForm from '../../components/UserLoginForm/UserLoginForm'; // Adj
 
 const LoginPortal: React.FC = () => {
   return (
-    <div className = "min-h-screen flex items-center justify-center bg-sky-500">
-      <div className = "w-full max-w-md bg-white rounded-lg shadow-lg p-8">
+    <div className  = "min-h-screen flex items-center justify-center bg-sky-500">
+      <div className  = "w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         <UserLoginForm />
       </div>
     </div>

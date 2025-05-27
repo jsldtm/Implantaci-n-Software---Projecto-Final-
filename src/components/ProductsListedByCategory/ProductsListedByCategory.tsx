@@ -18,7 +18,7 @@ interface Props {
   searchTerm?: string;
 }
 
-const ProductsListedByCategory: React.FC<Props> = ({ category, searchTerm = "" }) => {
+const ProductsListedByCategory: React.FC<Props> = ({ category, searchTerm  = "" }) => {
   const [products, setProducts] = useState<Product[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -56,7 +56,7 @@ const ProductsListedByCategory: React.FC<Props> = ({ category, searchTerm = "" }
   }
 
   if (error) {
-    return <p className="text-red-500">{error}</p>;
+    return <p className = "text-red-500">{error}</p>;
   }
 
   if (filteredProducts.length === 0) {
@@ -64,20 +64,20 @@ const ProductsListedByCategory: React.FC<Props> = ({ category, searchTerm = "" }
   }
 
   return (
-    <div className="grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
+    <div className = "grid gap-3" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))" }}>
       {filteredProducts.map((product) => (
         <div
           key={product.id}
-          className="bg-white rounded-lg shadow-md p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
+          className = "bg-white rounded-lg shadow-md p-4 transform transition-transform duration-300 hover:scale-105 hover:shadow-lg cursor-pointer"
           onClick={() => router.push(`/productdetailedview?productId=${product.id}&category=${category}`)} // Navigate to Product Detailed View
         >
           <img
             src={product.image}
             alt={product.name}
-            className="h-40 w-full object-contain rounded-md"
+            className = "h-40 w-full object-contain rounded-md"
           />
           <h3
-            className="text-md font-semibold mt-2 text-blue-600 cursor-pointer hover:underline"
+            className = "text-md font-semibold mt-2 text-blue-600 cursor-pointer hover:underline"
             onClick={(e) => {
               e.stopPropagation(); // Prevent the card click event
               router.push(`/productdetailedview?productId=${product.id}&category=${category}`);
@@ -85,7 +85,7 @@ const ProductsListedByCategory: React.FC<Props> = ({ category, searchTerm = "" }
           >
             {product.name}
           </h3>
-          <p className="text-sm text-gray-600">
+          <p className = "text-sm text-gray-600">
             {product.price !== undefined
               ? `$${product.price.toFixed(2)} MXN`
               : "Price not available"}

@@ -45,7 +45,7 @@ const portalToOption: Record<string, string> = {
 };
 
 const Sidebar: React.FC<SidebarProps> = ({
-  defaultSelected = "Inception",
+  defaultSelected  = "Inception",
   portalName,
   onHomeClick,
   onSearchClick,
@@ -64,7 +64,7 @@ const Sidebar: React.FC<SidebarProps> = ({
   const options = [
     {
       name: "Inception",
-      icon: <HomeIcon className="h-6 w-6" />,
+      icon: <HomeIcon className = "h-6 w-6" />,
       onClick: () => {
         setSelectedOption("Inception");
         router.push("/finditallmain"); // Navigate to the 'finditallmain' portal
@@ -73,7 +73,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       name: "Search",
-      icon: <SearchIcon className="h-6 w-6" />,
+      icon: <SearchIcon className = "h-6 w-6" />,
       onClick: () => {
         setSelectedOption("Search");
         router.push("/categories"); // Navigate to the 'categories' portal
@@ -82,7 +82,7 @@ const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       name: "Saved",
-      icon: <BookmarkIcon className="h-6 w-6" />,
+      icon: <BookmarkIcon className = "h-6 w-6" />,
       onClick: () => {
         setSelectedOption("Saved");
         router.push("/saveditems"); // <-- Add this line!
@@ -91,13 +91,13 @@ const Sidebar: React.FC<SidebarProps> = ({
     },
     {
       name: "Cart",
-      icon: <ShoppingCartIcon className="h-6 w-6" />,
+      icon: <ShoppingCartIcon className = "h-6 w-6" />,
       onClick: () => setSelectedOption("Cart"),
       showIn: ["finditallmain", "shopping-cart", "categories", "productdetailedview", "saveditems", "settings", "shopping-cart"],
     },
     {
       name: "Settings",
-      icon: <Cog6ToothIcon className="h-6 w-6" />,
+      icon: <Cog6ToothIcon className = "h-6 w-6" />,
       onClick: () => {
         setSelectedOption("Settings");
         router.push("/settingsportal"); // Navigate to the 'settings' portal

@@ -11,12 +11,12 @@ const ProductDisplaySettings = () => {
 
   return (
     <section className = {styles.productDisplayOptions}>
-      <h2 className = "text-xl font-semibold mb-2">Product Display</h2>
+      <h2 className  = "text-xl font-semibold mb-2">Product Display</h2>
       <div>
         <label className = {styles.checkboxLabel}>
           <input
-            type = "checkbox"
-            className = "mr-2"
+            type  = "checkbox"
+            className  = "mr-2"
             checked = {settings.showProductRatings}
             onChange = {e => setSettings(s => ({ ...s, showProductRatings: e.target.checked }))}
           />
@@ -25,8 +25,8 @@ const ProductDisplaySettings = () => {
         <br />
         <label className = {styles.checkboxLabel}>
           <input
-            type = "checkbox"
-            className = "mr-2"
+            type  = "checkbox"
+            className  = "mr-2"
             checked = {settings.showOnlyInStock}
             onChange = {e => setSettings(s => ({ ...s, showOnlyInStock: e.target.checked }))}
           />

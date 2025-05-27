@@ -11,11 +11,11 @@ const LayoutSettings = () => {
 
   return (
     <section className={styles.layoutOptions}>
-      <h2 className="text-xl font-semibold mb-2">Layout & Structure</h2>
+      <h2 className = "text-xl font-semibold mb-2">Layout & Structure</h2>
       <div>
         <label className={styles.checkboxLabel}>
           <input
-            type="checkbox"
+            type = "checkbox"
             checked={settings.compactSidebar}
             onChange={e => setSettings(s => ({ ...s, compactSidebar: e.target.checked }))}
           />
@@ -23,7 +23,7 @@ const LayoutSettings = () => {
         </label>
         <label className={styles.checkboxLabel}>
           <input
-            type="checkbox"
+            type = "checkbox"
             checked={settings.showCategoriesAsGrid}
             onChange={e => setSettings(s => ({ ...s, showCategoriesAsGrid: e.target.checked }))}
           />

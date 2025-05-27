@@ -27,8 +27,8 @@ const Header = () => {
 
     return (
         <header>
-            <nav className = "flex-gap4">
-                <ul className = "flex-gap4">
+            <nav className  = "flex-gap4">
+                <ul className  = "flex-gap4">
                     {links.map((link) => (
                         <li key = {link.href}>
                             <Link

@@ -26,22 +26,22 @@ const NewAndTrendyList: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative">
+    <div className = "relative">
       {/* Heading with arrow */}
-      <h2 className="text-xl font-bold mb-3 flex items-center gap-2">
-        New & Trendy <span className="text-xl">→</span>
+      <h2 className = "text-xl font-bold mb-3 flex items-center gap-2">
+        New & Trendy <span className = "text-xl">→</span>
       </h2>
-      <div className="overflow-x-auto no-scrollbar">
-        <div className="flex space-x-6 px-4">
+      <div className = "overflow-x-auto no-scrollbar">
+        <div className = "flex space-x-6 px-4">
           {recommendations.map((item) => (
-            <div key={item.id} className="flex-shrink-0 w-80">
+            <div key={item.id} className = "flex-shrink-0 w-80">
               <img
                 src={item.image}
                 alt={item.title}
-                className="w-full h-40 rounded-lg object-cover"
+                className = "w-full h-40 rounded-lg object-cover"
               />
-              <h3 className="text-lg font-bold mt-2">{item.title}</h3>
-              <p className="text-sm text-gray-600">{item.description}</p>
+              <h3 className = "text-lg font-bold mt-2">{item.title}</h3>
+              <p className = "text-sm text-gray-600">{item.description}</p>
             </div>
           ))}
         </div>
@@ -64,25 +64,25 @@ const NewAndTrendyList: React.FC = () => {
   ];
 
   return (
-    <div className = "relative">
-      <div className = "overflow-x-auto no-scrollbar">
-        <div className = "flex space-x-6 px-4">
+    <div className  = "relative">
+      <div className  = "overflow-x-auto no-scrollbar">
+        <div className  = "flex space-x-6 px-4">
           {trendyItems.map((item) => (
-            <div key={item.id} className = "flex-shrink-0 w-80">
+            <div key={item.id} className  = "flex-shrink-0 w-80">
               <img
                 src = {item.image}
                 alt = {item.title}
-                className = "w-full h-40 rounded-lg object-cover"
+                className  = "w-full h-40 rounded-lg object-cover"
               />
-              <h3 className = "text-lg font-bold mt-2">{item.title}</h3>
-              <p className = "text-sm text-gray-600">{item.description}</p>
+              <h3 className  = "text-lg font-bold mt-2">{item.title}</h3>
+              <p className  = "text-sm text-gray-600">{item.description}</p>
             </div>
           ))}
         </div>
       </div>
       {// Fading effect to indicate scrollability }
-      <div className = "absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
-      <div className = "absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
+      <div className  = "absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+      <div className  = "absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"></div>
     </div>
   );
 };

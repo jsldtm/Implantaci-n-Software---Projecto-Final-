@@ -35,7 +35,7 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
   // Check if product is already saved on mount
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const key = "savedProducts";
+    const key  = "savedProducts";
     const existing = localStorage.getItem(key);
     if (existing) {
       try {
@@ -80,7 +80,7 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
   // Utility to save product to localStorage
   function saveProductForLater(product: Product) {
     if (typeof window === "undefined") return;
-    const key = "savedProducts";
+    const key  = "savedProducts";
     const existing = localStorage.getItem(key);
     let saved: Product[] = [];
     if (existing) {
@@ -150,7 +150,7 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
                 (animating ? " " + styles.saveForLaterAnimating : "") +
                 (saved ? " " + styles.saveForLaterFilled : "")
               }
-              title="Save for later"
+              title = "Save for later"
               onClick={handleSaveForLater}
               style={animating ? { transform: `scale(${SAVE_ANIMATION_SCALE})` } : {}}
             >
@@ -191,9 +191,9 @@ export default ProductSummary;
 
 //   if (!product) {
 //     return (
-//       <div className="bg-white rounded-lg shadow-md p-6">
-//         <h1 className="text-2xl font-bold mt-4">Product Not Found! :o</h1>
-//         <p className="text-sm text-gray-500 mt-4">This is not the product you are looking for...</p>
+//       <div className = "bg-white rounded-lg shadow-md p-6">
+//         <h1 className = "text-2xl font-bold mt-4">Product Not Found! :o</h1>
+//         <p className = "text-sm text-gray-500 mt-4">This is not the product you are looking for...</p>
 //       </div>
 //     );
 //   }
@@ -230,7 +230,7 @@ export default ProductSummary;
 //               Amount <span className = {styles.arrow}>▼</span>
 //             </div>
 //             <input
-//               type = "text"
+//               type  = "text"
 //               value = {selectedPrice}
 //               readOnly
 //               className = {styles.amountInput}

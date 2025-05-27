@@ -17,7 +17,7 @@ export default function ProductDetailedView() {
     // Utility: check if product is already saved
     function isProductSaved(id: string) {
       if (typeof window === "undefined") return false;
-      const key = "savedProducts";
+      const key  = "savedProducts";
       const existing = localStorage.getItem(key);
       if (!existing) return false;
       try {
@@ -2508,9 +2508,9 @@ export default function ProductDetailedView() {
   
   if (!product) {
     return (
-      <div className = "bg-white rounded-lg shadow-md p-6">
-        <h1 className = "text-2xl font-bold mt-4">Product Not Found</h1>
-        <p className = "text-sm text-gray-500 mt-4">
+      <div className  = "bg-white rounded-lg shadow-md p-6">
+        <h1 className  = "text-2xl font-bold mt-4">Product Not Found</h1>
+        <p className  = "text-sm text-gray-500 mt-4">
           This is not the product you are looking for...
         </p>
       </div>
@@ -2520,9 +2520,9 @@ export default function ProductDetailedView() {
   console.log(product); // Debugging: Check the product object
 
   return (
-    <div style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)", minHeight: "100vh" }} className = "flex min-h-screen">
-      <Sidebar portalName = "productdetailedview" />
-      <div className = "flex-1 p-4 sm:p-10">
+    <div style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)", minHeight: "100vh" }} className  = "flex min-h-screen">
+      <Sidebar portalName  = "productdetailedview" />
+      <div className  = "flex-1 p-4 sm:p-10">
         <FloatingCartElement />
         <BackToCategoriesBar category = {category || "Unknown"} />
         <ProductSummary product = {product} isSaved={isProductSaved(productId || "")} />
