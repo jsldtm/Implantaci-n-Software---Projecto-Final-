@@ -1,7 +1,5 @@
 // This file is part of the login portal application.
 
-// This file is part of the login portal application.
-
 import { NextResponse } from "next/server";
 
 // Define the type for a cart item
@@ -39,3 +37,6 @@ export async function DELETE(request: Request) {
   cart = cart.filter((item) => item.id !== id);
   return NextResponse.json({ message: "Item removed from cart", cart });
 }
+
+export type { CartItem };
+export { cart };
