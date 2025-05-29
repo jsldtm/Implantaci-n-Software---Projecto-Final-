@@ -31,16 +31,16 @@ const MainHeader: React.FC = () => {
   return (
     <header className={styles.header}>
       <h1 className={styles.title}>Welcome, {settings.username}!</h1>
-      <div className="flex items-center space-x-4">
+      <div className = "flex items-center space-x-4">
         {isClient && (
           <>
-            <button aria-label="Notifications" className={styles.iconButton}>
-              <NotificationsIcon fontSize="large" />
+            <button aria-label = "Notifications" className={styles.iconButton}>
+              <NotificationsIcon fontSize = "large" />
             </button>
-            <button aria-label="Account" onClick={handleAccountClick} className={styles.iconButton}>
-              <AccountCircleIcon fontSize="large" />
+            <button aria-label = "Account" onClick={handleAccountClick} className={styles.iconButton}>
+              <AccountCircleIcon fontSize = "large" />
             </button>
-            <button aria-label="Logout" onClick={handleLogout} className={styles.iconButton}>
+            <button aria-label = "Logout" onClick={handleLogout} className={styles.iconButton}>
               Logout
             </button>
           </>

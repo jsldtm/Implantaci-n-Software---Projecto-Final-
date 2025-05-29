@@ -54,28 +54,28 @@ const ProductCategoryList: React.FC = () => {
   }
 
   return (
-    <div className="relative">
-      <div className="overflow-x-auto no-scrollbar">
-        <div className="flex space-x-6 px-8">
+    <div className = "relative">
+      <div className = "overflow-x-auto no-scrollbar">
+        <div className = "flex space-x-6 px-8">
           {categories.map((category) => (
             <div
               key={category.id}
-              className="flex-shrink-0 flex flex-col items-center text-center cursor-pointer w-20"
+              className = "flex-shrink-0 flex flex-col items-center text-center cursor-pointer w-20"
               onClick={() => handleCategoryClick(category.name)}
             >
               <img
                 src={category.image}
                 alt={category.name}
-                className="w-16 h-16 rounded-full object-cover border border-gray-300 transition-transform duration-200 hover:scale-110"
+                className = "w-16 h-16 rounded-full object-cover border border-gray-300 transition-transform duration-200 hover:scale-110"
               />
-              <p className="text-gray-800 text-sm mt-2">{category.name}</p>
+              <p className = "text-gray-800 text-sm mt-2">{category.name}</p>
             </div>
           ))}
         </div>
       </div>
       {/* Fading effect to indicate scrollability - REMOVED */}
-      {/* <div className="absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
-      <div className="absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"></div> */}
+      {/* <div className = "absolute top-0 left-0 h-full w-6 bg-gradient-to-r from-white to-transparent pointer-events-none"></div>
+      <div className = "absolute top-0 right-0 h-full w-6 bg-gradient-to-l from-white to-transparent pointer-events-none"></div> */}
     </div>
   );
 };

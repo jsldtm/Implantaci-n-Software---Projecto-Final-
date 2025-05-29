@@ -1,3 +1,26 @@
+// --- PRESENTATION-READY COMMENTS ---
+// This file implements the main Categories page for FindItAll.
+// It demonstrates dynamic category loading, category selection, product search/filtering, and sidebar navigation.
+//
+// PRESENTATION STEPS:
+// 1. When the page loads, it fetches the list of categories from the API (see useEffect).
+// 2. The first category is selected by default, and the sidebar is shown on the left.
+// 3. The user can search for products by name within the selected category using the search input.
+// 4. Category tabs allow switching between categories; clicking a tab updates the product list below.
+// 5. The <ProductsListedByCategory> component displays products for the selected category and search term.
+// 6. The sidebar provides navigation to other core features (cart, saved, settings, etc.).
+// 7. The header includes notification and account icons for future extensibility.
+// 8. All UI is responsive and styled for clarity.
+//
+// KEY CODE SECTIONS:
+// - useEffect: Fetches categories from the API on mount.
+// - State: Tracks categories, selected category, and search term.
+// - Sidebar: Renders navigation on the left.
+// - Category Tabs: Allow switching and searching within categories.
+// - ProductsListedByCategory: Renders filtered products for the selected category.
+//
+// --- END PRESENTATION COMMENTS ---
+
 // This file is a *client* component because it uses the `useRouter` hook from Next.js.
 "use client";
 
@@ -37,49 +60,49 @@ const CategoriesPage: React.FC = () => {
       <Head>
         <title>Findit All - Our Categories</title>
         <meta
-          name="description"
-          content="Explore our categories and find the best products for you."
+          name = "description"
+          content = "Explore our categories and find the best products for you."
         />
       </Head>
 
       {/* Make the entire container scrollable */}
-      <div className="flex h-screen overflow-y-auto" style={{ backgroundColor: "var(--accent-color)" }}>
+      <div className = "flex min-h-screen h-screen overflow-y-auto" style={{ backgroundColor: "var(--accent-color)" }}>
         {/* Sidebar */}
-        <Sidebar portalName="categories" />
+        <Sidebar portalName = "categories" style={{ minWidth: 220, maxWidth: 260 }} />
 
         {/* Main Content */}
-        <div className="flex-1 flex flex-col">
+        <div className = "flex-1 flex flex-col">
           {/* Header */}
           <header
-            className="p-4 flex items-center justify-between"
+            className = "p-4 flex items-center justify-between"
             style={{
               backgroundColor: "#3887f6", // Set to normal blue
               color: "#fff", // Set to white for text and icons
             }}
           >
-            <h1 className="text-xl font-bold">Our Categories</h1>
-            <div className="flex items-center space-x-4">
+            <h1 className = "text-xl font-bold">Our Categories</h1>
+            <div className = "flex items-center space-x-4">
               <button>
-                <NotificationsIcon fontSize="large" />
+                <NotificationsIcon fontSize = "large" />
               </button>
               <button>
-                <AccountCircleIcon fontSize="large" />
+                <AccountCircleIcon fontSize = "large" />
               </button>
             </div>
           </header>
 
           {/* Category Tabs */}
           <nav
-            className="p-2 flex space-x-4"
+            className = "p-2 flex space-x-4"
             style={{ backgroundColor: "#f3f4f6" }} // Neutral grey
           >
             {/* Search input */}
             <input
-              type="text"
-              placeholder="Search products by name..."
+              type = "text"
+              placeholder = "Search products by name..."
               value={searchTerm}
               onChange={e => setSearchTerm(e.target.value)}
-              className="px-2 py-1 rounded border border-gray-300 text-sm mr-2"
+              className = "px-2 py-1 rounded border border-gray-300 text-sm mr-2"
               style={{ minWidth: 100, maxWidth: 130, height: 60, maxHeight: 70 }}
             />
             {categories.map((category) => (
@@ -106,7 +129,7 @@ const CategoriesPage: React.FC = () => {
           </nav>
 
           {/* Product Grid */}
-          <main className="flex-1 p-3 overflow-y-auto">
+          <main className = "flex-1 p-3 overflow-y-auto">
             <ProductsListedByCategory
               category={chosenCategory}
               searchTerm={searchTerm}

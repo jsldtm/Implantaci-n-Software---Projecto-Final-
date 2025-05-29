@@ -22,7 +22,8 @@ interface Props {
   product: Product;
 }
 
-const SAVE_ANIMATION_SCALE = 1.1; // You can change this value to control the pop-up scale
+// You can change this value to control the pop-up scale
+const SAVE_ANIMATION_SCALE = 1.1;
 
 const ProductSummary: React.FC<Props> = ({ product }) => {
   const { addToCart } = useCart();
@@ -80,7 +81,7 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
   // Utility to save product to localStorage
   function saveProductForLater(product: Product) {
     if (typeof window === "undefined") return;
-    const key = "savedProducts";
+    const key  = "savedProducts";
     const existing = localStorage.getItem(key);
     let saved: Product[] = [];
     if (existing) {
@@ -96,16 +97,16 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
   }
 
   return (
-    <div className={styles.summary}>
+    <div className = {styles.summary}>
       {/* Product Image */}
-      <div className={styles.imageContainer}>
-        <img src={product.image} alt={product.name} className={styles.image} />
+      <div className = {styles.imageContainer}>
+        <img src = {product.image} alt = {product.name} className = {styles.image} />
       </div>
 
       {/* Product Details */}
-      <div className={styles.details}>
-        <h1 className={styles.name}>{product.name}</h1>
-        <p className={styles.startingPrice}>
+      <div className = {styles.details}>
+        <h1 className = {styles.name}>{product.name}</h1>
+        <p className = {styles.startingPrice}>
           {product.startingPrice
             ? product.startingPrice
             : `$${selectedPrice} MXN`}
@@ -113,25 +114,25 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
 
         {/* Render each paragraph */}
         {descriptionParagraphs.map((paragraph, index) => (
-          <p key={index} className={styles.description}>
+          <p key = {index} className = {styles.description}>
             {paragraph}
           </p>
         ))}
 
         {/* Amount and Add to Cart */}
         {(product.prices || product.price) && (
-          <div className={styles.amountAndCartContainer}>
+          <div className = {styles.amountAndCartContainer}>
             {/* Amount Section for multi-price */}
             {product.prices ? (
-              <div className={styles.amountContainer}>
-                <label className={styles.amountLabel}>Amount</label>
+              <div className = {styles.amountContainer}>
+                <label className = {styles.amountLabel}>Amount</label>
                 <select
-                  className={styles.amountInput}
-                  value={selectedPrice}
-                  onChange={(e) => handlePriceChange(e.target.value)}
+                  className = {styles.amountInput}
+                  value = {selectedPrice}
+                  onChange = {(e) => handlePriceChange(e.target.value)}
                 >
                   {product.prices.map((price) => (
-                    <option key={price} value={price}>
+                    <option key = {price} value = {price}>
                       {price}
                     </option>
                   ))}
@@ -140,21 +141,21 @@ const ProductSummary: React.FC<Props> = ({ product }) => {
             ) : null}
 
             {/* Add to Cart Button */}
-            <button className={styles.addToCart} onClick={handleAddToCart}>
+            <button className = {styles.addToCart} onClick = {handleAddToCart}>
               Add to Cart
             </button>
             {/* Save for Later Circular Button */}
             <button
-              className={
+              className = {
                 styles.saveForLater +
                 (animating ? " " + styles.saveForLaterAnimating : "") +
                 (saved ? " " + styles.saveForLaterFilled : "")
               }
-              title="Save for later"
-              onClick={handleSaveForLater}
-              style={animating ? { transform: `scale(${SAVE_ANIMATION_SCALE})` } : {}}
+              title = "Save for later"
+              onClick = {handleSaveForLater}
+              style = {animating ? { transform: `scale(${SAVE_ANIMATION_SCALE})` } : {}}
             >
-              <BookmarkIcon className={styles.bookmarkIcon + (saved ? " " + styles.bookmarkIconFilled : "")}/>
+              <BookmarkIcon className = {styles.bookmarkIcon + (saved ? " " + styles.bookmarkIconFilled : "")}/>
             </button>
           </div>
         )}
@@ -191,9 +192,9 @@ export default ProductSummary;
 
 //   if (!product) {
 //     return (
-//       <div className="bg-white rounded-lg shadow-md p-6">
-//         <h1 className="text-2xl font-bold mt-4">Product Not Found! :o</h1>
-//         <p className="text-sm text-gray-500 mt-4">This is not the product you are looking for...</p>
+//       <div className = "bg-white rounded-lg shadow-md p-6">
+//         <h1 className = "text-2xl font-bold mt-4">Product Not Found! :o</h1>
+//         <p className = "text-sm text-gray-500 mt-4">This is not the product you are looking for...</p>
 //       </div>
 //     );
 //   }
@@ -230,7 +231,7 @@ export default ProductSummary;
 //               Amount <span className = {styles.arrow}>▼</span>
 //             </div>
 //             <input
-//               type = "text"
+//               type  = "text"
 //               value = {selectedPrice}
 //               readOnly
 //               className = {styles.amountInput}

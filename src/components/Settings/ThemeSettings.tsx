@@ -39,13 +39,16 @@ const ThemeSettings = () => {
     setSettings((prev) => ({
       ...prev,
       theme,
-      // Reset accentColor to theme default when switching theme
       accentColor: "",
     }));
   };
 
   const handleAccentColorChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSettings((prev) => ({ ...prev, accentColor: e.target.value }));
+    setSettings(prev => ({
+      ...prev,
+      accentColor: e.target.value,
+      theme: "custom"
+    }));
   };
 
   return (
@@ -75,18 +78,12 @@ const ThemeSettings = () => {
           className={styles.colorPicker}
           title="Accent Color"
           value={settings.accentColor || themes[settings.theme]?.accent || "#6b5b2a"}
-          onChange={e => {
-            setSettings(prev => ({
-              ...prev,
-              accentColor: e.target.value,
-              theme: "custom" as any // allow custom theme for accent color
-            }));
-          }}
+          onChange={handleAccentColorChange}
           style={{
             width: 40,
             height: 40,
             borderRadius: 4,
-            border: settings.theme === ("custom" as any) ? "2px solid #2563eb" : "none",
+            border: settings.theme === "custom" ? "2px solid #2563eb" : "none",
             boxSizing: "border-box",
             padding: 0,
             background: "none",

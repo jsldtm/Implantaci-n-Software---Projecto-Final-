@@ -19,17 +19,17 @@ const UsernameSettings = () => {
 
   return (
     <section>
-      <h2 className="text-xl font-semibold mb-2">Displayed Username</h2>
+      <h2 className = "text-xl font-semibold mb-2">Displayed Username</h2>
       <input
-        className="border px-2 py-1 rounded mr-2"
+        className = "border px-2 py-1 rounded mr-2"
         value={input}
         onChange={e => setInput(e.target.value)}
       />
-      <button className="px-3 py-1 bg-blue-600 text-white rounded" onClick={handleSave}>
+      <button className = "px-3 py-1 bg-blue-600 text-white rounded" onClick={handleSave}>
         Save
       </button>
-      <div className="mt-2 text-gray-600">
-        Current: <span className="font-bold">{settings.username}</span>
+      <div className = "mt-2 text-gray-600">
+        Current: <span className = "font-bold">{settings.username}</span>
       </div>
     </section>
   );

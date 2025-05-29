@@ -111,13 +111,13 @@ const UserLoginForm: React.FC = () => {
 
       <form className={styles.form} onSubmit={handleSubmit}>
         <div className={styles.inputGroup}>
-          <label htmlFor="email" className={styles.label}>
+          <label htmlFor = "email" className={styles.label}>
             Email
           </label>
           <input
-            type="email"
-            id="email"
-            placeholder="Enter your email address"
+            type = "email"
+            id = "email"
+            placeholder = "Enter your email address"
             className={styles.input}
             value={email}
             onChange={(e) => setEmail(e.target.value)}
@@ -125,20 +125,20 @@ const UserLoginForm: React.FC = () => {
         </div>
 
         <div className={styles.inputGroup}>
-          <label htmlFor="password" className={styles.label}>
+          <label htmlFor = "password" className={styles.label}>
             Password
           </label>
           <input
-            type="password"
-            id="password"
-            placeholder="Enter your password"
+            type = "password"
+            id = "password"
+            placeholder = "Enter your password"
             className={styles.input}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
         </div>
 
-        <button type="submit" className={styles.button}>
+        <button type = "submit" className={styles.button}>
           Log In
         </button>
       </form>
@@ -146,13 +146,13 @@ const UserLoginForm: React.FC = () => {
       {message && <p className={styles.message}>{message}</p>}
 
       <div className={styles.links}>
-        <a href="#" className={styles.link}>
+        <a href = "#" className={styles.link}>
           Forgot your password? <span>Click here</span>
         </a>
-        <a href="#" className={styles.link}>
+        <a href = "#" className={styles.link}>
           New to the website? <span>Sign up!</span>
         </a>
-        <a href="#" className={styles.link}>
+        <a href = "#" className={styles.link}>
           Are you an Admin? <span>Verify your identity!</span>
         </a>
       </div>

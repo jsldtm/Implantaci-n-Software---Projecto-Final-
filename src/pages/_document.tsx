@@ -6,9 +6,9 @@ import createEmotionCache from '@/utils/createEmotionCache';
 export default class MyDocument extends Document {
   render() {
     return (
-      <Html lang="en">
+      <Html lang = "en">
         <Head>
-          <style id="emotion-insertion-point" />
+          <style id = "emotion-insertion-point" />
         </Head>
         <body>
           <Main />

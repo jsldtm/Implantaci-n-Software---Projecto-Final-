@@ -1,5 +1,6 @@
 // This file is part of the login portal application.
-// It contains the API route for managing a shopping cart.
+
+// This file is part of the login portal application.
 
 import { NextResponse } from "next/server";
 
@@ -38,3 +39,6 @@ export async function DELETE(request: Request) {
   cart = cart.filter((item) => item.id !== id);
   return NextResponse.json({ message: "Item removed from cart!", cart });
 }
+
+export type { CartItem };
+export { cart };

@@ -26,3 +26,5 @@ export async function POST(request: Request) {
   savedItems.push(item);
   return NextResponse.json({ message: 'Item saved for later', savedItems });
 }
+
+export { savedItems };

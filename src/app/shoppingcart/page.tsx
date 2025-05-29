@@ -12,7 +12,7 @@ const ShoppingCartPage: React.FC = () => {
     <div className = {styles.layout} style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)" }}>
       {/* Sidebar */}
       <div className = {styles.sidebar}>
-        <Sidebar portalName = "shopping-cart" />
+        <Sidebar portalName  = "shopping-cart" />
       </div>
 
       {/* Main Content */}

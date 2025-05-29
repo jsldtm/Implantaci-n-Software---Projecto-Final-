@@ -7,7 +7,7 @@ import styles from "./SavedProductsList.module.css";
 // Utility to get saved products from localStorage
 function getSavedProducts() {
   if (typeof window === "undefined") return [];
-  const key = "savedProducts";
+  const key  = "savedProducts";
   const existing = localStorage.getItem(key);
   if (!existing) return [];
   try {
@@ -35,7 +35,7 @@ const SavedProductsList = () => {
       ) : (
         savedProducts.map((product) => {
           // Robust price display logic
-          let displayPrice = "";
+          let displayPrice  = "";
           if (
             product.price &&
             typeof product.price === "string" &&
@@ -53,7 +53,7 @@ const SavedProductsList = () => {
           ) {
             displayPrice = product.prices[0];
           } else {
-            displayPrice = "Price not available";
+            displayPrice  = "Price not available";
           }
           return (
             <div key={product.id} className={styles.productCard}>
