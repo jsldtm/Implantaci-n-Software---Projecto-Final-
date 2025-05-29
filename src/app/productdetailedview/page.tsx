@@ -2520,12 +2520,12 @@ export default function ProductDetailedView() {
   console.log(product); // Debugging: Check the product object
 
   return (
-    <div style={{ backgroundColor: "var(--bg-color)", color: "var(--text-color)", minHeight: "100vh" }} className = "flex min-h-screen">
+    <div style = {{ backgroundColor: "var(--bg-color)", color: "var(--text-color)", minHeight: "100vh" }} className = "flex min-h-screen">
       <Sidebar portalName = "productdetailedview" />
       <div className = "flex-1 p-4 sm:p-10">
         <FloatingCartElement />
         <BackToCategoriesBar category = {category || "Unknown"} />
-        <ProductSummary product = {product} isSaved={isProductSaved(productId || "")} />
+        <ProductSummary product = {product} isSaved = {isProductSaved(productId || "")} />
         <SimilarProducts category = {category || "Unknown"} />
       </div>
     </div>

@@ -7,8 +7,8 @@ export async function POST(request: Request) {
 
   // Simulate authentication logic
   if (email === 'user@example.com' && password === 'password123') {
-    return NextResponse.json({ message: 'Login successful', token: 'fake-jwt-token' });
+    return NextResponse.json({ message: 'Login successful!', token: 'fake-jwt-token' });
   }
 
-  return NextResponse.json({ message: 'Invalid credentials' }, { status: 401 });
+  return NextResponse.json({ message: 'Invalid credentials!' }, { status: 401 });
 }

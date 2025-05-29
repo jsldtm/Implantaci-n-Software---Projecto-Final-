@@ -1,45 +1,71 @@
-<<<<<<< HEAD
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# FindItAll - Proyecto Final de Implantación de Software
 
-## Getting Started
+**Autor:** Joaquín Saldarriaga
 
-First, run the development server:
+---
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Descripción General
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+FindItAll es una aplicación web desarrollada con [Next.js](https://nextjs.org), diseñada como proyecto final para el curso "Desarrollo e Implantación de Software". Este proyecto destaca por ser una solución **individual**, construida desde cero por Joaquín Saldarriaga, a diferencia de otras implementaciones genéricas. Aquí, cada línea de código, cada componente visual y cada integración han sido cuidadosamente diseñados y desarrollados de manera personal y profesional.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Características Principales
 
-## Learn More
+- **Frontend moderno:** Construido con Next.js, React y Tailwind CSS para una experiencia de usuario ágil y responsiva.
+- **Gestión de productos y categorías:** Navegación intuitiva por categorías, visualización detallada de productos y funcionalidades de guardado y carrito de compras.
+- **Autenticación y seguridad:** Implementación de login y registro de usuarios.
+- **Persistencia de datos:** Integración con servicios backend y Firebase para manejo de productos, usuarios y pedidos.
+- **Configuraciones personalizables:** Panel de usuario para ajustes de preferencias, tema y visualización.
+- **Componentización:** Uso extensivo de componentes reutilizables y contextos para una arquitectura escalable y mantenible.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Estructura del Proyecto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- `src/app/` – Páginas principales y rutas de la aplicación.
+- `src/components/` – Componentes visuales reutilizables.
+- `src/context/` – Contextos globales para carrito, usuario, tema, etc.
+- `src/services/` – Lógica de acceso a datos y servicios externos.
+- `public/` – Recursos estáticos e imágenes.
+- `functions/` – Funciones backend y lógica serverless.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Instalación y Ejecución
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
-=======
-# Implantación-Software---Projecto-Final
+1. Clona el repositorio:
+   ```bash
+   git clone <url-del-repositorio>
+   cd my-movies-app
+   ```
+2. Instala las dependencias:
+   ```bash
+   npm install
+   # o
+   yarn install
+   ```
+3. Ejecuta el servidor de desarrollo:
+   ```bash
+   npm run dev
+   # o
+   yarn dev
+   ```
+4. Abre [http://localhost:3000](http://localhost:3000) en tu navegador para ver la aplicación en acción.
 
-En este repositorio se muestran los archivos de trabajo realizados para el curso "Desarrollo e Implantación de Software'
+---
 
-* Archivo de interfaces Figma -> https://www.figma.com/design/cqIqOJbXadQM5rFtrXEmTl/Reto-Implantaci%C3%B3n-software---Joaqu%C3%ADn?node-id=0-1&t=bUY647aoYYnLAP18-1
-* 
->>>>>>> 9000863ed1c6f611aac1433f52be999ae0373476
+## Recursos y Diseño
+
+- [Prototipo Figma](https://www.figma.com/design/cqIqOJbXadQM5rFtrXEmTl/Reto-Implantaci%C3%B3n-software---Joaqu%C3%ADn?node-id=0-1&t=bUY647aoYYnLAP18-1)
+- Documentación y diagramas incluidos en la carpeta `public/images/`.
+
+---
+
+## Notas Finales
+
+Este proyecto es de desarrollo individual, demostrando dedicación, creatividad y dominio técnico. No es una simple plantilla ni un producto de herramientas automáticas: es el resultado de esfuerzo, y un proceso de aprendizaje.
+
+---
+
+**© 2025 Joaquín Saldarriaga**. Todos los derechos reservados.
