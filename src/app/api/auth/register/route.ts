@@ -33,5 +33,5 @@ export async function POST(request: Request) {
   const newUser: User = { id: users.length + 1, email, passwordHash };
   users.push(newUser);
 
-  return NextResponse.json({ message: 'User registered successfully', user: { id: newUser.id, email: newUser.email } });
+  return NextResponse.json({ message: 'User registered successfully!', user: { id: newUser.id, email: newUser.email } });
 }

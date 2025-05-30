@@ -10,7 +10,7 @@ const savedItems = [
   { name: 'Mini Desk Lamp', image: '/images/lamp.png' },
   { name: 'Wireless Desk Charging', image: '/images/wireless-charger.png' },
   
-  // Continue adding more items as needed
+  // Continue adding more items as needed [simulated]
   { name: 'One Hundred Years of Solitude book illustrated', image: '/images/cienaniosdesoledad.png' },
   { name: 'Canvas Tote Bag', image: '/images/totebag.png' },
   { name: 'Paper Over Board Ring Binders', image: '/images/pinkbinder.png' },
@@ -26,3 +26,5 @@ export async function POST(request: Request) {
   savedItems.push(item);
   return NextResponse.json({ message: 'Item saved for later', savedItems });
 }
+
+export { savedItems };

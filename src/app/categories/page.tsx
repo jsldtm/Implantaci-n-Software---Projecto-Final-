@@ -1,3 +1,26 @@
+// --- PRESENTATION-READY COMMENTS ---
+// This file implements the main Categories page for FindItAll.
+// It demonstrates dynamic category loading, category selection, product search/filtering, and sidebar navigation.
+//
+// PRESENTATION STEPS:
+// 1. When the page loads, it fetches the list of categories from the API (see useEffect).
+// 2. The first category is selected by default, and the sidebar is shown on the left.
+// 3. The user can search for products by name within the selected category using the search input.
+// 4. Category tabs allow switching between categories; clicking a tab updates the product list below.
+// 5. The <ProductsListedByCategory> component displays products for the selected category and search term.
+// 6. The sidebar provides navigation to other core features (cart, saved, settings, etc.).
+// 7. The header includes notification and account icons for future extensibility.
+// 8. All UI is responsive and styled for clarity.
+//
+// KEY CODE SECTIONS:
+// - useEffect: Fetches categories from the API on mount.
+// - State: Tracks categories, selected category, and search term.
+// - Sidebar: Renders navigation on the left.
+// - Category Tabs: Allow switching and searching within categories.
+// - ProductsListedByCategory: Renders filtered products for the selected category.
+//
+// --- END PRESENTATION COMMENTS ---
+
 // This file is a *client* component because it uses the `useRouter` hook from Next.js.
 "use client";
 
