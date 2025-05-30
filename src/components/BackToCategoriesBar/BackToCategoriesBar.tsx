@@ -1,4 +1,4 @@
-// This file is part of the Product Detailed View page in a Next.js application.
+// This file is part of the Product Detailed View page in the FindItAll portal!.
 
 import Link from "next/link";
 import styles from "./BackToCategoriesBar.module.css";

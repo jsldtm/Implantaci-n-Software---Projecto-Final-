@@ -1,5 +1,5 @@
-// This file is part of the Product Detailed View page in a Next.js application.
-// This file is part of the Product Detailed View page in a Next.js application.
+// This file is part of the Product Detailed View page in the FindItAll portal!.
+
 "use client";
 
 import { useCart } from "../../context/CartContext";
