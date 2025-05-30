@@ -1,5 +1,5 @@
 // This API endpoint handles the creation of new orders!
-// It uses Firebase Firestore to store order data
+// It (will) use Firebase Firestore to store order data
 
 import { NextRequest, NextResponse } from "next/server";
 import { getFirestore, collection, getDocs, addDoc } from "firebase/firestore";
