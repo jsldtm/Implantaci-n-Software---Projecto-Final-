@@ -1,0 +1,9 @@
+CREATE TABLE IF NOT EXISTS products (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,
+  name VARCHAR(20) NOT NULL,
+  description VARCHAR(500) NOT NULL,
+  price DECIMAL(10,2) NOT NULL,
+  
+  image VARCHAR(255),
+  category VARCHAR(100)
+);
