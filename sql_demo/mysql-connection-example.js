@@ -2,13 +2,15 @@
 // Este archivo NO está conectado al resto del sistema
 
 const mysql = require('mysql2');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const connection = mysql.createConnection({
-  host: '127.0.0.1',
-  port: 3310,
-  user: 'root',
-  password: 'reciprocityismycurrency',
-  database: 'finditall',
+  host: process.env.MYSQL_HOST,
+  port: process.env.MYSQL_PORT,
+  user: process.env.MYSQL_USER,
+  password: process.env.MYSQL_PASSWORD,
+  database: process.env.MYSQL_DATABASE,
 });
 
 connection.connect((err) => {
