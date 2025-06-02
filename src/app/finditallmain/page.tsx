@@ -63,4 +63,5 @@ const FindItAll = () => {
   );
 };
 
+// Export the FindItAll component as the default export
 export default FindItAll;

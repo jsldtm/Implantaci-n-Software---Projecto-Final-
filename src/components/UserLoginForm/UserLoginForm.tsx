@@ -5,18 +5,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation"; // Use next/navigation instead of next/router
 import { StarIcon } from "@heroicons/react/24/outline";
+import { UserDataManager } from "@/data/userData";
 import styles from "./UserLoginForm.module.css";
-
-const mockUsers = [
-  {
-    email: "jake@outlook.com",
-    password: "Password123$", // Replace with your test password
-  },
-  {
-    email: "testuser@example.com",
-    password: "t3sTpa$$word",
-  },
-];
 
 const UserLoginForm: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -84,16 +74,31 @@ const UserLoginForm: React.FC = () => {
 
       setMessage(`Password is missing: ${missingComponents.join(", ")}.`);
       return;
-    }
-
-    // Check credentials against mock users
-    const user = mockUsers.find(
-      (user) => user.email === email && user.password === password
-    );
+    }    // Check credentials against real user data
+    const user = UserDataManager.authenticateUser(email, password);
 
     if (user) {
+      // Store user session
+      localStorage.setItem('userSession', JSON.stringify({
+        email: user.email,
+        role: user.role,
+        loginTime: new Date().toISOString()
+      }));
+
       setMessage("Login successful!");
-      router.push("/finditallmain"); // Redirect to the main portal
+      
+      // Route based on user role
+      if (user.role === 'admin') {
+        // Store admin session for admin portal
+        localStorage.setItem('adminSession', JSON.stringify({
+          email: user.email,
+          role: user.role,
+          loginTime: new Date().toISOString()
+        }));
+        router.push("/adminportal"); // Redirect admins to admin portal
+      } else {
+        router.push("/finditallmain"); // Redirect clients to main portal
+      }
     } else {
       setMessage("Invalid credentials");
     }
@@ -143,18 +148,20 @@ const UserLoginForm: React.FC = () => {
         </button>
       </form>
 
-      {message && <p className={styles.message}>{message}</p>}
-
-      <div className={styles.links}>
+      {message && <p className={styles.message}>{message}</p>}      <div className={styles.links}>
         <a href = "#" className={styles.link}>
           Forgot your password? <span>Click here</span>
         </a>
         <a href = "#" className={styles.link}>
           New to the website? <span>Sign up!</span>
         </a>
-        <a href = "#" className={styles.link}>
+        <button 
+          onClick={() => router.push('/adminloginportal')} 
+          className={styles.link}
+          style={{ background: 'none', border: 'none', padding: 0, textAlign: 'left' }}
+        >
           Are you an Admin? <span>Verify your identity!</span>
-        </a>
+        </button>
       </div>
     </div>
   );
