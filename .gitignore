@@ -41,3 +41,7 @@ yarn-error.log*
 next-env.d.ts
 
 *storybook.log
+
+# Markdown context files
+Activity_1_ACID_Properties_and_Predictive_Models_Spanish.md
+Activity_2_Visual_Schema_and_Critical_Analysis_Spanish.md

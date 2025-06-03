@@ -130,7 +130,7 @@ export const mockOrders: Order[] = [];
 // Admin Statistics using real user data
 export const getAdminStats = () => {
   const products = AdminDataManager.getProducts();
-  const totalProducts = products.length; // This should now be 190
+  const totalProducts = products.length; // Dynamic count based on actual catalog products
   
   // Use real user statistics from UserDataManager
   const userStats = UserDataManager.getUserStats();
@@ -158,37 +158,28 @@ import { productCatalog, getProductById as getCatalogProduct, getAllProducts } f
 // Function to convert main product catalog to admin format
 const convertToAdminFormat = () => {
   const products: Product[] = [];
+    // Use the actual product catalog (only existing products)
+  const catalogProducts = getAllProducts();
   
-  // Use the actual product catalog (all 190 products)
-  for (let i = 1; i <= 190; i++) {
-    const productData = getCatalogProduct(i);
-    if (productData) {
-      products.push({
-        id: `prod-${i}`,
-        name: productData.name,
-        price: parseFloat(productData.price),
-        category: productData.category,
-        stock: Math.floor(Math.random() * 100) + 1, // Random stock between 1-100
-        description: productData.description,
-        image: productData.image,
-        createdAt: new Date(2024, 0, Math.floor(Math.random() * 20) + 1).toISOString(),
-        updatedAt: new Date(2024, 0, Math.floor(Math.random() * 20) + 1).toISOString()
-      });
-    } else {
-      // Fallback for missing products
-      products.push({
-        id: `prod-${i}`,
-        name: `Product ${i}`,
-        price: Math.floor(Math.random() * 500) + 50,
-        category: 'Other',
-        stock: Math.floor(Math.random() * 100) + 1,
-        description: `High-quality product ${i}`,
-        image: `/images/product-${i}.png`,
-        createdAt: new Date(2024, 0, Math.floor(Math.random() * 20) + 1).toISOString(),
-        updatedAt: new Date(2024, 0, Math.floor(Math.random() * 20) + 1).toISOString()
-      });
-    }
-  }
+  catalogProducts.forEach((productData) => {
+    // Extract numeric price from string format like "$109.99 MXN"
+    const priceString = productData.price?.toString() || '0';
+    const cleanedPrice = priceString.replace(/[^\d.]/g, '');
+    const parsedPrice = parseFloat(cleanedPrice);
+    const numericPrice = (!isNaN(parsedPrice) && parsedPrice >= 0) ? parsedPrice : 0;
+    
+    products.push({
+      id: `prod-${productData.id}`,
+      name: productData.name,
+      price: numericPrice,
+      category: productData.category,
+      stock: Math.floor(Math.random() * 100) + 1, // Random stock between 1-100
+      description: productData.description,
+      image: productData.image,
+      createdAt: new Date(2024, 0, Math.floor(Math.random() * 20) + 1).toISOString(),
+      updatedAt: new Date(2024, 0, Math.floor(Math.random() * 20) + 1).toISOString()
+    });
+  });
   
   return products;
 };
@@ -292,11 +283,11 @@ export const AdminDataManager = {
   },  // Initialize data if not exists
   initializeData: () => {
     if (typeof window !== 'undefined') {
-      // Force refresh of product data to use the new catalog
+      // Force refresh of product data to use only real catalog products
       console.log('Initializing admin data with product catalog...');
       const fullProducts = convertToAdminFormat();
       AdminDataManager.saveProducts(fullProducts);
-      console.log(`Initialized ${fullProducts.length} products from catalog`);
+      console.log(`Initialized ${fullProducts.length} real products from catalog (no fallbacks)`);
       
       if (!localStorage.getItem('adminUsers')) {
         AdminDataManager.saveUsers(getAdminUsers()); // Use real user data
@@ -305,5 +296,17 @@ export const AdminDataManager = {
         AdminDataManager.saveOrders(mockOrders);
       }
     }
+  },
+
+  // Force refresh products to remove any fallback "Product X" entries
+  refreshProductsFromCatalog: () => {
+    if (typeof window !== 'undefined') {
+      console.log('Refreshing products from catalog...');
+      const realProducts = convertToAdminFormat();
+      localStorage.setItem('adminProducts', JSON.stringify(realProducts));
+      console.log(`Refreshed to ${realProducts.length} real products from catalog`);
+      return realProducts;
+    }
+    return [];
   }
 };

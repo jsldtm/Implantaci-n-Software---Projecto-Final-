@@ -1,65 +1,91 @@
+// Directiva de Next.js para indicar que este es un componente del cliente (client-side)
 'use client';
 
+// Importación de React hooks para manejo de estado y efectos
 import React, { useState, useEffect } from 'react';
+// Importación del gestor de datos de usuarios y la interfaz AppUser
 import { UserDataManager, AppUser } from '@/data/userData';
 
+// Componente principal para la gestión de usuarios en el dashboard administrativo
+// Permite visualizar, buscar y gestionar usuarios del sistema (clientes y administradores)
 export default function UserManagement() {
+  // Estado que almacena la lista completa de usuarios del sistema
   const [users, setUsers] = useState<AppUser[]>([]);
+  // Estado que controla el indicador de carga
   const [loading, setLoading] = useState(true);
+  // Estado para el término de búsqueda/filtrado de usuarios
   const [searchTerm, setSearchTerm] = useState('');
+  // Estado para filtrar usuarios por estado (activo/inactivo)
   const [statusFilter, setStatusFilter] = useState('');
 
+  // Hook useEffect que se ejecuta al montar el componente para cargar usuarios
   useEffect(() => {
-    loadUsers();
+    loadUsers(); // Carga inicial de usuarios
   }, []);
 
+  // Función que carga todos los usuarios del sistema desde el gestor de datos
   const loadUsers = () => {
     try {
-      // Get all users from the real user data (including both clients and admins)
+      // Obtiene todos los usuarios reales del sistema (incluye clientes y administradores)
       const usersData = UserDataManager.getAllUsers();
-      setUsers(usersData);
+      setUsers(usersData); // Actualiza el estado con los usuarios obtenidos
     } catch (error) {
+      // Manejo de errores en caso de fallo al cargar usuarios
       console.error('Error loading users:', error);
       alert('Error al cargar usuarios');
     } finally {
-      setLoading(false);
+      // Siempre se ejecuta al final, exitoso o con error
+      setLoading(false); // Desactiva el indicador de carga
     }
-  };  const toggleUserStatus = (userEmail: string) => {
+  };
+
+  // Función que maneja el cambio de estado de un usuario (activo/bloqueado)
+  const toggleUserStatus = (userEmail: string) => {
     try {
-      // For now, we'll show a message that this would require implementing user status updates
-      // In a real app, this would update the user data source
+      // Por ahora, muestra un mensaje indicando que requiere implementación completa
+      // En una aplicación real, esto actualizaría la fuente de datos del usuario
       alert(`Función de bloqueo/desbloqueo de usuarios requiere implementación completa.\nUsuario: ${userEmail}`);
       
-      // If we wanted to implement this, we'd need to modify the userData.ts file
-      // to support user status updates and persist them
+      // Si quisiéramos implementar esto, necesitaríamos modificar el archivo userData.ts
+      // para soportar actualizaciones de estado de usuario y persistirlas
     } catch (error) {
+      // Manejo de errores en caso de fallo al actualizar estado
       console.error('Error updating user status:', error);
       alert('Error al actualizar estado del usuario');
     }
   };
-  
+    // Función utilitaria que formatea fechas para mostrar en la interfaz
   const formatDate = (dateString?: string) => {
-    if (!dateString) return 'N/A';
+    if (!dateString) return 'N/A';  // Retorna 'N/A' si no hay fecha
     try {
-      const date = new Date(dateString);
+      const date = new Date(dateString); // Crea objeto Date desde string
+      // Formatea la fecha en español con formato completo
       return date.toLocaleDateString('es-ES', {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-        hour: '2-digit',
-        minute: '2-digit'
+        year: 'numeric',   // Año completo (ej: 2024)
+        month: 'short',    // Mes abreviado (ej: dic)
+        day: 'numeric',    // Día del mes (ej: 15)
+        hour: '2-digit',   // Hora con 2 dígitos (ej: 14)
+        minute: '2-digit'  // Minutos con 2 dígitos (ej: 30)
       });
     } catch {
-      return 'N/A';
+      return 'N/A'; // Retorna 'N/A' si hay error al parsear la fecha
     }
-  };  const filteredUsers = users.filter(user => {
-    const userName = user.email.split('@')[0].replace('.', ' '); // Extract name from email
+  };
+
+  // Función que filtra la lista de usuarios basado en criterios de búsqueda y estado
+  const filteredUsers = users.filter(user => {
+    // Extrae el nombre del usuario desde su email (antes del @, reemplaza puntos con espacios)
+    const userName = user.email.split('@')[0].replace('.', ' ');
+    // Verifica si el término de búsqueda coincide con email o nombre de usuario
     const matchesSearch = user.email.toLowerCase().includes(searchTerm.toLowerCase()) ||
                          userName.toLowerCase().includes(searchTerm.toLowerCase());
+    // Verifica si el filtro de estado coincide (usa 'active' por defecto si no hay estado)
     const matchesStatus = statusFilter === '' || (user.status || 'active') === statusFilter;
+    // Retorna true solo si ambos criterios se cumplen
     return matchesSearch && matchesStatus;
   });
 
+  // Renderizado condicional mientras se cargan los datos
   if (loading) {
     return (
       <div className = "p-6">
@@ -124,12 +150,12 @@ export default function UserManagement() {
               </th>
               <th className = "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Total Gastado
-              </th>
-              <th className = "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+              </th>              <th className = "px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
                 Acciones
               </th>
             </tr>
-          </thead>          <tbody className = "bg-white divide-y divide-gray-200">
+          </thead>
+          <tbody className = "bg-white divide-y divide-gray-200">
             {filteredUsers.map((user, index) => {
               const userName = user.email.split('@')[0].replace('.', ' ');
               return (
@@ -142,8 +168,7 @@ export default function UserManagement() {
                       <div className = "text-sm text-gray-500">
                         {user.email}
                       </div>
-                    </div>
-                  </td>
+                    </div>                  </td>
                   <td className = "px-6 py-4 whitespace-nowrap">
                     <span className = {`px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${
                       user.status === 'active' 
@@ -171,11 +196,11 @@ export default function UserManagement() {
                         user.status === 'active'
                           ? 'text-red-600 hover:text-red-900'
                           : 'text-green-600 hover:text-green-900'
-                      }`}
-                    >
+                      }`}                    >
                       {user.status === 'active' ? 'Bloquear' : 'Desbloquear'}
                     </button>
-                    <button                      onClick = {() => {
+                    <button
+                      onClick = {() => {
                         alert(`Información detallada del usuario:\n\nEmail: ${user.email}\nNombre: ${userName}\nRol: ${user.role}\nEstado: ${user.status || 'active'}\nRegistro: ${formatDate(user.registrationDate)}\nÓrdenes totales: ${user.totalOrders || 0}\nTotal gastado: $${(user.totalSpent || 0).toFixed(2)}`);
                       }}
                       className = "text-blue-600 hover:text-blue-900"
