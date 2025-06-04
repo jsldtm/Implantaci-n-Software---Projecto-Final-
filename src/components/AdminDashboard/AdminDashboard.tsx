@@ -12,7 +12,7 @@ import InventoryManagement from './InventoryManagement'; // Control de inventari
 import AdminStats from './AdminStats';                  // Dashboard principal con estadísticas
 
 // Tipo TypeScript que define las pestañas disponibles en el dashboard
-type TabType = 'dashboard' | 'products' | 'users' | 'inventory';
+type TabType = 'dashboard' | 'products' | 'users' | 'inventory' | 'predictive';
 
 // Componente principal del Dashboard Administrativo
 // Actúa como contenedor y sistema de navegación entre diferentes módulos administrativos
@@ -35,13 +35,13 @@ export default function AdminDashboard() {
       alert('Error al cerrar sesión');
     }
   };
-
   // Configuración de las pestañas del dashboard con metadata
   const tabs = [
     { id: 'dashboard', name: 'Dashboard', icon: '📊' },   // Vista general con estadísticas
     { id: 'products', name: 'Productos', icon: '📦' },   // Gestión de productos
     { id: 'users', name: 'Usuarios', icon: '👥' },       // Gestión de usuarios
     { id: 'inventory', name: 'Inventario', icon: '📋' }, // Control de stock
+    { id: 'predictive', name: 'Análisis Predictivo de Inventario', icon: '📈' }, // Predicciones de demanda
   ];
   return (
     <div className="min-h-screen bg-gray-100">
@@ -99,12 +99,12 @@ export default function AdminDashboard() {
         </div>
 
         {/* Área de contenido principal que cambia según la pestaña activa */}
-        <div className="bg-white rounded-lg shadow">
-          {/* Renderizado condicional de componentes según la pestaña seleccionada */}
+        <div className="bg-white rounded-lg shadow">          {/* Renderizado condicional de componentes según la pestaña seleccionada */}
           {activeTab === 'dashboard' && <AdminStats />}           {/* Dashboard principal con estadísticas */}
           {activeTab === 'products' && <ProductManagement />}     {/* Gestión de productos */}
           {activeTab === 'users' && <UserManagement />}           {/* Gestión de usuarios */}
           {activeTab === 'inventory' && <InventoryManagement />}  {/* Control de inventario */}
+          {activeTab === 'predictive' && <div className="p-6"><h2 className="text-xl font-semibold">📈 Análisis Predictivo de Inventario</h2><p className="text-gray-600 mt-2">Funcionalidad en desarrollo...</p></div>} {/* Análisis predictivo */}
         </div>
       </div>
     </div>

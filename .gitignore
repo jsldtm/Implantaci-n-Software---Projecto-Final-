@@ -45,3 +45,21 @@ next-env.d.ts
 # Markdown context files
 Activity_1_ACID_Properties_and_Predictive_Models_Spanish.md
 Activity_2_Visual_Schema_and_Critical_Analysis_Spanish.md
+
+# PSP Forms and Development Documentation
+PSP_Forms_C18_Time_Recording.md
+PSP_Forms_C16_Test_Report.md
+PSP_Forms_C16_Test_Report_NEW.md
+PSP_Forms_C16_Test_Report_REALISTIC.md
+PSP_Forms_C14_Project_Plan_Summary.md
+PSP_Defect_Log.md
+
+# Development Templates and Tools
+Plantilla*.xlsx
+
+# Excel files
+Plantilla Checklist de defectos_VyV-2.xlsx
+.xlsx
+
+# Excel files with specific names
+Plantilla_Checklist_de_defectos_VyV-2.xlsx
