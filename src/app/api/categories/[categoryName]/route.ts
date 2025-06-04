@@ -8,7 +8,7 @@ const productsByCategory: Record<string, Array<{ id: number; name: string; price
             { id: 3, name: "Smartwatch Samsung Galaxy Fit 3", price: 229.99, image: "/images/smartwatch.png" },
             { id: 4, name: "Vintage Bluetooth Retro Vinyl Turntable", price: 2999.49, image: "/images/turntable.png" },
             { id: 5, name: "Nokia 2660 Flip Phone Zero Distractions", price: 639.19, image: "/images/nokia-phone.png" },
-            { id: 6, name: "Galaxy *Ring of Power*", price: 4209.99, image: "/images/galaxy-ring.png", preOrder: true },
+            { id: 6, name: "Galaxy *Ring of Power*", price: 4209.99, image: "/images/galaxy-ring.png" },
             { id: 7, name: "Waymo ride Gift Card!", price: 399.99, image: "/images/waymo.png" },
             { id: 8, name: "Rechargeable Clip-On Desk Fan", price: 239.99, image: "/images/desk-fan.png" },
             { id: 9, name: "Monitor PC Lanix LX215 21.5 Pulg", price: 189.99, image: "/images/monitor.png" },

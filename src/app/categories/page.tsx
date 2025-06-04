@@ -66,9 +66,8 @@ const CategoriesPage: React.FC = () => {
       </Head>
 
       {/* Make the entire container scrollable */}
-      <div className = "flex min-h-screen h-screen overflow-y-auto" style={{ backgroundColor: "var(--accent-color)" }}>
-        {/* Sidebar */}
-        <Sidebar portalName = "categories" style={{ minWidth: 220, maxWidth: 260 }} />
+      <div className = "flex min-h-screen h-screen overflow-y-auto" style={{ backgroundColor: "var(--accent-color)" }}>        {/* Sidebar */}
+        <Sidebar portalName = "categories" />
 
         {/* Main Content */}
         <div className = "flex-1 flex flex-col">

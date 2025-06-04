@@ -14,26 +14,26 @@ import AdminStats from './AdminStats';                  // Dashboard principal c
 // Tipo TypeScript que define las pestañas disponibles en el dashboard
 type TabType = 'dashboard' | 'products' | 'users' | 'inventory' | 'predictive';
 
+// Interfaz que define las props del componente AdminDashboard
+interface AdminDashboardProps {
+  adminInfo: {
+    role: string;
+    loginTime: string;
+    [key: string]: any;
+  } | null;
+  onLogout: () => void;
+}
+
 // Componente principal del Dashboard Administrativo
 // Actúa como contenedor y sistema de navegación entre diferentes módulos administrativos
-export default function AdminDashboard() {
-  // Estado que controla qué pestaña está actualmente activa/visible
+export default function AdminDashboard({ adminInfo, onLogout }: AdminDashboardProps) {  // Estado que controla qué pestaña está actualmente activa/visible
   const [activeTab, setActiveTab] = useState<TabType>('dashboard');
   // Hook del router para navegación programática entre páginas
   const router = useRouter();
   
-  // Función que maneja el cierre de sesión del administrador
+  // Función que maneja el cierre de sesión usando la prop proporcionada
   const handleLogout = () => {
-    try {
-      // Elimina la sesión administrativa del almacenamiento local
-      localStorage.removeItem('adminSession');
-      alert('Sesión cerrada correctamente'); // Notifica al usuario
-      router.push('/finditallmain');         // Redirige a la página principal
-    } catch (error) {
-      // Manejo de errores en caso de fallo al cerrar sesión
-      console.error('Error al cerrar sesión:', error);
-      alert('Error al cerrar sesión');
-    }
+    onLogout();
   };
   // Configuración de las pestañas del dashboard con metadata
   const tabs = [

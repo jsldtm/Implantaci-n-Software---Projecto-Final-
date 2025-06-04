@@ -2501,10 +2501,9 @@ export default function ProductDetailedView() {
       category: "Books",
     },
   };
-
   // Convert productId to a number and handle invalid cases
   const numericProductId = productId ? parseInt(productId, 10) : null;
-  const product = numericProductId ? productDetails[numericProductId] : null;
+  const product = numericProductId ? productDetails[numericProductId as keyof typeof productDetails] : null;
   
   if (!product) {
     return (
