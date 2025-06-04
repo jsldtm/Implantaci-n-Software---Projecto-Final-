@@ -29,6 +29,36 @@ FindItAll es una aplicación web desarrollada con [Next.js](https://nextjs.org),
 - `src/services/` – Lógica de acceso a datos y servicios externos.
 - `public/` – Recursos estáticos e imágenes.
 - `functions/` – Funciones backend y lógica serverless.
+- `sql_demo/` – Implementaciones avanzadas de base de datos (standalone).
+- `sql_demos/` – Scripts SQL ordenados para características avanzadas.
+- `sql_examples/` – Ejemplos básicos de operaciones SQL y Node.js.
+
+---
+
+## Módulo 4: Bases de Datos Avanzadas
+
+Este proyecto incluye una implementación completa de características avanzadas de base de datos MySQL documentadas en el **Módulo 4**:
+
+### Características Implementadas:
+- ✅ **Sistema ACID completo** con transacciones y rollback
+- ✅ **Pool de conexiones avanzado** para alta concurrencia  
+- ✅ **Sistema de seguridad RBAC** con roles `user` y `admin`
+- ✅ **Auditoría temporal** con triggers automáticos
+- ✅ **Procedimientos de limpieza** de datos
+- ✅ **Optimizaciones InnoDB** e indexación estratégica
+- ✅ **Sistema de logging** Write-Ahead para operaciones
+- ✅ **Validaciones** y sanitización de datos
+- ✅ **Schema completo** con constraints y foreign keys
+
+### Archivos Clave:
+- **Configuración:** `sql_demos/20_complete_schema_with_constraints.sql`
+- **Transacciones:** `sql_demo/acid-transactions-system.js`
+- **Seguridad:** `sql_demo/security-rbac-system.js`
+- **Auditoría:** `sql_demos/18_temporal_audit_triggers.sql`
+- **Performance:** `sql_demos/19_performance_optimization.sql`
+- **Pruebas:** `sql_demo/integrated-tests.js`
+
+**Nota:** Los archivos de base de datos son **standalone** y no interfieren con la aplicación web React/Next.js, están diseñados para futura integración.
 
 ---
 
