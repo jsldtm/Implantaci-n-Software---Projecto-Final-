@@ -4,7 +4,7 @@
 // Importación de React hooks para manejo de estado y efectos
 import React, { useState, useEffect } from 'react';
 // Importación del gestor de datos administrativos y la interfaz Product
-import { AdminDataManager, Product } from '@/data/mockAdminData';
+import { AdminDataManager, Product } from '@/data/adminData';
 
 // Componente principal para la gestión de inventario en el dashboard administrativo
 // Permite monitorear y actualizar el stock de productos de forma individual o masiva

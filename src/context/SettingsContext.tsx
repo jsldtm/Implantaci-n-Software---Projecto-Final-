@@ -6,7 +6,7 @@ import React, { createContext, useContext, useState, useEffect, ReactNode } from
 
 interface Settings {
   // Theme settings
-  theme: 'light' | 'dark' | 'warm';
+  theme: 'light' | 'dark' | 'warm' | 'navy';
   accentColor: string;
   username: string;
 
@@ -52,12 +52,11 @@ export const SettingsProvider = ({ children }: SettingsProviderProps) => {
       if (saved) {setSettings(JSON.parse(saved));}
     }
   }, []);
-
   useEffect(() => {
     localStorage.setItem("settings", JSON.stringify(settings));
     // Apply theme class to <body>
     if (typeof window !== "undefined") {
-      document.body.classList.remove("theme-light", "theme-dark", "theme-warm", "theme-custom");
+      document.body.classList.remove("theme-light", "theme-dark", "theme-warm", "theme-navy", "theme-custom");
       document.body.classList.add(`theme-${settings.theme}`);
       // Optionally, set accent color as a CSS variable
       if (settings.accentColor) {

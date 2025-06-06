@@ -10,6 +10,7 @@ const themes = {
   light: { bg: "#ffffff", text: "#111827", accent: "#2563eb" },
   dark: { bg: "#23211c", text: "#e7e3d7", accent: "#2563eb" },
   warm: { bg: "#e8e4da", text: "#3c3a36", accent: "#eab308" },
+  navy: { bg: "#1e3a8a", text: "#f1f5f9", accent: "#60a5fa" }, // Navy Blue theme
   custom: { bg: "#e8e4da", text: "#3c3a36", accent: "#6b5b2a" }, // Added custom theme
 };
 
@@ -59,17 +60,20 @@ const ThemeSettings = () => {
           <button
             key={key}
             className={`${styles.themeButton} ${settings.theme === key ? styles.selected : ""}`}
-            onClick={() => handleThemeChange(key as keyof typeof themes)}
-            style={
+            onClick={() => handleThemeChange(key as keyof typeof themes)}            style={
               key === "warm"
                 ? {
                     background: settings.theme === "warm" ? value.accent : value.bg,
                     color: settings.theme === "warm" ? "#FFF7E6" : value.text,
                   }
+                : key === "navy"
+                ? {
+                    background: settings.theme === "navy" ? value.accent : value.bg,
+                    color: settings.theme === "navy" ? "#ffffff" : value.text,
+                  }
                 : undefined
-            }
-          >
-            {key.charAt(0).toUpperCase() + key.slice(1)}
+            }          >
+            {key === 'navy' ? 'Navy Blue' : key.charAt(0).toUpperCase() + key.slice(1)}
           </button>
         ))}
         {/* Custom color box as a theme option, styled as a square color input */}

@@ -6,7 +6,7 @@
 // Importación de React hooks para manejo de estado y efectos
 import React, { useState, useEffect } from 'react';
 // Importación del gestor de datos administrativos para productos y datos mock
-import { AdminDataManager } from '@/data/mockAdminData';
+import { AdminDataManager } from '@/data/adminData';
 // Importación del gestor de datos de usuarios reales del sistema
 import { UserDataManager } from '@/data/userData';
 

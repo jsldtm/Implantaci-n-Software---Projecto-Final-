@@ -3,7 +3,7 @@
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import AdminDashboard from '@/components/AdminDashboard/AdminDashboard';
-import { AdminDataManager } from '@/data/mockAdminData';
+import { AdminDataManager } from '@/data/adminData';
 
 interface AdminInfo {
   role: string;

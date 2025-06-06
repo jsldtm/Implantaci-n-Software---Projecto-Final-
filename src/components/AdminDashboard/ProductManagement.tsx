@@ -4,7 +4,7 @@
 // Importación de React hooks para manejo de estado y efectos
 import React, { useState, useEffect, useMemo } from 'react';
 // Importación del gestor de datos administrativos y la interfaz Product
-import { AdminDataManager, Product } from '@/data/mockAdminData';
+import { AdminDataManager, Product } from '@/data/adminData';
 
 // Array de categorías disponibles para los productos (coinciden con el catálogo principal)
 // Movido fuera del componente para evitar recreación en cada render

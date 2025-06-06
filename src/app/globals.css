@@ -64,6 +64,12 @@
   --accent-color: #FFD475;
   
 }
+.theme-navy {
+  --bg-color: #1e3a8a;
+  --text-color: #b2bec4;
+  --accent-color: #3b61c7;
+  
+}
 .theme-custom {
   --bg-color: #aaffdd;
   --text-color: #222222;

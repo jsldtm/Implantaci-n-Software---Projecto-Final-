@@ -34,7 +34,7 @@ const FindItAll = () => {
 
   return (
     <>
-      <div className = "flex h-screen" style={{ backgroundColor: "#cfcfcf" }}>
+      <div className = "flex h-screen" style={{ backgroundColor: "#838383" }}>
         {/* Sidebar navigation */}
         <Sidebar portalName = "finditallmain" />
 
