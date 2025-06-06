@@ -10,6 +10,7 @@ import ProductManagement from './ProductManagement';    // Gestión de productos
 import UserManagement from './UserManagement';          // Gestión de usuarios y roles
 import InventoryManagement from './InventoryManagement'; // Control de inventario y stock
 import AdminStats from './AdminStats';                  // Dashboard principal con estadísticas
+import PredictiveAnalysis from './PredictiveAnalysis';  // Análisis predictivo de inventario
 
 // Tipo TypeScript que define las pestañas disponibles en el dashboard
 type TabType = 'dashboard' | 'products' | 'users' | 'inventory' | 'predictive';
@@ -104,7 +105,7 @@ export default function AdminDashboard({ adminInfo, onLogout }: AdminDashboardPr
           {activeTab === 'products' && <ProductManagement />}     {/* Gestión de productos */}
           {activeTab === 'users' && <UserManagement />}           {/* Gestión de usuarios */}
           {activeTab === 'inventory' && <InventoryManagement />}  {/* Control de inventario */}
-          {activeTab === 'predictive' && <div className="p-6"><h2 className="text-xl font-semibold">📈 Análisis Predictivo de Inventario</h2><p className="text-gray-600 mt-2">Funcionalidad en desarrollo...</p></div>} {/* Análisis predictivo */}
+          {activeTab === 'predictive' && <PredictiveAnalysis />}  {/* Análisis predictivo con algoritmo Monte Carlo */}
         </div>
       </div>
     </div>
