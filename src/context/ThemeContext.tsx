@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 import React, { createContext, useContext, useState, ReactNode, useEffect } from "react";
 
 export type Theme  = "light" | "dark" | "warm";

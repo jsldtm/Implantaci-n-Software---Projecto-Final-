@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This component file defines the Saved Products List component of the application
 
 import React, { useEffect, useState } from "react";

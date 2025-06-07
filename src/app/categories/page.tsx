@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // --- PRESENTATION-READY COMMENTS ---
 // This file implements the main Categories page for FindItAll.
 // It demonstrates dynamic category loading, category selection, product search/filtering, and sidebar navigation.

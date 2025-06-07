@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Tabla Carts
 CREATE TABLE IF NOT EXISTS Carts (
   id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

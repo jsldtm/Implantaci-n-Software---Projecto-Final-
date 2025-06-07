@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This page file defines the main page of the FindItAll application
 
 "use client"; // This is a client component

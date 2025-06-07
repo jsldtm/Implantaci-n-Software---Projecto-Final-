@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 import Image from "next/image";
 import SavedForLaterList from "@/components/SavedForLaterList/SavedForLaterList";
 

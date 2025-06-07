@@ -1,4 +1,5 @@
 
+// Código por - Joaquín Saldarriaga
 "use client";
 
 // This is a shopping cart component that displays the items in the cart, a summary of the cart, and a form to proceed with the purchase.

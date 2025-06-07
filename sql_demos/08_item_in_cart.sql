@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Tabla Item_in_cart
 CREATE TABLE IF NOT EXISTS Item_in_cart (
   item_in_cart_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // Centralized product catalog for the entire application
 // This file contains all 190 products that can be used by both the main app and admin
 

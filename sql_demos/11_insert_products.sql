@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Inserción de productos para la tabla Products
 -- NOTA: category_id debe corresponder al ID de la categoría en la tabla Categories
 INSERT INTO Products (product_id, product_name, product_description, product_price, category_id, is_in_stock, created_at, updated_at)

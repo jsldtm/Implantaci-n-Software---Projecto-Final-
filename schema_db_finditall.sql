@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- 1. Crear el esquema (base de datos)
 CREATE SCHEMA IF NOT EXISTS db_finditall;
 USE db_finditall;

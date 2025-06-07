@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Tabla Category_sets
 CREATE TABLE IF NOT EXISTS Category_sets (
   category_id BIGINT NOT NULL,

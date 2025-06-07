@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 CREATE TABLE IF NOT EXISTS Products (
   product_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,
   product_name VARCHAR(20) NOT NULL,

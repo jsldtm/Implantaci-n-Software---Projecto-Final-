@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 import { NextResponse } from "next/server";
 import { cart, CartItem } from "../route";
 

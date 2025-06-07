@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // Shared user data for the entire application
 // This replaces hardcoded users and provides a single source of truth
 

@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Tabla Categories
 CREATE TABLE IF NOT EXISTS Categories (
   category_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

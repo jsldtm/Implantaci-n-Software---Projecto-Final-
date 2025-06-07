@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This context file defines one to handle the username state in a React application
 
 "use client";

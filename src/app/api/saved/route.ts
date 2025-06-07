@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file works on the 'saved' API route.
 // It exports a GET function that returns a list of saved items in JSON format.
 

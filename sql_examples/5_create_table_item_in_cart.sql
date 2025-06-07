@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- 5_create_table_item_in_cart.sql
 CREATE TABLE IF NOT EXISTS Item_in_cart (
   item_in_cart_id BIGINT AUTO_INCREMENT PRIMARY KEY,

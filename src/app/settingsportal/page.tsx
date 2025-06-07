@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This page file defines the Settings page of the application
 
 "use client";

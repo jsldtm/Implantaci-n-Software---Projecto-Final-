@@ -1,4 +1,4 @@
-// filepath: c:\Users\jsald\my-movies-app\src\utils\createEmotionCache.ts
+// Código por - Joaquín Saldarriaga
 import createCache from '@emotion/cache';
 
 const createEmotionCache = () => {

@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- 7_create_table_payments.sql
 CREATE TABLE IF NOT EXISTS Payments (
   payment_id BIGINT AUTO_INCREMENT PRIMARY KEY,

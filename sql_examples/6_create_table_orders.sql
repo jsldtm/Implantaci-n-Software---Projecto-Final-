@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- 6_create_table_orders.sql
 CREATE TABLE IF NOT EXISTS Orders (
   order_id BIGINT AUTO_INCREMENT PRIMARY KEY,

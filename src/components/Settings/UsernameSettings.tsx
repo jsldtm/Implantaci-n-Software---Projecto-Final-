@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This component file defines the Settings Panel component of the application
 
 "use client";

@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 INSERT INTO products (name, description, price, image, category)
 VALUES
   ('Cable USB-B', 'Cable para impresoras y audio.', 109.99, '/images/usb-cable.png', 'Technology'),

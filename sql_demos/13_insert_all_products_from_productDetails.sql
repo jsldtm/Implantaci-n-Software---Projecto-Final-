@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Insert all 190 products from productDetails
 -- Category mapping:
 -- 1: Technology

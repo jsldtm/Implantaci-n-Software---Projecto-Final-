@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This endpoint provides product recommendations based on the user's preferences.
 // It returns a list of recommended products with their details.
 

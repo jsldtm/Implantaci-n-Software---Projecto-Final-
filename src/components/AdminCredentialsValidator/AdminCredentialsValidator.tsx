@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 'use client';
 
 // Mock admin credentials for local authentication

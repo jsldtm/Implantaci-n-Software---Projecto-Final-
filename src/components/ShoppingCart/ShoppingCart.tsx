@@ -1,9 +1,11 @@
+// Código por - Joaquín Saldarriaga
 // This is a shopping cart component that displays the items in the cart, a summary of the cart, and a form to proceed with the purchase.
 
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
 import { useCart } from "../../context/CartContext";
+import { AdminDataManager } from "../../data/adminData";
 import ShoppingCartItem from "../ShoppingCartItem/ShoppingCartItem";
 import ShoppingCartSummary from "../ShoppingCartSummary/ShoppingCartSummary";
 import ShoppingCartForm from "../ShoppingCartForm/ShoppingCartForm";
@@ -56,9 +58,7 @@ const ShoppingCart: React.FC = () => {
       setShowGateway(false);
       setShowOTP(true);
     }, 1800);
-  };
-
-  // Simulated OTP/2FA step
+  };  // Simulated OTP/2FA step
   const handleOTPSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (otp.length !== OTP_LENGTH) {
@@ -69,7 +69,32 @@ const ShoppingCart: React.FC = () => {
     setOTPError("");
     setShowOTP(false);
     setProcessing(true);
+    
     setTimeout(() => {
+      // Prepare purchase data for stock verification
+      const purchases = cart.map(item => ({
+        productId: item.id.replace(/^prod-/, 'prod-'), // Ensure correct format
+        quantity: item.quantity
+      }));
+      
+      // Check stock availability before processing
+      const stockCheck = AdminDataManager.checkStockAvailability(purchases);
+      
+      if (!stockCheck.hasStock) {
+        // Not enough stock, show error and revert
+        setProcessing(false);
+        setShowOTP(true);
+        const errorMessage = stockCheck.issues.map(issue => 
+          `${issue.productName}: requested ${issue.requested}, only ${issue.available} available`
+        ).join('\n');
+        setOTPError(`Insufficient stock:\n${errorMessage}`);
+        return;
+      }
+      
+      // Deduct stock from inventory since stock is available
+      AdminDataManager.deductStock(purchases);
+      
+      // Complete the order
       saveOrderToHistory(cart);
       setOrderPlaced(true);
       clearCart();

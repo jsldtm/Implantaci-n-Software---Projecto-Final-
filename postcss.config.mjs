@@ -1,4 +1,4 @@
-// filepath: c:\Users\jsald\my-movies-app\postcss.config.mjs
+// Código por - Joaquín Saldarriaga
 const config = {
   plugins: {
     "@tailwindcss/postcss": {},

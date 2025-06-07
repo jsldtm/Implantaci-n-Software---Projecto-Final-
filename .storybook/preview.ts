@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 import type { Preview } from '@storybook/react'
 
 const preview: Preview = {

@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 import type { StorybookConfig } from '@storybook/nextjs';
 
 const config: StorybookConfig = {

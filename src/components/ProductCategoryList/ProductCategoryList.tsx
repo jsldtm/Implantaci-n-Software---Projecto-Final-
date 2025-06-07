@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file handles the display of the 'product categories' list
 
 "use client";

@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 import React from 'react';
 import type { Meta, StoryObj } from '@storybook/react';
 import CategoryName from './CategoryName';

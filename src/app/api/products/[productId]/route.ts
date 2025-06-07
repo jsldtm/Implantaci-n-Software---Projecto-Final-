@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This API route handles product details requests in the FindItAll portal!
 import { NextResponse } from "next/server";
 

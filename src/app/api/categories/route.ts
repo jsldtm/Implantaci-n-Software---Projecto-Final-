@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file is part of the login portal application.
 // It contains the API route for fetching product categories.
 // It exports a GET function that returns a list of product categories in JSON format.

@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file includes the ProductsListedByCategory component
 // which fetches and displays products based on the selected category.
 

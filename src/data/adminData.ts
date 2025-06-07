@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // Mock data for admin functionality without Firebase
 // Import real user data from unified source
 import { appUsers, UserDataManager, AppUser } from './userData';
@@ -167,13 +168,12 @@ const convertToAdminFormat = () => {
     const cleanedPrice = priceString.replace(/[^\d.]/g, '');
     const parsedPrice = parseFloat(cleanedPrice);
     const numericPrice = (!isNaN(parsedPrice) && parsedPrice >= 0) ? parsedPrice : 0;
-    
-    products.push({
+      products.push({
       id: `prod-${productData.id}`,
       name: productData.name,
       price: numericPrice,
       category: productData.category,
-      stock: Math.floor(Math.random() * 100) + 1, // Random stock between 1-100
+      stock: 40, // Fixed initial stock of 40 units
       description: productData.description,
       image: productData.image,
       createdAt: new Date(2024, 0, Math.floor(Math.random() * 20) + 1).toISOString(),
@@ -227,7 +227,7 @@ export const AdminDataManager = {
     AdminDataManager.saveProducts(products);
     return newProduct;
   },
-
+  
   updateProduct: (id: string, updates: Partial<Product>) => {
     const products = AdminDataManager.getProducts();
     const index = products.findIndex(p => p.id === id);
@@ -238,13 +238,53 @@ export const AdminDataManager = {
     }
     return null;
   },
-
   deleteProduct: (id: string) => {
     const products = AdminDataManager.getProducts();
     const filtered = products.filter(p => p.id !== id);
     AdminDataManager.saveProducts(filtered);
     return filtered;
   },
+
+  // Deduct stock when purchase is made
+  deductStock: (purchases: Array<{ productId: string; quantity: number }>) => {
+    const products = AdminDataManager.getProducts();
+    let updated = false;
+    
+    purchases.forEach(({ productId, quantity }) => {
+      const index = products.findIndex(p => p.id === productId);
+      if (index >= 0 && products[index].stock >= quantity) {
+        products[index].stock -= quantity;
+        products[index].updatedAt = new Date().toISOString();
+        updated = true;
+      }
+    });
+    
+    if (updated) {
+      AdminDataManager.saveProducts(products);
+    }
+    return products;
+  },
+
+  // Check if there's enough stock for purchase
+  checkStockAvailability: (purchases: Array<{ productId: string; quantity: number }>) => {
+    const products = AdminDataManager.getProducts();
+    const stockIssues: Array<{ productId: string; productName: string; requested: number; available: number }> = [];
+    
+    purchases.forEach(({ productId, quantity }) => {
+      const product = products.find(p => p.id === productId);
+      if (!product) {
+        stockIssues.push({ productId, productName: 'Unknown Product', requested: quantity, available: 0 });
+      } else if (product.stock < quantity) {
+        stockIssues.push({ productId, productName: product.name, requested: quantity, available: product.stock });
+      }
+    });
+    
+    return {
+      hasStock: stockIssues.length === 0,
+      issues: stockIssues
+    };
+  },
+
   // Users - now using real user data
   getUsers: (): User[] => {
     if (typeof window === 'undefined') return getAdminUsers();

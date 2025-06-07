@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file is a client component because it uses the `useState` and `useEffect` hooks from React.
 "use client";
 

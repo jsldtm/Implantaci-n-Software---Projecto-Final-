@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // src/app/api/products/data.ts
 export const productsByCategory: Record<string, Array<{ id: number; name: string; price: number; image: string; preOrder?: boolean }>> = {
     Technology: [

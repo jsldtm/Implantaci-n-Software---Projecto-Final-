@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // THis file is responsible for the ilustration of the 'product detailed view' portal
 
 "use client";

@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This Context file handles the settings states
 
 "use client";

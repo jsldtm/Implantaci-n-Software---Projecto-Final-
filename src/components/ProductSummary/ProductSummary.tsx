@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file is part of the Product Detailed View page in the FindItAll portal!.
 
 "use client";

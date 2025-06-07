@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This TSX file defines the AdminStats component for the admin dashboard in the FindItAll application
 
 // Directiva de Next.js para indicar que este es un componente del cliente (client-side)

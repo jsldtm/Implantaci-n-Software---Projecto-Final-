@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file contains the elaborated FloatingCartIcon component
 
 "use client";

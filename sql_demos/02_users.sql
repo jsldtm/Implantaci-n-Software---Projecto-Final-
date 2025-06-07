@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Tabla Users
 CREATE TABLE IF NOT EXISTS Users (
   user_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

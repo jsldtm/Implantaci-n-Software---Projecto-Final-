@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file is part of the login portal application.
 
 import { NextResponse } from 'next/server';

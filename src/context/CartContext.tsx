@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file defines a context for managing the shopping cart state in a React application
 "use client";
 

@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- 8_create_table_category_sets.sql
 CREATE TABLE IF NOT EXISTS Category_sets (
   category_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This comonent file defines the Purchase History List component of the application
 
 import React, { useEffect, useState } from "react";

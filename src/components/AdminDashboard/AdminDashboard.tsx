@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // Directiva de Next.js para indicar que este es un componente del cliente (client-side)
 'use client';
 
@@ -33,9 +34,8 @@ export default function AdminDashboard({ adminInfo, onLogout }: AdminDashboardPr
   const router = useRouter();
   
   // Función que maneja el cierre de sesión usando la prop proporcionada
-  const handleLogout = () => {
-    onLogout();
-  };
+  const handleLogout = () => {onLogout();};
+  
   // Configuración de las pestañas del dashboard con metadata
   const tabs = [
     { id: 'dashboard', name: 'Dashboard', icon: '📊' },   // Vista general con estadísticas
@@ -44,6 +44,7 @@ export default function AdminDashboard({ adminInfo, onLogout }: AdminDashboardPr
     { id: 'inventory', name: 'Inventario', icon: '📋' }, // Control de stock
     { id: 'predictive', name: 'Análisis Predictivo de Inventario', icon: '📈' }, // Predicciones de demanda
   ];
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header - Barra superior del dashboard administrativo */}

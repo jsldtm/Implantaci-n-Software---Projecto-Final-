@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // Ejemplo de actualización de datos en MySQL desde Node.js
 const mysql = require('mysql2');
 const dotenv = require('dotenv');

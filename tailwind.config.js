@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 /** @type {import('tailwindcss').Config} */
 module.exports = {
     content: [

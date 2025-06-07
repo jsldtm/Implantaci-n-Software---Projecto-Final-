@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- 3_create_table_products.sql
 CREATE TABLE IF NOT EXISTS Products (
   product_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

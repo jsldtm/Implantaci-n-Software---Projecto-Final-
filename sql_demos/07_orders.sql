@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Tabla Orders
 CREATE TABLE IF NOT EXISTS Orders (
   order_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

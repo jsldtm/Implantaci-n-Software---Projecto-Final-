@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // Directiva de Next.js para indicar que este es un componente del cliente (client-side)
 'use client';
 

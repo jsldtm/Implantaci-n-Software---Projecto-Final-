@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This is a shopping cart page component that uses the ShoppingCart component and wraps it with the CartProvider context.
 
 "use client";

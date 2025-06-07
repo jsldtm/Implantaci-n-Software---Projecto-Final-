@@ -1,6 +1,7 @@
+// Código por - Joaquín Saldarriaga
 // This file is part of the Product Detailed View page
 // It provides a "Back to Categories" link that allows...
-//    users to navigate back to the specified category page.  
+//    users to navigate back to the specified category page.
 
 import React from "react";
 import { PlayIcon } from "@heroicons/react/24/outline"; // Import Heroicons PlayIcon

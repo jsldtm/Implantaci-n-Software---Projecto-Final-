@@ -1,3 +1,4 @@
+-- Código por - Joaquín Saldarriaga
 -- Tabla Payments
 CREATE TABLE IF NOT EXISTS Payments (
   payment_id BIGINT UNIQUE AUTO_INCREMENT PRIMARY KEY,

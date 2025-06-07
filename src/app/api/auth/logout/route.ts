@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 // This file logs a user out of the application.
 
 import { NextResponse } from 'next/server';

@@ -1,3 +1,4 @@
+// Código por - Joaquín Saldarriaga
 import React from "react";
 
 interface CategoryBarProps {
