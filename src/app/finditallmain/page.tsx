@@ -34,28 +34,27 @@ const FindItAll = () => {
   };
 
   return (
-    <>
-      <div className = "flex h-screen" style={{ backgroundColor: "#838383" }}>
+    <>      <div className = "flex h-screen" style={{ backgroundColor: "#838383" }}>
         {/* Sidebar navigation */}
         <Sidebar portalName = "finditallmain" />
 
         {/* Main content */}
         <div className = "flex-1 overflow-y-auto p-4">
           {/* Main header */}
-          <MainHeader />
-
-          {/* Product categories */}
-          <div className = "mt-1 scrollable-container">
-        <ProductCategoryList />
+          <div data-testid="main-header">
+            <MainHeader />
           </div>
 
-          {/* New and trendy */}
-          <div className = "mt-1 scrollable-container">
+          {/* Product categories */}
+          <div className = "mt-1 scrollable-container" data-testid="product-category-list">
+        <ProductCategoryList />
+          </div>          {/* New and trendy */}
+          <div className = "mt-1 scrollable-container" data-testid="new-trendy-list">
         <NewAndTrendyList />
           </div>
 
           {/* Saved for later */}
-          <div className = "mt-1 scrollable-container">
+          <div className = "mt-1 scrollable-container" data-testid="saved-later-list">
         <SavedForLaterList />
           </div>
         </div>
