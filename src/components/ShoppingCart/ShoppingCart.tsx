@@ -69,11 +69,10 @@ const ShoppingCart: React.FC = () => {
     setOTPError("");
     setShowOTP(false);
     setProcessing(true);
-    
-    setTimeout(() => {
+      setTimeout(() => {
       // Prepare purchase data for stock verification
       const purchases = cart.map(item => ({
-        productId: item.id.replace(/^prod-/, 'prod-'), // Ensure correct format
+        productId: `prod-${item.id.split('-')[0]}`, // Extract base product ID and ensure correct format
         quantity: item.quantity
       }));
       
